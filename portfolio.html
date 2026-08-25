@@ -336,13 +336,11 @@
 <!-- PROJECT DETAIL VIEW -->
 <section class="detail hidden" id="detail-view">
   <button class="back-link" id="back-btn">← Todos os projetos</button>
-  <div class="detail-cat" id="detail-cat"></div>
-  <h1 class="detail-title serif" id="detail-title"></h1>
-  <div class="detail-meta" id="detail-meta"></div>
-  <p class="detail-desc" id="detail-desc"></p>
-  <div class="deliv-label">Criativos deste projeto</div>
-  <div class="deliverables-grid" id="detail-deliverables"></div>
-  <div class="detail-next" id="detail-next"></div>
+  
+  <!-- Container focado apenas na imagem do banner -->
+  <div style="max-width: 1000px; margin: 0 auto 80px; text-align: center;">
+    <img id="detail-banner-img" src="" alt="" style="width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--line);">
+  </div>
 </section>
 
 <footer>
@@ -352,50 +350,28 @@
 
 <script>
 const projects = [
-  {name:"Madre Pizzas", cat:"branding", tags:["Rebranding","Impressos"], desc:"Rebranding completo da pizzaria: nova identidade, voucher promocional e caixas de pizza.", colors:["#0a1e5c","#c9a227"],
-    deliverables:["Logo colorido em azul e dourado","Variações de cor: azul, verde e dourado","Ícone isolado da marca","Voucher promocional 15% OFF","Caixa de pizza fechada","Caixa de pizza aberta com o produto"]},
-  {name:"GDN", cat:"branding", tags:["Branding","Mockups"], desc:"Construção de marca do zero para loja de tecnologia, com fachada, cartão e uniforme.", colors:["#0d1b3e","#f5a623"],
-    deliverables:["Logotipo em 4 variações de cor","Aplicação em fachada de loja","Cartão de visita em papel preto","Camiseta institucional","Anúncio para redes sociais"]},
-  {name:"Nova Energy Solutions", cat:"branding", tags:["Branding"], desc:"Identidade visual para empresa de energia, aplicada em copos, cartões e papelaria.", colors:["#0d5c56","#f4f1e6"],
-    deliverables:["Símbolo N minimalista","Logotipo horizontal completo","Copo térmico personalizado","Cartão de visita","Pasta institucional","Cartaz de rua"]},
-  {name:"Leandro Rampinelli", cat:"branding", tags:["Branding","Mockups"], desc:"Marca pessoal para fisioterapeuta, com símbolo de coluna vertebral em dourado.", colors:["#161616","#c9a227"],
-    deliverables:["Símbolo de coluna vertebral em dourado","Logotipo em 3 variações de fundo","Camiseta polo institucional","Placa de acrílico para consultório","Aplicação em tablet"]},
-  {name:"Saiph Team", cat:"branding", tags:["Branding"], desc:"Identidade inspirada em constelações para equipe, aplicada em capa de disco e desktop.", colors:["#0b1330","#e8ac4a"],
-    deliverables:["Símbolo de estrela e constelação","Logotipo em 2 variações de cor","Capa de vinil conceitual","Wallpaper de desktop"]},
-  {name:"Andréa Matos", cat:"branding", tags:["Branding","Ícones"], desc:"Marca para clínica de psicologia, com símbolo psi e paleta terrosa e lilás.", colors:["#5a3d2b","#b06fc9"],
-    deliverables:["Símbolo psi com mãos acolhendo","Logotipo em 5 variações de cor","Cartão de visita","Conjunto de ícones para aplicativo"]},
-  {name:"Dra. Sandra Helena Pereira", cat:"branding", tags:["Rebranding"], desc:"Rebranding para ginecologista, com símbolo de lua crescente em rosa e verde.", colors:["#e796a8","#5c7a4e"],
-    deliverables:["Símbolo de lua crescente com silhueta","Logotipo em rosa e em verde","Versão circular para redes sociais"]},
-  {name:"Beatriz Soares", cat:"branding", tags:["Branding"], desc:"Marca para doceria saudável, tipografia manuscrita em rosa vibrante.", colors:["#c41752","#c7e06b"],
-    deliverables:["Logotipo manuscrito","Monograma BS com cupcake","Aplicação em 3 cores de fundo"]},
-  {name:"Tia Leninha", cat:"branding", tags:["Branding"], desc:"Marca floral para negócio local, aplicada em carimbo e luminoso de fachada.", colors:["#0e0b2e","#e0a13a"],
-    deliverables:["Símbolo floral com inicial L","Logotipo em 2 variações","Carimbo personalizado","Luminoso de fachada"]},
-  {name:"Igreja Adventista de São Silvano", cat:"branding", tags:["Branding"], desc:"Identidade para organização religiosa, com monograma IASS, chama e cruz.", colors:["#0a0a0a","#c9a227"],
-    deliverables:["Monograma IASS com chama e cruz","Versão positiva sobre fundo claro","Versão negativa sobre fundo escuro"]},
-  {name:"DJ Consultoria em Gestão Pública", cat:"branding", tags:["Rebranding"], desc:"Rebranding corporativo com monograma DJ, aplicado em redes sociais e mobile.", colors:["#0a2a5c","#3a8ee0"],
-    deliverables:["Monograma DJ com seta","Logotipo horizontal completo","Aplicação em tela de celular","Post para Instagram"]},
-  {name:"Jefferson Fernandes", cat:"branding", tags:["Branding","Mockups"], desc:"Marca pessoal para personal trainer, com escudo JF e mockups em ambiente de treino.", colors:["#0b1f4d","#2f6fd6"],
-    deliverables:["Escudo JF com halteres","Logotipo horizontal completo","Camiseta em ambiente de treino","Fachada de academia"]},
-  {name:"Madre Pizzas", cat:"social", tags:["Instagram","TV"], desc:"Postagens sazonais para Instagram e material de apresentação televisiva da pizzaria.", colors:["#0a1e5c","#c9a227"],
-    deliverables:["Post de agradecimento aos clientes","Post institucional \"pizza italiana\"","Post sazonal de Dia dos Namorados","Card de novo horário de funcionamento","Anúncio da pizza em pedaço","Vídeo de apresentação para TV"]},
-  {name:"Ízi Stays", cat:"social", tags:["Social Media","Tráfego pago"], desc:"Postagens para redes sociais e campanhas pagas de hospedagem, incluindo guia de restaurantes.", colors:["#173a4a","#e9c74a"],
-    deliverables:["Post de depoimento de hóspede","Post de campanha \"próximas férias\"","Carrossel do apartamento","Guia dos 5 melhores restaurantes de Vitória"]},
-  {name:"E-Redação", cat:"social", tags:["Social Media","Tráfego pago"], desc:"Conteúdo educativo e de conversão para plataforma de correção de redação do Enem.", colors:["#123a7a","#c7e06b"],
-    deliverables:["Carrossel de prova social","Post educativo sobre erros de redação","Post \"redação não é dom\"","Post de oferta do checklist gratuito"]},
-  {name:"SOS Energia Solar", cat:"social", tags:["Social Media","Tráfego pago"], desc:"Série de postagens educativas sobre benefícios e economia da energia solar.", colors:["#c9531e","#f5c344"],
-    deliverables:["Post de benefícios da energia solar","Post de redução da conta de luz","Post de sustentabilidade","Post de payback do investimento"]},
-  {name:"Tile Pro Services", cat:"social", tags:["Portfólio","Redes sociais"], desc:"Antes e depois de obras e postagens de portfólio para empresa de pisos nos EUA.", colors:["#161616","#c41c1c"],
-    deliverables:["Post \"the perfection is in the details\"","Post de acabamento em porcelanato","Antes e depois de instalação de piso"]},
-  {name:"Dra. Marina Malacarne", cat:"social", tags:["Social Media","Tráfego pago"], desc:"Conteúdo educativo sobre infectologia para redes sociais e campanhas pagas.", colors:["#e8b4b8","#8a1f3d"],
-    deliverables:["Post sobre cuidados com recém-nascido","Post sobre Covid longa","Post de Dia do Médico","Post sobre estresse e infecção"]},
-  {name:"Dra. Sandra Helena Pereira", cat:"social", tags:["Social Media","Tráfego pago"], desc:"Postagens sobre saúde da mulher e divulgação profissional para redes sociais.", colors:["#e796a8","#5c7a4e"],
-    deliverables:["Post institucional \"há mais de 40 anos\"","Post sobre câncer de colo de útero","Post sobre menopausa e climatério","Post \"quem é Sandra Helena?\""]},
-  {name:"Titãs da Robótica", cat:"web", tags:["Portal","Iniciação Científica"], desc:"Portal oficial para equipe de robótica, do wireframe ao deploy em produção.", colors:["#111111","#ffffff"],
-    deliverables:["Prototipação de fluxo de telas","Deploy do portal em produção","Página inicial com equipes e blog"], link:"https://titasdarobotica.vercel.app/"},
-  {name:"Chiuba Store", cat:"web", tags:["E-commerce","Landing page"], desc:"Landing page, loja Shopify e loja integrada para marca de moda contemporânea.", colors:["#161616","#c9803f"],
-    deliverables:["Landing page da marca","Loja em Shopify","Loja integrada com catálogo completo"], link:"https://chiuba-brand-experience.lovable.app/"},
-  {name:"SIGPRO", cat:"web", tags:["UI/UX","Sistema"], desc:"Telas de sistema de inscrição de editais e projetos técnico-científicos, com Nuxt UI.", colors:["#101826","#3a6fe0"],
-    deliverables:["Tela de identificação do projeto","Tela de documentos complementares","Tela de revisão e envio","Tela de confirmação de envio"]},
+  {name:"Madre Pizzas", cat:"branding", image:"images/04.png", tags:["Rebranding","Impressos"], desc:"Rebranding completo da pizzaria: nova identidade, voucher promocional e caixas de pizza.", colors:["#0a1e5c","#c9a227"], deliverables:["Logo colorido em azul e dourado","Variações de cor: azul, verde e dourado","Ícone isolado da marca","Voucher promocional 15% OFF","Caixa de pizza fechada","Caixa de pizza aberta com o produto"]},
+  {name:"GDN", cat:"branding", image:"images/05.png", tags:["Branding","Mockups"], desc:"Construção de marca do zero para loja de tecnologia, com fachada, cartão e uniforme.", colors:["#0d1b3e","#f5a623"], deliverables:["Logotipo em 4 variações de cor","Aplicação em fachada de loja","Cartão de visita em papel preto","Camiseta institucional","Anúncio para redes sociais"]},
+  {name:"Nova Energy Solutions", cat:"branding", image:"images/06.png", tags:["Branding"], desc:"Identidade visual para empresa de energia, aplicada em copos, cartões e papelaria.", colors:["#0d5c56","#f4f1e6"], deliverables:["Símbolo N minimalista","Logotipo horizontal completo","Copo térmico personalizado","Cartão de visita","Pasta institucional","Cartaz de rua"]},
+  {name:"Leandro Rampinelli", cat:"branding", image:"images/07.png", tags:["Branding","Mockups"], desc:"Marca pessoal para fisioterapeuta, com símbolo de coluna vertebral em dourado.", colors:["#161616","#c9a227"], deliverables:["Símbolo de coluna vertebral em dourado","Logotipo em 3 variações de fundo","Camiseta polo institucional","Placa de acrílico para consultório","Aplicação em tablet"]},
+  {name:"Saiph Team", cat:"branding", image:"images/08.png", tags:["Branding"], desc:"Identidade inspirada em constelações para equipe, aplicada em capa de disco e desktop.", colors:["#0b1330","#e8ac4a"], deliverables:["Símbolo de estrela e constelação","Logotipo em 2 variações de cor","Capa de vinil conceitual","Wallpaper de desktop"]},
+  {name:"Andréa Matos", cat:"branding", image:"images/09.png", tags:["Branding","Ícones"], desc:"Marca para clínica de psicologia, com símbolo psi e paleta terrosa e lilás.", colors:["#5a3d2b","#b06fc9"], deliverables:["Símbolo psi com mãos acolhendo","Logotipo em 5 variações de cor","Cartão de visita","Conjunto de ícones para aplicativo"]},
+  {name:"Dra. Sandra Helena Pereira", cat:"branding", image:"images/10.png", tags:["Rebranding"], desc:"Rebranding para ginecologista, com símbolo de lua crescente em rosa e verde.", colors:["#e796a8","#5c7a4e"], deliverables:["Símbolo de lua crescente com silhueta","Logotipo em rosa e em verde","Versão circular para redes sociais"]},
+  {name:"Beatriz Soares", cat:"branding", image:"images/11.png", tags:["Branding"], desc:"Marca para doceria saudável, tipografia manuscrita em rosa vibrante.", colors:["#c41752","#c7e06b"], deliverables:["Logotipo manuscrito","Monograma BS com cupcake","Aplicação em 3 cores de fundo"]},
+  {name:"Tia Leninha", cat:"branding", image:"images/12.png", tags:["Branding"], desc:"Marca floral para negócio local, aplicada em carimbo e luminoso de fachada.", colors:["#0e0b2e","#e0a13a"], deliverables:["Símbolo floral com inicial L","Logotipo em 2 variações","Carimbo personalizado","Luminoso de fachada"]},
+  {name:"Igreja Adventista de São Silvano", cat:"branding", image:"images/13.png", tags:["Branding"], desc:"Identidade para organização religiosa, com monograma IASS, chama e cruz.", colors:["#0a0a0a","#c9a227"], deliverables:["Monograma IASS com chama e cruz","Versão positiva sobre fundo claro","Versão negativa sobre fundo escuro"]},
+  {name:"DJ Consultoria em Gestão Pública", cat:"branding", image:"images/14.png", tags:["Rebranding"], desc:"Rebranding corporativo com monograma DJ, aplicado em redes sociais e mobile.", colors:["#0a2a5c","#3a8ee0"], deliverables:["Monograma DJ com seta","Logotipo horizontal completo","Aplicação em tela de celular","Post para Instagram"]},
+  {name:"Jefferson Fernandes", cat:"branding", image:"images/15.png", tags:["Branding","Mockups"], desc:"Marca pessoal para personal trainer, com escudo JF e mockups em ambiente de treino.", colors:["#0b1f4d","#2f6fd6"], deliverables:["Escudo JF com halteres","Logotipo horizontal completo","Camiseta em ambiente de treino","Fachada de academia"]},
+  {name:"Madre Pizzas", cat:"social", image:"images/17.png", tags:["Instagram","TV"], desc:"Postagens sazonais para Instagram e material de apresentação televisiva da pizzaria.", colors:["#0a1e5c","#c9a227"], deliverables:["Post de agradecimento aos clientes","Post institucional \"pizza italiana\"","Post sazonal de Dia dos Namorados","Card de novo horário de funcionamento","Anúncio da pizza em pedaço","Vídeo de apresentação para TV"]},
+  {name:"Ízi Stays", cat:"social", image:"images/18.png", tags:["Social Media","Tráfego pago"], desc:"Postagens para redes sociais e campanhas pagas de hospedagem, incluindo guia de restaurantes.", colors:["#173a4a","#e9c74a"], deliverables:["Post de depoimento de hóspede","Post de campanha \"próximas férias\"","Carrossel do apartamento","Guia dos 5 melhores restaurantes de Vitória"]},
+  {name:"E-Redação", cat:"social", image:"images/19.png", tags:["Social Media","Tráfego pago"], desc:"Conteúdo educativo e de conversão para plataforma de correção de redação do Enem.", colors:["#123a7a","#c7e06b"], deliverables:["Carrossel de prova social","Post educativo sobre erros de redação","Post \"redação não é dom\"","Post de oferta do checklist gratuito"]},
+  {name:"SOS Energia Solar", cat:"social", image:"images/20.png", tags:["Social Media","Tráfego pago"], desc:"Série de postagens educativas sobre benefícios e economia da energia solar.", colors:["#c9531e","#f5c344"], deliverables:["Post de benefícios da energia solar","Post de redução da conta de luz","Post de sustentabilidade","Post de payback do investimento"]},
+  {name:"Tile Pro Services", cat:"social", image:"images/21.png", tags:["Portfólio","Redes sociais"], desc:"Antes e depois de obras e postagens de portfólio para empresa de pisos nos EUA.", colors:["#161616","#c41c1c"], deliverables:["Post \"the perfection is in the details\"","Post de acabamento em porcelanato","Antes e depois de instalação de piso"]},
+  {name:"Dra. Marina Malacarne", cat:"social", image:"images/22.png", tags:["Social Media","Tráfego pago"], desc:"Conteúdo educativo sobre infectologia para redes sociais e campanhas pagas.", colors:["#e8b4b8","#8a1f3d"], deliverables:["Post sobre cuidados com recém-nascido","Post sobre Covid longa","Post de Dia do Médico","Post sobre estresse e infecção"]},
+  {name:"Dra. Sandra Helena Pereira", cat:"social", image:"images/23.png", tags:["Social Media","Tráfego pago"], desc:"Postagens sobre saúde da mulher e divulgação profissional para redes sociais.", colors:["#e796a8","#5c7a4e"], deliverables:["Post institucional \"há mais de 40 anos\"","Post sobre câncer de colo de útero","Post sobre menopausa e climatério","Post \"quem é Sandra Helena?\""]},
+  {name:"Titãs da Robótica", cat:"web", image:"images/28.png", tags:["Portal","Iniciação Científica"], desc:"Portal oficial para equipe de robótica, do wireframe ao deploy em produção.", colors:["#111111","#ffffff"], deliverables:["Prototipação de fluxo de telas","Deploy do portal em produção","Página inicial com equipes e blog"], link:"https://titasdarobotica.vercel.app/"},
+  {name:"Chiuba Store", cat:"web", image:"images/29.png", tags:["E-commerce","Landing page"], desc:"Landing page, loja Shopify e loja integrada para marca de moda contemporânea.", colors:["#161616","#c9803f"], deliverables:["Landing page da marca","Loja em Shopify","Loja integrada com catálogo completo"], link:"https://chiuba-brand-experience.lovable.app/"},
+  {name:"SIGPRO", cat:"web", image:"images/.png", tags:["UI/UX","Sistema"], desc:"Telas de sistema de inscrição de editais e projetos técnico-científicos, com Nuxt UI.", colors:["#101826","#3a6fe0"], deliverables:["Tela de identificação do projeto","Tela de documentos complementares","Tela de revisão e envio","Tela de confirmação de envio"]}
 ];
 
 const PAGE_SIZE = 3;
@@ -445,8 +421,11 @@ function renderGrid(){
     const card = document.createElement('div');
     card.className = 'card';
     const textColor = p.colors[1].toLowerCase() === '#ffffff' ? '#111' : '#fff';
+    
+    // O HTML do card atualizado com a imagem:
     card.innerHTML = `
       <div class="plaque" style="background:linear-gradient(135deg, ${p.colors[0]}, ${p.colors[1]})">
+        <img src="${p.image}" alt="${p.name}" style="width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 1; opacity: 0.95;">
         <div class="mono" style="color:${textColor}">${p.name}</div>
       </div>
       <div class="card-body">
@@ -484,43 +463,13 @@ renderGrid();
 /* ---- DETAIL VIEW ---- */
 function openDetail(index){
   const p = projects[index];
-  document.getElementById('detail-cat').textContent = catLabel(p.cat);
-  document.getElementById('detail-title').textContent = p.name;
-  document.getElementById('detail-desc').textContent = p.desc + (p.link ? '' : '');
+  
+  // Injeta apenas a imagem do banner na tag <img> criada no HTML
+  const bannerImg = document.getElementById('detail-banner-img');
+  bannerImg.src = p.image;
+  bannerImg.alt = p.name;
 
-  const meta = document.getElementById('detail-meta');
-  meta.innerHTML = p.tags.map(t=>`<span class="tag">${t}</span>`).join('') +
-    (p.link ? `<a href="${p.link}" target="_blank" rel="noopener" class="tag" style="color:var(--yellow); border-color:var(--yellow)">Ver online ↗</a>` : '');
-
-  const delivWrap = document.getElementById('detail-deliverables');
-  delivWrap.innerHTML = '';
-  p.deliverables.forEach((d, i)=>{
-    const tile = document.createElement('div');
-    const isBig = i === 0;
-    tile.className = 'deliv-tile' + (isBig ? ' big' : '');
-    const bg = i % 2 === 0 ? p.colors[0] : p.colors[1];
-    tile.style.background = bg;
-    tile.innerHTML = `<span>${d}</span>`;
-    delivWrap.appendChild(tile);
-  });
-
-  const nextIndex = (index + 1) % projects.length;
-  const nextP = projects[nextIndex];
-  document.getElementById('detail-next').innerHTML = `
-    <div>
-      <div class="lbl">Categoria</div>
-      <div class="name" style="font-style:normal; font-family:'Inter'; font-size:14px; color:var(--muted)">${catLabel(p.cat)}</div>
-    </div>
-    <a href="#" id="next-project-link">
-      <div class="lbl">Próximo →</div>
-      <div class="name">${nextP.name}</div>
-    </a>
-  `;
-  document.getElementById('next-project-link').addEventListener('click', (e)=>{
-    e.preventDefault();
-    openDetail(nextIndex);
-  });
-
+  // Esconde a página principal e mostra a subpágina
   mainView.classList.add('hidden');
   detailView.classList.remove('hidden');
   window.scrollTo({top:0, behavior:'instant'});
