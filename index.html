@@ -208,6 +208,10 @@
     color:var(--muted); font-size:12.5px; font-family:'Inter';
   }
   footer .foot-logo{ height:22px; opacity:.85; }
+  .social-links{display:flex;align-items:center;gap:16px}
+  .social-links a{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:16px;transition:all .2s ease}
+  .social-links a:hover{color:#fff;background:var(--pink);border-color:var(--pink);transform:translateY(-2px)}
+
 
   @media (max-width:900px){
     .about{ grid-template-columns:1fr; gap:30px; }
@@ -228,13 +232,14 @@
   [data-reveal]{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
   [data-reveal].show{ opacity:1; transform:translateY(0); }
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 <div class="noise"></div>
 
 <nav>
   <img class="nav-logo" id="nav-logo" src="images\logo1.png" alt="Isadora Massarioli">
-  <a href="#contato" class="btn btn-primary">Fale comigo</a>
+  <a href="https://wa.me/5527995153664?text=oi%2C%20tenho%20um%20projeto%21" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Fale comigo</a>
 </nav>
 
 <main id="main-view">
@@ -272,7 +277,7 @@
       <p>Sou Isadora Massarioli, designer gráfica especializada em identidade visual, branding e estratégia de redes sociais. Me comprometo a trazer resultados reais de crescimento para empresas e negócios através do posicionamento de marca e do engajamento nas redes sociais.</p>
       <p>Cada projeto começa com escuta: entender quem o cliente é, o que representa e quem quer alcançar. Depois, transformo isso em identidade visual, em conteúdo e em experiência digital.</p>
       <div class="about-cta">
-        <a href="#contato" class="btn btn-primary">Fale comigo</a>
+        <a href="https://wa.me/5527995153664?text=oi%2C%20tenho%20um%20projeto%21" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Fale comigo</a>
         <a href="#servicos" class="btn btn-ghost">O que eu ofereço</a>
       </div>
     </div>
@@ -327,8 +332,8 @@
     <h2 class="script">Vamos trabalhar juntos?</h2>
     <p>Seja um logo, um manual de marca ou uma campanha completa nas redes, estou pronta para o próximo projeto.</p>
     <div class="contact-cta">
-      <a href="#" class="btn btn-primary">Entre em contato</a>
-      <a href="#" class="btn btn-ghost">LinkedIn</a>
+      <a href="https://wa.me/5527995153664?text=oi%2C%20tenho%20um%20projeto%21" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Entre em contato</a>
+      <a href="https://www.linkedin.com/in/isadoramassarioli/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">LinkedIn</a>
     </div>
   </section>
 </main>
@@ -344,7 +349,13 @@
 </section>
 
 <footer>
-  <img class="foot-logo" src="images\logo1.png" alt="Logo da empresa">
+  <img class="foot-logo" src="images\logo1.png" alt="Isadora Massarioli">
+  <div class="social-links" aria-label="Redes sociais e contato">
+    <a href="https://www.linkedin.com/in/isadoramassarioli/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+    <a href="https://www.youtube.com/@isadora.massarioli" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://www.instagram.com/isadoramassarioli/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://wa.me/5527995153664?text=oi%2C%20tenho%20um%20projeto%21" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+  </div>
   <span>© 2026 Isadora Massarioli</span>
 </footer>
 
