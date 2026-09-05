@@ -170,11 +170,13 @@
   .detail-meta{ display:flex; flex-wrap:wrap; gap:8px; padding-bottom:32px; margin-bottom:36px; border-bottom:1px solid var(--line); }
   .detail-desc{ max-width:640px; color:var(--muted); font-size:16px; line-height:1.75; margin-bottom:36px; font-family:'Inter'; }
   .detail-link{ display:inline-flex; align-items:center; gap:8px; margin-bottom:48px; }
-  .detail-banner{ max-width:1000px; margin:0 auto 56px; text-align:center; }
-  .detail-banner img{ width:100%; height:auto; border-radius:var(--radius); border:1px solid var(--line); display:block; }
+  .detail-banner{ max-width:900px; margin:0 auto 56px; }
+  .detail-banner-frame{ background:var(--bg-card); border:1px solid var(--line); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; min-height:280px; padding:28px; }
+  .detail-banner img{ display:block; margin:0 auto; width:auto; height:auto; max-width:100%; max-height:480px; border-radius:10px; }
   .gallery-label{ font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin:0 0 22px; font-weight:600; }
   .gallery{ column-count:3; column-gap:14px; margin-bottom:70px; }
-  .gallery img{ width:100%; display:block; margin-bottom:14px; border-radius:12px; border:1px solid var(--line); }
+  .gallery-item{ display:flex; align-items:center; justify-content:center; margin-bottom:14px; background:var(--bg-card); border-radius:12px; border:1px solid var(--line); overflow:hidden; break-inside:avoid; }
+  .gallery img{ width:100%; display:block; }
   @media (max-width:900px){ .gallery{ column-count:2; } }
   @media (max-width:560px){ .gallery{ column-count:1; } }
   .detail-next{
@@ -333,7 +335,7 @@
   <a class="btn btn-ghost detail-link hidden" id="detail-link" target="_blank" rel="noopener noreferrer">Visitar site ↗</a>
 
   <div class="detail-banner">
-    <img id="detail-banner-img" src="" alt="">
+    <div class="detail-banner-frame"><img id="detail-banner-img" src="" alt=""></div>
   </div>
 
   <div id="gallery-wrap">
@@ -357,32 +359,32 @@
 // each project: num = image file prefix in images/cropped/, count = how many crops exist (num-1.jpg ... num-N.jpg)
 function imgs(num, count){
   const arr = [];
-  for(let i=1;i<=count;i++) arr.push(`images/cropped/${num}-${i}.jpg`);
+  for(let i=1;i<=count;i++) arr.push(`images/cropped/${num}-${i}.png`);
   return arr;
 }
 
 const projects = [
   {name:"Madre Pizzas", cat:"branding", num:"04", count:7, tags:["Rebranding","Impressos"], desc:"Rebranding completo da pizzaria, com nova paleta em azul e dourado, variações de logo e aplicação em voucher promocional e caixas de pizza."},
-  {name:"GDN", cat:"branding", num:"05", count:4, tags:["Branding","Mockups"], desc:"Marca construída do zero para loja de tecnologia: logo em 4 variações de cor, aplicada em fachada, uniforme e cartão de visita."},
+  {name:"GDN", cat:"branding", num:"05", count:5, tags:["Branding","Mockups"], desc:"Marca construída do zero para loja de tecnologia: logo em variações de cor, aplicada em fachada, uniforme e cartão de visita."},
   {name:"Nova Energy Solutions", cat:"branding", num:"06", count:6, tags:["Branding"], desc:"Identidade para empresa de energia solar, do símbolo N ao aplicativo em copo térmico, pasta institucional e cartaz de rua."},
-  {name:"Leandro Rampinelli", cat:"branding", num:"07", count:5, tags:["Branding","Mockups"], desc:"Marca pessoal para fisioterapeuta, com símbolo de coluna vertebral em dourado aplicado em uniforme, placa de consultório e tablet."},
-  {name:"Saiph Team", cat:"branding", num:"08", count:3, tags:["Branding"], desc:"Identidade inspirada em constelações, aplicada em capa de vinil conceitual, wallpaper de desktop e mockups de estúdio."},
+  {name:"Leandro Rampinelli", cat:"branding", num:"07", count:6, tags:["Branding","Mockups"], desc:"Marca pessoal para fisioterapeuta, com símbolo de coluna vertebral em dourado aplicado em uniforme, placa de consultório e tablet."},
+  {name:"Saiph Team", cat:"branding", num:"08", count:4, tags:["Branding"], desc:"Identidade inspirada em constelações, aplicada em capa de vinil conceitual, wallpaper de desktop e mockups de estúdio."},
   {name:"Andréa Matos", cat:"branding", num:"09", count:3, tags:["Branding","Ícones"], desc:"Marca para clínica de psicologia, com símbolo psi acolhedor em paleta terrosa e lilás, e conjunto de ícones para aplicativo."},
-  {name:"Dra. Sandra Helena Pereira", cat:"branding", num:"10", count:5, tags:["Rebranding"], desc:"Rebranding para ginecologista, com símbolo de lua crescente em rosa e verde e versão circular pronta pra redes sociais."},
+  {name:"Dra. Sandra Helena Pereira", cat:"branding", num:"10", count:6, tags:["Rebranding"], desc:"Rebranding para ginecologista, com símbolo de lua crescente em rosa e verde e versão circular pronta pra redes sociais."},
   {name:"Beatriz Soares", cat:"branding", num:"11", count:4, tags:["Branding"], desc:"Marca para doceria saudável, com tipografia manuscrita em rosa vibrante e monograma BS aplicado em 2 paletas de cor."},
-  {name:"Tia Leninha", cat:"branding", num:"12", count:6, tags:["Branding"], desc:"Marca floral para negócio local, do carimbo personalizado ao luminoso de fachada."},
+  {name:"Tia Leninha", cat:"branding", num:"12", count:5, tags:["Branding"], desc:"Marca floral para negócio local, do carimbo personalizado ao luminoso de fachada."},
   {name:"Igreja Adventista de São Silvano", cat:"branding", num:"13", count:2, tags:["Branding"], desc:"Identidade para organização religiosa: monograma com chama e cruz, em versões positiva e negativa."},
   {name:"DJ Consultoria em Gestão Pública", cat:"branding", num:"14", count:5, tags:["Rebranding"], desc:"Rebranding corporativo com monograma DJ, aplicado em post de Instagram e mockups de celular."},
-  {name:"Jefferson Fernandes", cat:"branding", num:"15", count:3, tags:["Branding","Mockups"], desc:"Marca pessoal para personal trainer, com escudo JF aplicado em camiseta, fachada de academia e fotos de treino."},
-  {name:"Madre Pizzas", cat:"social", num:"17", count:8, tags:["Instagram","TV"], desc:"Postagens sazonais para Instagram e material de apresentação em TV da pizzaria."},
-  {name:"Ízi Stays", cat:"social", num:"18", count:5, tags:["Social Media","Tráfego pago"], desc:"Postagens e campanhas pagas para hospedagem, incluindo guia de restaurantes de Vitória."},
-  {name:"E-Redação", cat:"social", num:"19", count:3, tags:["Social Media","Tráfego pago"], desc:"Conteúdo educativo e de conversão para plataforma de correção de redação do Enem."},
-  {name:"SOS Energia Solar", cat:"social", num:"20", count:8, tags:["Social Media","Tráfego pago"], desc:"Série de postagens educativas sobre economia e benefícios da energia solar."},
+  {name:"Jefferson Fernandes", cat:"branding", num:"15", count:5, tags:["Branding","Mockups"], desc:"Marca pessoal para personal trainer, com escudo JF aplicado em camiseta, fachada de academia e fotos de treino."},
+  {name:"Madre Pizzas", cat:"social", num:"17", count:3, tags:["Instagram","TV"], desc:"Postagens sazonais para Instagram e material de apresentação em TV da pizzaria."},
+  {name:"Ízi Stays", cat:"social", num:"18", count:4, tags:["Social Media","Tráfego pago"], desc:"Postagens e campanhas pagas para hospedagem, incluindo guia de restaurantes de Vitória."},
+  {name:"E-Redação", cat:"social", num:"19", count:8, tags:["Social Media","Tráfego pago"], desc:"Conteúdo educativo e de conversão para plataforma de correção de redação do Enem."},
+  {name:"SOS Energia Solar", cat:"social", num:"20", count:7, tags:["Social Media","Tráfego pago"], desc:"Série de postagens educativas sobre economia e benefícios da energia solar."},
   {name:"Tile Pro Services", cat:"social", num:"21", count:5, tags:["Portfólio","Redes sociais"], desc:"Postagens de portfólio e antes/depois de obras para empresa de acabamento em pisos nos EUA."},
-  {name:"Dra. Marina Malacarne", cat:"social", num:"22", count:7, tags:["Social Media","Tráfego pago"], desc:"Conteúdo educativo sobre infectologia para redes sociais e campanhas pagas."},
-  {name:"Dra. Sandra Helena Pereira", cat:"social", num:"23", count:7, tags:["Social Media","Tráfego pago"], desc:"Postagens institucionais e educativas sobre saúde da mulher."},
+  {name:"Dra. Marina Malacarne", cat:"social", num:"22", count:8, tags:["Social Media","Tráfego pago"], desc:"Conteúdo educativo sobre infectologia para redes sociais e campanhas pagas."},
+  {name:"Dra. Sandra Helena Pereira", cat:"social", num:"23", count:6, tags:["Social Media","Tráfego pago"], desc:"Postagens institucionais e educativas sobre saúde da mulher."},
   {name:"Titãs da Robótica", cat:"web", num:"28", count:2, tags:["Portal","Iniciação Científica"], desc:"Portal oficial da equipe de robótica, do wireframe ao deploy em produção.", link:"https://titasdarobotica.vercel.app/"},
-  {name:"Chiuba Store", cat:"web", num:"29", count:4, tags:["E-commerce","Landing page"], desc:"Landing page, loja Shopify e loja integrada para marca de moda contemporânea.", link:"https://chiuba-brand-experience.lovable.app/"},
+  {name:"Chiuba Store", cat:"web", num:"29", count:7, tags:["E-commerce","Landing page"], desc:"Landing page, loja Shopify e loja integrada para marca de moda contemporânea.", link:"https://chiuba-brand-experience.lovable.app/"},
   {name:"SIGPRO", cat:"web", num:"30", count:5, tags:["UI/UX","Sistema"], desc:"Telas de sistema de inscrição de editais e projetos técnico-científicos, feito com Nuxt UI."}
 ];
 
@@ -491,8 +493,19 @@ function openDetail(index){
   const gallery = document.getElementById('detail-gallery');
   const rest = pics.slice(1);
   if(rest.length){
-    gallery.innerHTML = rest.map(src=>`<img src="${src}" alt="${p.name}" loading="lazy">`).join('');
+    gallery.innerHTML = rest.map(src=>`<span class="gallery-item"><img src="${src}" alt="${p.name}" loading="lazy"></span>`).join('');
     galleryWrap.classList.remove('hidden');
+    // never upscale a source image past its native resolution inside the column
+    gallery.querySelectorAll('img').forEach(img=>{
+      const cap = () => {
+        const colWidth = img.parentElement.clientWidth;
+        if(img.naturalWidth && img.naturalWidth < colWidth){
+          img.style.width = img.naturalWidth + 'px';
+          img.style.maxWidth = '100%';
+        }
+      };
+      img.complete ? cap() : img.addEventListener('load', cap);
+    });
   } else {
     galleryWrap.classList.add('hidden');
   }
