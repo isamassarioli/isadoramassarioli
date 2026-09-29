@@ -1,0 +1,174 @@
+---
+import Base from '../layouts/Base.astro';
+import NavProduto from './NavProduto.astro';
+import Footer from './Footer.astro';
+import '../styles/produto.css';
+import { type Case, proximoCase } from '../data/cases';
+import { ui, rotas, type Idioma } from '../data/textos';
+import { contato, curriculo, EN_REVISADO } from '../data/site';
+
+interface Props { caso: Case; lang: Idioma }
+
+const { caso, lang } = Astro.props;
+const c = caso[lang];
+const t = ui[lang];
+const r = rotas[lang];
+const outro: Idioma = lang === 'pt' ? 'en' : 'pt';
+const proximo = proximoCase(caso.slug);
+const noindex = !caso.publicado || (lang === 'en' && !EN_REVISADO);
+
+const secoes = [
+  { id: 'contexto', titulo: t.caso.contexto },
+  { id: 'problema', titulo: t.caso.problema },
+  { id: 'papel', titulo: t.caso.papel },
+  { id: 'processo', titulo: t.caso.processo },
+  { id: 'decisoes', titulo: t.caso.decisoes },
+  { id: 'resultado', titulo: t.caso.resultado },
+];
+const num = (id: string) => String(secoes.findIndex((s) => s.id === id) + 1).padStart(2, '0');
+const alternativas = caso.publicado
+  ? [
+      { hreflang: 'pt-BR', href: rotas.pt.caso(caso.slug) },
+      ...(EN_REVISADO ? [{ hreflang: 'en', href: rotas.en.caso(caso.slug) }] : []),
+    ]
+  : [];
+---
+<Base
+  title={c.meta.titulo}
+  description={c.meta.descricao}
+  lang={t.htmlLang}
+  bodyClass="tema-produto"
+  noindex={noindex}
+  ogImage="/og/produto.png"
+  ogImageAlt="Isadora Massarioli, Product Designer (UX/UI)"
+  alternativas={alternativas}
+  skipLabel={t.pular}
+>
+<NavProduto lang={lang} outroIdioma={rotas[outro].caso(caso.slug)} />
+
+<main id="conteudo" tabindex="-1">
+  <article>
+    <header class="case-hero wrap">
+      <a class="case-back" href={`${r.produto}#cases`}>{t.caso.voltar}</a>
+      {!caso.publicado && <p class="rascunho" role="note">{t.caso.rascunho}</p>}
+      <span class="kicker">{t.caso.kicker} · {caso.tags.join(' · ')}</span>
+      <h1 class="case-title">{c.titulo}</h1>
+      <p class="lede-lg">{c.resumo}</p>
+      <dl class="ficha">
+        {c.ficha.map((f) => <div><dt>{f.rotulo}</dt><dd>{f.valor}</dd></div>)}
+      </dl>
+      {c.links.length > 0 && (
+        <div class="btn-row">
+          {c.links.map((l, i) => (
+            <a class={`btn ${i === 0 ? 'btn-primary' : 'btn-ghost'}`} href={l.url} target="_blank" rel="noopener noreferrer">
+              {l.rotulo} <span aria-hidden="true">↗</span><span class="sr-only">{t.novaAba}</span>
+            </a>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <figure class="case-cover">
+      <img src={c.capa.src} alt={c.capa.alt} width="1440" height="1000">
+    </figure>
+
+    <div class="wrap">
+      <section class="case-sec" aria-labelledby="sec-contexto">
+        <div class="sec-label"><span class="sec-num" aria-hidden="true">{num('contexto')}</span><h2 id="sec-contexto">{t.caso.contexto}</h2></div>
+        <div class="sec-content">{c.contexto.map((p) => <p>{p}</p>)}</div>
+      </section>
+
+      <section class="case-sec" aria-labelledby="sec-problema">
+        <div class="sec-label"><span class="sec-num" aria-hidden="true">{num('problema')}</span><h2 id="sec-problema">{t.caso.problema}</h2></div>
+        <div class="sec-content">{c.problema.map((p) => <p>{p}</p>)}</div>
+      </section>
+
+      <section class="case-sec" aria-labelledby="sec-papel">
+        <div class="sec-label"><span class="sec-num" aria-hidden="true">{num('papel')}</span><h2 id="sec-papel">{t.caso.papel}</h2></div>
+        <div class="sec-content">
+          <ul class="lista">{c.papel.map((p) => <li>{p}</li>)}</ul>
+        </div>
+      </section>
+
+      <section class="case-sec" aria-labelledby="sec-processo">
+        <div class="sec-label"><span class="sec-num" aria-hidden="true">{num('processo')}</span><h2 id="sec-processo">{t.caso.processo}</h2></div>
+        <div class="sec-content">
+          {c.processo.intro.map((p) => <p>{p}</p>)}
+          {c.pesquisa && (
+            <div class="pesquisa">
+              <h3>{c.pesquisa.titulo}</h3>
+              {c.pesquisa.paragrafos.map((p) => <p>{p}</p>)}
+            </div>
+          )}
+        </div>
+      </section>
+      <div class="gallery-full">
+        <ul class="case-gallery">
+          {c.processo.imagens.map((im) => (
+            <li class={im.formato ?? 'largo'}>
+              <figure>
+                <img src={im.src} alt={im.alt} loading="lazy">
+                {im.legenda && <figcaption>{im.legenda}</figcaption>}
+              </figure>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <section class="case-sec" aria-labelledby="sec-decisoes">
+        <div class="sec-label"><span class="sec-num" aria-hidden="true">{num('decisoes')}</span><h2 id="sec-decisoes">{t.caso.decisoes}</h2></div>
+        <div class="sec-content">
+          <ol class="decisoes">
+            {c.decisoes.map((d) => (
+              <li>
+                <h3>{d.titulo}</h3>
+                <p><span class="porque">{t.caso.porque}</span>{d.porque}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section class="case-sec" aria-labelledby="sec-resultado">
+        <div class="sec-label"><span class="sec-num" aria-hidden="true">{num('resultado')}</span><h2 id="sec-resultado">{t.caso.resultado}</h2></div>
+        <div class="sec-content">
+          {c.resultado.map((p) => <p>{p}</p>)}
+          <p class="status-pill"><span class="sr-only">{t.caso.status}: </span>{c.status}</p>
+          {c.links.length > 0 && (
+            <div class="btn-row" style="margin-top:28px">
+              {c.links.map((l) => (
+                <a class="btn btn-ghost" href={l.url} target="_blank" rel="noopener noreferrer">
+                  {l.rotulo} <span aria-hidden="true">↗</span><span class="sr-only">{t.novaAba}</span>
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {caso.publicado && proximo && (
+        <nav class="case-next" aria-label={t.caso.proximo}>
+          <a href={r.caso(proximo.slug)}>
+            <small>{t.caso.proximo}</small>
+            <strong>{proximo[lang].titulo} →</strong>
+          </a>
+        </nav>
+      )}
+    </div>
+  </article>
+
+  <section class="faixa" aria-labelledby="faixa-titulo">
+    <div class="wrap">
+      <h2 id="faixa-titulo">{t.caso.faixaTitulo}</h2>
+      <p>{t.caso.faixaTexto}</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href={contato.emailHref}>{contato.email}</a>
+        <a class="btn btn-ghost" href={contato.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <span class="sr-only">{t.novaAba}</span></a>
+        <a class="btn btn-ghost" href={curriculo[lang]} download>{t.cv} <span class="sr-only">(PDF)</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<Footer escuro lang={lang} />
+</Base>

@@ -1,0 +1,12 @@
+---
+import CasePage from '../../../components/CasePage.astro';
+import { todosOsCases, type Case } from '../../../data/cases';
+
+// Gera uma página para cada case, inclusive os não publicados (que recebem noindex).
+export function getStaticPaths() {
+  return todosOsCases.map((caso) => ({ params: { slug: caso.slug }, props: { caso } }));
+}
+
+const { caso } = Astro.props as { caso: Case };
+---
+<CasePage caso={caso} lang="en" />

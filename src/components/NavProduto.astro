@@ -1,0 +1,27 @@
+---
+import Nav from './Nav.astro';
+import { ui, rotas, type Idioma } from '../data/textos';
+
+interface Props {
+  lang: Idioma;
+  // Endereço equivalente no outro idioma.
+  outroIdioma: string;
+  naPaginaProduto?: boolean;
+}
+
+const { lang, outroIdioma, naPaginaProduto = false } = Astro.props;
+const t = ui[lang];
+const base = naPaginaProduto ? '' : rotas[lang].produto;
+---
+<Nav
+  escuro
+  rotuloMenu={t.menu}
+  rotuloHome={t.home}
+  links={[
+    { href: `${base}#cases`, rotulo: t.navCases },
+    { href: `${base}#sobre`, rotulo: t.navSobre, opcional: true },
+    { href: `${base}#contato`, rotulo: t.navContato, opcional: true },
+    { href: outroIdioma, rotulo: t.trocaIdioma.rotulo, srExtra: t.trocaIdioma.titulo, lang: t.trocaIdioma.lang, classe: 'nav-lang' },
+  ]}
+  cta={{ href: `${base}#contato`, rotulo: t.cta }}
+/>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900">
+  <rect width="1440" height="900" fill="#f4ecdf"/>
+  <rect x="24" y="24" width="1392" height="852" fill="none" stroke="#170a17" stroke-opacity=".25" stroke-width="2" stroke-dasharray="12 10"/>
+  <text x="720" y="440" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="40" fill="#5e4a5a">[Imagem do case]</text>
+  <text x="720" y="496" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="24" fill="#5e4a5a">Substitua este arquivo pela imagem final (1440 × 900)</text>
+</svg>

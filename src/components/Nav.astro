@@ -1,5 +1,5 @@
 ---
-interface Link { href: string; rotulo: string; opcional?: boolean; lang?: string; classe?: string; atual?: boolean }
+interface Link { href: string; rotulo: string; srExtra?: string; opcional?: boolean; lang?: string; classe?: string; atual?: boolean }
 
 interface Props {
   links: Link[];
@@ -25,7 +25,7 @@ const logo = escuro ? '/images/logo-escuro.png' : '/images/logo1.png';
       <ul class="nav-links">
         {links.map((l) => (
           <li class={l.opcional ? 'nav-opt' : undefined}>
-            <a href={l.href} lang={l.lang} class={l.classe} aria-current={l.atual ? 'page' : undefined}>{l.rotulo}</a>
+            <a href={l.href} lang={l.lang} class={l.classe} aria-current={l.atual ? 'page' : undefined}>{l.rotulo}{l.srExtra && <span class="sr-only"> ({l.srExtra})</span>}</a>
           </li>
         ))}
       </ul>
