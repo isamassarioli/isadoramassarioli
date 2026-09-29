@@ -1,36 +1,61 @@
 ---
 import Base from '../layouts/Base.astro';
----
-<Base title="Isadora Massarioli · Identidade visual e social media" description="Identidade visual, branding e social media para negócios que querem ser lembrados e escolhidos. Portfólio de Isadora Massarioli.">
-<nav>
-  <img class="nav-logo" id="nav-logo" src="/images/logo1.png" alt="Isadora Massarioli">
-  <a href="https://wa.me/5527995153664?text=oi%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20um%20or%C3%A7amento" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Fale comigo</a>
-</nav>
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { contato } from '../data/site';
+import { projetos, categorias, rotuloCategoria } from '../data/projetos';
 
-<main id="main-view">
+const PAGE_SIZE = 3;
+const detalhes = projetos.map((p) => ({
+  nome: p.nome,
+  cat: rotuloCategoria[p.cats[0]],
+  tags: p.tags,
+  desc: p.desc,
+  link: p.link ?? null,
+  imagens: p.imagens ?? [],
+}));
+---
+<Base
+  title="Isadora Massarioli · Product Designer e designer de marca"
+  description="Product Designer (UX/UI) e designer de marca desde 2020. Cases de produto digital e portfólio de identidade visual, branding e social media para mais de 50 marcas."
+>
+<Nav
+  links={[
+    { href: '/produto', rotulo: 'Produto' },
+    { href: '#servicos', rotulo: 'Branding', opcional: true },
+    { href: '#projetos', rotulo: 'Projetos', opcional: true },
+    { href: '#contato', rotulo: 'Contato', opcional: true },
+  ]}
+  cta={{ href: contato.whatsappOrcamento, rotulo: 'Fale comigo', externo: true }}
+/>
+
+<main id="conteudo" tabindex="-1">
+<div id="main-view">
   <!-- HERO -->
-  <section class="hero">
-    <div class="mark"><img src="/images/logo.png" alt=""></div>
-    <span class="eyebrow">Identidade visual · Branding · Social Media</span>
-    <h1 class="script">Isadora<br>Massarioli</h1>
-    <div class="divider"></div>
-    <p class="lede">Marca boa não é só bonita, é a que faz seu cliente te escolher antes mesmo de vocês conversarem. Crio identidade visual, social media e branding pensados pra isso, com mais de 50 marcas construídas desde 2020.</p>
-    <div class="pills">
-      <span class="pill on">Identidade Visual</span>
-      <span class="pill">Branding</span>
-      <span class="pill">Redes Sociais</span>
-      <span class="pill">UI/UX</span>
-      <span class="pill">Manual de Marca</span>
-      <span class="pill">Páginas Web</span>
-    </div>
-    <div class="hero-cta">
-      <a href="#projetos" class="btn btn-primary">Ver projetos ↓</a>
-      <a href="#sobre" class="btn btn-ghost">Sobre mim</a>
+  <section class="hero" aria-labelledby="hero-titulo">
+    <div class="mark"><img src="/images/logo.png" alt="Símbolo da marca Isadora Massarioli: estrela de quatro pontas entre formas em rosa e amarelo" width="52" height="52"></div>
+    <span class="eyebrow">Product Design · Branding · Social Media</span>
+    <h1 class="script" id="hero-titulo">Isadora<br>Massarioli</h1>
+    <div class="divider" aria-hidden="true"></div>
+    <p class="lede">Desenho produtos digitais pensados para quem usa e crio marcas que fazem o cliente escolher o seu negócio antes mesmo da primeira conversa.</p>
+    <div class="paths">
+      <a class="path path-primary" href="/produto">
+        <span class="path-kicker">Para recrutadores e times de design</span>
+        <span class="path-title">Trabalho em produto</span>
+        <span class="path-desc">Cases de UX/UI com pesquisa, arquitetura de informação e protótipos de alta fidelidade.</span>
+        <span class="path-go" aria-hidden="true">Ver cases →</span>
+      </a>
+      <a class="path" href="#servicos">
+        <span class="path-kicker">Para o seu negócio</span>
+        <span class="path-title">Branding para o seu negócio</span>
+        <span class="path-desc">Identidade visual, social media e páginas web da minha agência, com mais de 50 marcas atendidas.</span>
+        <span class="path-go" aria-hidden="true">Ver serviços →</span>
+      </a>
     </div>
   </section>
 
   <!-- SOBRE / STATS -->
-  <section class="about" id="sobre" data-reveal>
+  <section class="about" id="sobre" aria-labelledby="sobre-titulo" data-reveal>
     <div>
       <div class="stat"><div class="num">50+</div><div class="label">Marcas atendidas</div></div>
       <div class="stat"><div class="num">Desde 2020</div><div class="label">Criando marcas e produtos digitais</div></div>
@@ -38,145 +63,132 @@ import Base from '../layouts/Base.astro';
     </div>
     <div>
       <span class="about-eyebrow">Sobre</span>
-      <h2 class="serif">Bonito é o mínimo.</h2>
-      <p>Sou Product Designer e designer de marca desde 2020. Na minha agência cuido de identidade visual, branding e redes sociais para negócios, e em produto desenho interfaces de sites e sistemas. Já construí marca do zero para academias, clínicas, restaurantes, lojas e prestadores de serviço, sempre com o mesmo foco: fazer a marca vender, não só ficar bonita no feed.</p>
+      <h2 class="serif" id="sobre-titulo">Bonito é o mínimo.</h2>
+      <p>Sou Product Designer e designer de marca desde 2020. Na minha agência, em Colatina-ES, cuido de identidade visual, branding e redes sociais para negócios. Já construí marca do zero para academias, clínicas, restaurantes, lojas e prestadores de serviço, sempre com o mesmo foco: fazer a marca vender, não só ficar bonita no feed.</p>
       <p>Todo projeto começa com perguntas antes de abrir o Illustrator: quem é o cliente do meu cliente, o que ele precisa ouvir pra confiar, e onde essa marca vai aparecer no dia a dia. O resultado é identidade visual, conteúdo e presença digital que conversam entre si.</p>
       <div class="about-cta">
-        <a href="https://wa.me/5527995153664?text=oi%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20um%20or%C3%A7amento" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Fale comigo</a>
+        <a href={contato.whatsappOrcamento} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Pedir orçamento</a>
         <a href="#servicos" class="btn btn-ghost">O que eu ofereço</a>
       </div>
     </div>
   </section>
 
   <!-- SERVIÇOS -->
-  <section class="services" id="servicos" data-reveal>
+  <section class="services" id="servicos" aria-labelledby="servicos-titulo" data-reveal>
     <div class="section-head">
       <span class="eyebrow">O que ofereço</span>
-      <h2 class="serif">Serviços</h2>
+      <h2 class="serif" id="servicos-titulo">Serviços</h2>
     </div>
-    <div class="services-grid">
-      <div class="service"><h3>Identidade Visual</h3><p>Logo, tipografia, paleta e as regras de uso que garantem consistência em qualquer peça.</p></div>
-      <div class="service"><h3>Manual de Marca</h3><p>Guia completo de como aplicar a identidade, pra ninguém inventar um logo torto depois.</p></div>
-      <div class="service"><h3>Social Media</h3><p>Posts, stories e carrosséis pra Instagram, LinkedIn, TV e campanhas de tráfego pago.</p></div>
-      <div class="service"><h3>Branding Completo</h3><p>Construção de marca do zero ou rebranding: da estratégia ao visual aplicado.</p></div>
-      <div class="service"><h3>UI/UX Design</h3><p>Telas de site, sistema ou app pensadas pra quem vai usar, não só pra ficar bonito no protótipo.</p></div>
-      <div class="service"><h3>Mockups &amp; Web</h3><p>Aplicação realista da marca em produto, papelaria, ambiente e páginas web.</p></div>
-    </div>
+    <ul class="services-grid">
+      <li class="service"><h3>Identidade Visual</h3><p>Logo, tipografia, paleta e as regras de uso que garantem consistência em qualquer peça.</p></li>
+      <li class="service"><h3>Manual de Marca</h3><p>Guia completo de como aplicar a identidade, pra ninguém inventar um logo torto depois.</p></li>
+      <li class="service"><h3>Social Media</h3><p>Posts, stories e carrosséis pra Instagram, LinkedIn, TV e campanhas de tráfego pago.</p></li>
+      <li class="service"><h3>Branding Completo</h3><p>Construção de marca do zero ou rebranding: da estratégia ao visual aplicado.</p></li>
+      <li class="service">
+        <a class="service-link" href="/produto">
+          <h3>UI/UX Design</h3>
+          <p>Telas de site, sistema ou app pensadas pra quem vai usar, não só pra ficar bonito no protótipo.</p>
+          <span class="go" aria-hidden="true">Ver cases de produto →</span>
+        </a>
+      </li>
+      <li class="service"><h3>Mockups &amp; Web</h3><p>Aplicação realista da marca em produto, papelaria, ambiente e páginas web.</p></li>
+    </ul>
   </section>
 
   <!-- PROJETOS -->
-  <section class="portfolio" id="projetos" data-reveal>
+  <section class="portfolio" id="projetos" aria-labelledby="projetos-titulo" data-reveal>
     <div class="section-head">
       <div>
         <span class="eyebrow">Portfólio</span>
-        <h2 class="serif">Projetos</h2>
+        <h2 class="serif" id="projetos-titulo">Projetos</h2>
       </div>
       <div class="carousel-nav">
-        <button class="arrow-btn" id="prev-btn" aria-label="Projetos anteriores">‹</button>
-        <span class="carousel-count" id="count-label">1-3/22</span>
-        <button class="arrow-btn" id="next-btn" aria-label="Próximos projetos">›</button>
+        <button type="button" class="arrow-btn" id="prev-btn" aria-label="Projetos anteriores"><span aria-hidden="true">‹</span></button>
+        <span class="carousel-count" id="count-label" aria-live="polite">{`1-${Math.min(PAGE_SIZE, projetos.length)}/${projetos.length}`}</span>
+        <button type="button" class="arrow-btn" id="next-btn" aria-label="Próximos projetos"><span aria-hidden="true">›</span></button>
       </div>
     </div>
 
-    <div class="filters">
-      <button class="filter-btn active" data-filter="todos">Todos</button>
-      <button class="filter-btn" data-filter="branding">Identidade &amp; Branding</button>
-      <button class="filter-btn" data-filter="social">Social Media</button>
-      <button class="filter-btn" data-filter="web">Páginas Web</button>
+    <div class="filters" role="group" aria-label="Filtrar projetos por categoria">
+      {categorias.map((c, i) => (
+        <button type="button" class="filter-btn" data-filter={c.id} aria-pressed={i === 0 ? 'true' : 'false'}>{c.rotulo}</button>
+      ))}
     </div>
 
     <div class="carousel-viewport">
-      <div class="grid" id="grid"></div>
+      <ul class="grid" id="grid">
+        {projetos.map((p, i) => {
+          const capa = p.capa ?? p.imagens![0];
+          const corpo = (
+            <>
+              <span class="card-img"><img src={capa.src} alt={capa.alt} loading="lazy"></span>
+              <span class="card-body">
+                <span class="card-cat">{rotuloCategoria[p.cats[0]]}</span>
+                <span class="card-title">{p.nome}</span>
+                <span class="card-desc">{p.desc}</span>
+                <span class="card-tags">{p.tags.map((t) => <span class="tag">{t}</span>)}</span>
+                <span class="card-open" aria-hidden="true">{p.href ? 'Ver case →' : 'Ver projeto →'}</span>
+              </span>
+            </>
+          );
+          return (
+            <li data-cats={p.cats.join(' ')}>
+              {p.href
+                ? <a class="card" href={p.href}>{corpo}</a>
+                : <button type="button" class="card" data-index={i}>{corpo}</button>}
+            </li>
+          );
+        })}
+      </ul>
     </div>
-    <div class="dots" id="dots"></div>
+    <div class="dots" id="dots" role="group" aria-label="Páginas de projetos"></div>
   </section>
 
   <!-- CONTATO -->
-  <section class="contact" id="contato" data-reveal>
+  <section class="contact" id="contato" aria-labelledby="contato-titulo" data-reveal>
     <span class="eyebrow">Vamos conversar</span>
-    <h2 class="script">Vamos trabalhar juntos?</h2>
+    <h2 class="script" id="contato-titulo">Vamos trabalhar juntos?</h2>
     <p>Me conta o que sua marca precisa hoje. Devolvo um orçamento certinho em até 24h, sem letra miúda.</p>
     <div class="contact-cta">
-      <a href="https://wa.me/5527995153664?text=oi%2C%20tenho%20um%20projeto%21" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Entre em contato</a>
-      <a href="mailto:isadoramassarioli@gmail.com" class="btn btn-ghost">isadoramassarioli@gmail.com</a>
-      <a href="https://www.linkedin.com/in/isadoramassarioli/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">LinkedIn</a>
-      <a href="https://www.behance.net/isadoramassarioli" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">Behance</a>
-      <a href="https://github.com/isamassarioli" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub</a>
+      <a href={contato.whatsappProjeto} target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">Pedir orçamento pelo WhatsApp</a>
+      <a href="/produto#contato" class="btn btn-ghost btn-lg">Contato para vagas de produto</a>
     </div>
+    <ul class="contact-list">
+      <li><a href={contato.emailHref}><i class="fa-solid fa-envelope" aria-hidden="true"></i>{contato.email}</a></li>
+      <li><a href={contato.linkedin} target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>LinkedIn</a></li>
+      <li><a href={contato.behance} target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-behance" aria-hidden="true"></i>Behance</a></li>
+      <li><a href={contato.github} target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub</a></li>
+    </ul>
   </section>
-</main>
+</div>
 
-<!-- PROJECT DETAIL VIEW -->
-<section class="detail hidden" id="detail-view">
-  <button class="back-link" id="back-btn">← Todos os projetos</button>
+<!-- DETALHE DO PROJETO (agência) -->
+<section class="detail hidden" id="detail-view" aria-labelledby="detail-title">
+  <button type="button" class="back-link" id="back-btn">← Todos os projetos</button>
 
   <span class="detail-cat" id="detail-cat"></span>
-  <h1 class="detail-title" id="detail-title"></h1>
+  <h2 class="detail-title" id="detail-title" tabindex="-1"></h2>
   <div class="detail-meta" id="detail-tags"></div>
   <p class="detail-desc" id="detail-desc"></p>
   <a class="btn btn-ghost detail-link hidden" id="detail-link" target="_blank" rel="noopener noreferrer">Visitar site ↗</a>
 
   <div class="detail-banner">
-    <div class="detail-banner-frame"><img id="detail-banner-img" src="" alt=""></div>
+    <div class="detail-banner-frame"><img id="detail-banner-img" src="/images/logo.png" alt=""></div>
   </div>
 
   <div id="gallery-wrap">
-    <p class="gallery-label">Peças do projeto</p>
-    <div class="gallery" id="detail-gallery"></div>
+    <h3 class="gallery-label">Peças do projeto</h3>
+    <ul class="gallery" id="detail-gallery"></ul>
   </div>
 </section>
+</main>
 
-<footer>
-  <img class="foot-logo" src="/images/logo1.png" alt="Isadora Massarioli">
-  <div class="social-links" aria-label="Redes sociais e contato">
-    <a href="mailto:isadoramassarioli@gmail.com" aria-label="Email" title="Email"><i class="fa-solid fa-envelope"></i></a>
-    <a href="https://www.linkedin.com/in/isadoramassarioli/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-    <a href="https://www.behance.net/isadoramassarioli" target="_blank" rel="noopener noreferrer" aria-label="Behance" title="Behance"><i class="fa-brands fa-behance"></i></a>
-    <a href="https://github.com/isamassarioli" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><i class="fa-brands fa-github"></i></a>
-    <a href="https://www.youtube.com/@isadora.massarioli" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-    <a href="https://www.instagram.com/isadoramassarioli/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-    <a href="https://wa.me/5527995153664?text=oi%2C%20tenho%20um%20projeto%21" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-  </div>
-  <span>© 2026 Isadora Massarioli</span>
-</footer>
+<Footer />
 
-<script is:inline>
-// each project: num = image file prefix in images/cropped/, count = how many crops exist (num-1.jpg ... num-N.jpg)
-function imgs(num, count){
-  const arr = [];
-  for(let i=1;i<=count;i++) arr.push(`/images/cropped/${num}-${i}.png`);
-  return arr;
-}
-
-const projects = [
-  {name:"Madre Pizzas", cat:"branding", num:"04", count:7, tags:["Rebranding","Impressos"], desc:"Rebranding completo da pizzaria, com nova paleta em azul e dourado, variações de logo e aplicação em voucher promocional e caixas de pizza."},
-  {name:"GDN", cat:"branding", num:"05", count:4, tags:["Branding","Mockups"], desc:"Marca construída do zero para loja de tecnologia: logo em variações de cor, aplicada em fachada, uniforme e cartão de visita."},
-  {name:"Nova Energy Solutions", cat:"branding", num:"06", count:6, tags:["Branding"], desc:"Identidade para empresa de energia solar, do símbolo N ao aplicativo em copo térmico, pasta institucional e cartaz de rua."},
-  {name:"Leandro Rampinelli", cat:"branding", num:"07", count:7, tags:["Branding","Mockups"], desc:"Marca pessoal para fisioterapeuta, com símbolo de coluna vertebral em dourado aplicado em uniforme, placa de consultório e tablet."},
-  {name:"Saiph Team", cat:"branding", num:"08", count:4, tags:["Branding"], desc:"Identidade inspirada em constelações, aplicada em capa de vinil conceitual, wallpaper de desktop e mockups de estúdio."},
-  {name:"Andréa Matos", cat:"branding", num:"09", count:3, tags:["Branding","Ícones"], desc:"Marca para clínica de psicologia, com símbolo psi acolhedor em paleta terrosa e lilás, e conjunto de ícones para aplicativo."},
-  {name:"Dra. Sandra Helena Pereira", cat:"branding", num:"10", count:6, tags:["Rebranding"], desc:"Rebranding para ginecologista, com símbolo de lua crescente em rosa e verde e versão circular pronta pra redes sociais."},
-  {name:"Beatriz Soares", cat:"branding", num:"11", count:4, tags:["Branding"], desc:"Marca para doceria saudável, com tipografia manuscrita em rosa vibrante e monograma BS aplicado em 2 paletas de cor."},
-  {name:"Tia Leninha", cat:"branding", num:"12", count:4, tags:["Branding"], desc:"Marca floral para negócio local, do carimbo personalizado ao luminoso de fachada."},
-  {name:"Igreja Adventista de São Silvano", cat:"branding", num:"13", count:2, tags:["Branding"], desc:"Identidade para organização religiosa: monograma com chama e cruz, em versões positiva e negativa."},
-  {name:"DJ Consultoria em Gestão Pública", cat:"branding", num:"14", count:5, tags:["Rebranding"], desc:"Rebranding corporativo com monograma DJ, aplicado em post de Instagram e mockups de celular."},
-  {name:"Jefferson Fernandes", cat:"branding", num:"15", count:5, tags:["Branding","Mockups"], desc:"Marca pessoal para personal trainer, com escudo JF aplicado em camiseta, fachada de academia e fotos de treino."},
-  {name:"Madre Pizzas", cat:"social", num:"17", count:6, tags:["Instagram","TV"], desc:"Postagens sazonais para Instagram e material de apresentação em TV da pizzaria."},
-  {name:"Ízi Stays", cat:"social", num:"18", count:4, tags:["Social Media","Tráfego pago"], desc:"Postagens e campanhas pagas para hospedagem, incluindo guia de restaurantes de Vitória."},
-  {name:"E-Redação", cat:"social", num:"19", count:8, tags:["Social Media","Tráfego pago"], desc:"Conteúdo educativo e de conversão para plataforma de correção de redação do Enem."},
-  {name:"SOS Energia Solar", cat:"social", num:"20", count:7, tags:["Social Media","Tráfego pago"], desc:"Série de postagens educativas sobre economia e benefícios da energia solar."},
-  {name:"Tile Pro Services", cat:"social", num:"21", count:5, tags:["Portfólio","Redes sociais"], desc:"Postagens de portfólio e antes/depois de obras para empresa de acabamento em pisos nos EUA."},
-  {name:"Dra. Marina Malacarne", cat:"social", num:"22", count:7, tags:["Social Media","Tráfego pago"], desc:"Conteúdo educativo sobre infectologia para redes sociais e campanhas pagas."},
-  {name:"Dra. Sandra Helena Pereira", cat:"social", num:"23", count:7, tags:["Social Media","Tráfego pago"], desc:"Postagens institucionais e educativas sobre saúde da mulher."},
-  {name:"Titãs da Robótica", cat:"web", num:"28", count:2, tags:["Portal","Iniciação Científica"], desc:"Portal oficial da equipe de robótica, do wireframe ao deploy em produção.", link:"https://titasdarobotica.vercel.app/"},
-  {name:"Chiuba Store", cat:"web", num:"29", count:7, tags:["E-commerce","Landing page"], desc:"Landing page, loja Shopify e loja integrada para marca de moda contemporânea.", link:"https://chiuba-brand-experience.lovable.app/"},
-  {name:"SIGPRO", cat:"web", num:"30", count:5, tags:["UI/UX","Sistema"], desc:"Telas de sistema de inscrição de editais e projetos técnico-científicos, feito com Nuxt UI."}
-];
-
-const PAGE_SIZE = 3;
-let currentFilter = 'todos';
-let currentPage = 0;
-
+<script type="application/json" id="projetos-data" set:html={JSON.stringify(detalhes)} />
+<script is:inline define:vars={{ PAGE_SIZE }}>
+const detalhes = JSON.parse(document.getElementById('projetos-data').textContent);
+const items = Array.from(document.querySelectorAll('#grid > li'));
 const grid = document.getElementById('grid');
 const countLabel = document.getElementById('count-label');
 const dotsWrap = document.getElementById('dots');
@@ -184,56 +196,41 @@ const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 const mainView = document.getElementById('main-view');
 const detailView = document.getElementById('detail-view');
+const filterBtns = document.querySelectorAll('.filter-btn');
+
+let currentFilter = 'todos';
+let currentPage = 0;
+let lastCard = null;
 
 function getList(){
-  return currentFilter === 'todos' ? projects : projects.filter(p => p.cat === currentFilter);
+  return currentFilter === 'todos' ? items : items.filter(li => li.dataset.cats.split(' ').includes(currentFilter));
 }
 function totalPages(){ return Math.max(1, Math.ceil(getList().length / PAGE_SIZE)); }
 
 function renderDots(){
   dotsWrap.innerHTML = '';
   const pages = totalPages();
+  if(pages < 2) return;
   for(let i=0;i<pages;i++){
     const d = document.createElement('button');
-    d.className = 'dot' + (i===currentPage ? ' active' : '');
+    d.type = 'button';
+    d.className = 'dot';
+    d.setAttribute('aria-label', `Página ${i+1} de ${pages}`);
+    if(i === currentPage) d.setAttribute('aria-current', 'true');
     d.addEventListener('click', ()=>{ currentPage = i; renderGrid(); });
     dotsWrap.appendChild(d);
   }
 }
 
-function catLabel(cat){
-  return cat === 'branding' ? 'Identidade & Branding' : cat === 'social' ? 'Social Media' : 'Páginas Web';
-}
-
-function renderGrid(){
+function renderGrid(animate){
   const list = getList();
   const pages = totalPages();
-  if(currentPage >= pages) currentPage = pages - 1;
-  if(currentPage < 0) currentPage = 0;
-
+  currentPage = Math.min(Math.max(currentPage, 0), pages - 1);
   const start = currentPage * PAGE_SIZE;
-  const pageItems = list.slice(start, start + PAGE_SIZE);
+  const visible = list.slice(start, start + PAGE_SIZE);
+  items.forEach(li => { li.hidden = !visible.includes(li); });
 
-  grid.innerHTML = '';
-  pageItems.forEach(p=>{
-    const globalIndex = projects.indexOf(p);
-    const cover = imgs(p.num, p.count)[0];
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `
-      <div class="card-img"><img src="${cover}" alt="${p.name}" loading="lazy"></div>
-      <div class="card-body">
-        <div class="card-cat">${catLabel(p.cat)}</div>
-        <h3 class="card-title">${p.name}</h3>
-        <p class="card-desc">${p.desc}</p>
-        <div class="card-tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-        <div class="card-open">Ver projeto →</div>
-      </div>
-    `;
-    card.addEventListener('click', ()=>openDetail(globalIndex));
-    grid.appendChild(card);
-  });
-
+  if(animate){ grid.classList.remove('animar'); void grid.offsetWidth; grid.classList.add('animar'); }
   const end = Math.min(start + PAGE_SIZE, list.length);
   countLabel.textContent = list.length === 0 ? '0/0' : `${start+1}-${end}/${list.length}`;
   prevBtn.disabled = currentPage === 0;
@@ -241,80 +238,80 @@ function renderGrid(){
   renderDots();
 }
 
-document.querySelectorAll('.filter-btn').forEach(btn=>{
+filterBtns.forEach(btn=>{
   btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
+    filterBtns.forEach(b=>b.setAttribute('aria-pressed', 'false'));
+    btn.setAttribute('aria-pressed', 'true');
     currentFilter = btn.dataset.filter;
     currentPage = 0;
-    renderGrid();
+    renderGrid(true);
   });
 });
-prevBtn.addEventListener('click', ()=>{ if(currentPage>0){ currentPage--; renderGrid(); } });
-nextBtn.addEventListener('click', ()=>{ if(currentPage < totalPages()-1){ currentPage++; renderGrid(); } });
-renderGrid();
+prevBtn.addEventListener('click', ()=>{ if(currentPage>0){ currentPage--; renderGrid(true); } });
+nextBtn.addEventListener('click', ()=>{ if(currentPage < totalPages()-1){ currentPage++; renderGrid(true); } });
+renderGrid(false);
 
-/* ---- DETAIL VIEW ---- */
-function openDetail(index){
-  const p = projects[index];
-  const pics = imgs(p.num, p.count);
+/* ---- DETALHE ---- */
+function el(tag, attrs, text){
+  const e = document.createElement(tag);
+  Object.entries(attrs || {}).forEach(([k,v])=>e.setAttribute(k,v));
+  if(text) e.textContent = text;
+  return e;
+}
 
-  document.getElementById('detail-cat').textContent = catLabel(p.cat);
-  document.getElementById('detail-title').textContent = p.name;
+function openDetail(index, card){
+  const p = detalhes[index];
+  lastCard = card;
+  document.getElementById('detail-cat').textContent = p.cat;
+  document.getElementById('detail-title').textContent = p.nome;
   document.getElementById('detail-desc').textContent = p.desc;
-
-  const tagsWrap = document.getElementById('detail-tags');
-  tagsWrap.innerHTML = p.tags.map(t=>`<span class="tag">${t}</span>`).join('');
+  document.getElementById('detail-tags').replaceChildren(...p.tags.map(t=>el('span',{class:'tag'},t)));
 
   const linkEl = document.getElementById('detail-link');
   if(p.link){ linkEl.href = p.link; linkEl.classList.remove('hidden'); }
   else{ linkEl.classList.add('hidden'); }
 
+  const [capa, ...rest] = p.imagens;
   const bannerImg = document.getElementById('detail-banner-img');
-  bannerImg.src = pics[0];
-  bannerImg.alt = p.name;
+  bannerImg.src = capa.src;
+  bannerImg.alt = capa.alt;
 
   const galleryWrap = document.getElementById('gallery-wrap');
   const gallery = document.getElementById('detail-gallery');
-  const rest = pics.slice(1);
-  if(rest.length){
-    gallery.innerHTML = rest.map(src=>`<span class="gallery-item"><img src="${src}" alt="${p.name}" loading="lazy"></span>`).join('');
-    galleryWrap.classList.remove('hidden');
-    // never upscale a source image past its native resolution inside the column
-    gallery.querySelectorAll('img').forEach(img=>{
-      const cap = () => {
-        const colWidth = img.parentElement.clientWidth;
-        if(img.naturalWidth && img.naturalWidth < colWidth){
-          img.style.width = img.naturalWidth + 'px';
-          img.style.maxWidth = '100%';
-        }
-      };
-      img.complete ? cap() : img.addEventListener('load', cap);
-    });
-  } else {
-    galleryWrap.classList.add('hidden');
-  }
+  gallery.replaceChildren(...rest.map(img=>{
+    const li = el('li',{class:'gallery-item'});
+    const im = el('img',{src:img.src, alt:img.alt, loading:'lazy'});
+    // nunca amplia a imagem além da resolução original dentro da coluna
+    const cap = () => {
+      const colWidth = li.clientWidth;
+      if(im.naturalWidth && im.naturalWidth < colWidth){ im.style.width = im.naturalWidth + 'px'; im.style.maxWidth = '100%'; }
+    };
+    im.complete ? cap() : im.addEventListener('load', cap);
+    li.appendChild(im);
+    return li;
+  }));
+  galleryWrap.classList.toggle('hidden', rest.length === 0);
 
   mainView.classList.add('hidden');
   detailView.classList.remove('hidden');
   window.scrollTo({top:0, behavior:'instant'});
+  document.getElementById('detail-title').focus({preventScroll:true});
 }
 
 function closeDetail(){
   detailView.classList.add('hidden');
   mainView.classList.remove('hidden');
-  document.getElementById('projetos').scrollIntoView({behavior:'smooth', block:'start'});
+  if(lastCard){
+    lastCard.scrollIntoView({block:'center'});
+    lastCard.focus({preventScroll:true});
+  }
 }
 
-document.getElementById('back-btn').addEventListener('click', closeDetail);
-document.getElementById('nav-logo').addEventListener('click', ()=>{
-  closeDetail();
-  window.scrollTo({top:0, behavior:'smooth'});
+grid.addEventListener('click', e=>{
+  const card = e.target.closest('button.card');
+  if(card) openDetail(Number(card.dataset.index), card);
 });
-
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
-},{threshold:.12});
-document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+document.getElementById('back-btn').addEventListener('click', closeDetail);
+document.addEventListener('keydown', e=>{ if(e.key === 'Escape' && !detailView.classList.contains('hidden')) closeDetail(); });
 </script>
 </Base>
