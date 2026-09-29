@@ -36,11 +36,13 @@ npm run preview
 1. Copie `src/data/cases/fapes-submissao.case.ts` para `src/data/cases/<slug>.case.ts`.
 2. Troque `slug`, `ordem`, `tags` e o conteúdo de `pt` e `en`.
 3. Coloque as imagens em `public/images/cases/<slug>/`.
-4. Deixe `publicado: false` enquanto for rascunho. A página existe em `/produto/<slug>` com noindex, mas não aparece em listas nem no sitemap. Troque para `true` para publicar.
+4. Deixe `publicado: false` enquanto for rascunho: o case não vira página nem aparece em listas ou no sitemap. Troque para `true` para publicar.
 
 ## Versão em inglês
 
-Os textos marcados com `[REVISAR]` são rascunho. Depois de revisar, apague as marcações e mude `EN_REVISADO` para `true` em `src/data/site.ts`. Isso libera as páginas em inglês para indexação e as coloca no sitemap.
+As páginas em inglês ficam em `/en/product`. A opção `EN_REVISADO` em `src/data/site.ts` controla se elas são indexadas e entram no sitemap.
+
+O currículo em inglês entra salvando `public/cv/resume-isadora-massarioli-en.pdf`. Enquanto ele não existir, o botão em inglês oferece o PDF em português.
 
 ## Publicar
 

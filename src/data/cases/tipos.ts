@@ -43,7 +43,7 @@ export interface ConteudoCase {
 
 export interface Case {
   slug: string;
-  // false: a página existe pela URL direta, mas fica fora dos menus, listas e sitemap, com noindex.
+  // false: rascunho. Não gera página nem aparece em listas ou no sitemap.
   publicado: boolean;
   ordem: number;
   tags: string[];

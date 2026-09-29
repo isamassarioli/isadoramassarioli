@@ -5,9 +5,8 @@ import { join } from 'node:path';
 
 export const SITE_URL = 'https://isadoramassarioli.com.br';
 
-// Enquanto for false, as páginas em inglês ficam com noindex e fora do sitemap.
-// Troque para true depois de revisar os textos marcados com [REVISAR].
-export const EN_REVISADO = false;
+// Com false, as páginas em inglês ficam com noindex e fora do sitemap.
+export const EN_REVISADO = true;
 
 const WHATSAPP_NUMERO = '5527995153664';
 

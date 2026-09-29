@@ -86,15 +86,15 @@ const caso: Case = {
   },
 
   en: {
-    titulo: '[REVISAR] Project submission for FAPES funding calls',
-    resumo: '[REVISAR] A submission screen for a long form, filled in by researchers on a tight deadline.',
+    titulo: 'Project submission for FAPES funding calls',
+    resumo: 'A submission screen for a long form, filled in by researchers on a tight deadline.',
     meta: {
       titulo: 'FAPES project submission · Case study by Isadora Massarioli',
       descricao: 'UX/UI case study: a 4-step wizard for submitting projects to FAPES funding calls, with a high-fidelity working prototype built in Figma Make.',
     },
     ficha: [
       { rotulo: 'My role', valor: 'Product Designer, solo project' },
-      { rotulo: 'Context', valor: '[REVISAR] UX/UI take-home challenge for the LEDS selection process' },
+      { rotulo: 'Context', valor: 'UX/UI take-home challenge for the LEDS selection process' },
       { rotulo: 'Tool', valor: 'Figma Make' },
       { rotulo: 'Status', valor: 'Working prototype completed' },
     ],
@@ -103,20 +103,20 @@ const caso: Case = {
       alt: 'First step of the submission wizard, with a 4-step progress indicator, FAPES call details and the lead researcher\'s data already filled in',
     },
     contexto: [
-      '[REVISAR] This project was my UX/UI take-home challenge for the LEDS selection process.',
+      'This project was my UX/UI take-home challenge for the LEDS selection process.',
     ],
     problema: [
-      '[REVISAR] The brief was to design the project submission screen for FAPES funding calls. FAPES is the research funding agency of the state of Espírito Santo, Brazil.',
-      '[REVISAR] The deliverable had to be a single screen for a long form, filled in by researchers under deadline pressure.',
+      'The brief was to design the project submission screen for FAPES funding calls. FAPES is the research funding agency of the state of Espírito Santo, Brazil.',
+      'The deliverable had to be a single screen for a long form, filled in by researchers under deadline pressure.',
     ],
     papel: [
-      '[REVISAR] I did the project on my own, from understanding the problem to the working prototype.',
-      '[REVISAR] I designed the filling flow, the interface, and the validation and help states.',
-      '[REVISAR] I built the high-fidelity clickable prototype in Figma Make.',
+      'I did the project on my own, from understanding the problem to the working prototype.',
+      'I designed the filling flow, the interface, and the validation and help states.',
+      'I built the high-fidelity clickable prototype in Figma Make.',
     ],
     processo: {
       intro: [
-        '[REVISAR] Because the form is long and the deadline matters, I split it into short steps on the same screen. The images below follow the order in which a researcher goes through them.',
+        'Because the form is long and the deadline matters, I split it into short steps on the same screen. The images below follow the order in which a researcher goes through them.',
       ],
       imagens: [
         { src: img('etapa-1.webp'), alt: 'Step 1, Project identification: title and topic fields and a card with the lead researcher\'s data already filled in', legenda: 'Step 1, Identification. The lead researcher is prefilled from the profile.', formato: 'largo' },
@@ -132,28 +132,28 @@ const caso: Case = {
     },
     decisoes: [
       {
-        titulo: '[REVISAR] A 4-step wizard on a single screen',
-        porque: '[REVISAR] With progressive disclosure, researchers only see the block they are working on and know how much is left. This avoids endless scrolling and lowers the cognitive load of a long form.',
+        titulo: 'A 4-step wizard on a single screen',
+        porque: 'With progressive disclosure, researchers only see the block they are working on and know how much is left. This avoids endless scrolling and lowers the cognitive load of a long form.',
       },
       {
-        titulo: '[REVISAR] Signed-in user and prefilled data',
-        porque: '[REVISAR] The avatar with status in the navigation shows who is signed in, and the lead researcher\'s data comes prefilled. People on a deadline don\'t waste time typing what the system already knows.',
+        titulo: 'Signed-in user and prefilled data',
+        porque: 'The avatar with status in the navigation shows who is signed in, and the lead researcher\'s data comes prefilled. People on a deadline don\'t waste time typing what the system already knows.',
       },
       {
-        titulo: '[REVISAR] Autosave, clear validation and in-context help',
-        porque: '[REVISAR] Autosave (simulated in the prototype) protects the work of people who get interrupted. Validation points to the error in the field where it happens, and tooltips explain terms like "Methodology" without taking people off the screen.',
+        titulo: 'Autosave, clear validation and in-context help',
+        porque: 'Autosave (simulated in the prototype) protects the work of people who get interrupted. Validation points to the error in the field where it happens, and tooltips explain terms like "Methodology" without taking people off the screen.',
       },
       {
-        titulo: '[REVISAR] Light and dark themes with tuned contrast',
-        porque: '[REVISAR] Each researcher uses the mode they prefer. I tuned the contrast in both themes so text, fields and messages stay readable.',
+        titulo: 'Light and dark themes with tuned contrast',
+        porque: 'Each researcher uses the mode they prefer. I tuned the contrast in both themes so text, fields and messages stay readable.',
       },
       {
-        titulo: '[REVISAR] FAPES visual identity in the navigation',
-        porque: '[REVISAR] The FAPES brand in the navigation bar makes it clear that people are in the official environment of the funding call.',
+        titulo: 'FAPES visual identity in the navigation',
+        porque: 'The FAPES brand in the navigation bar makes it clear that people are in the official environment of the funding call.',
       },
     ],
     resultado: [
-      '[REVISAR] A high-fidelity working prototype, clickable from the first field to the submission confirmation.',
+      'A high-fidelity working prototype, clickable from the first field to the submission confirmation.',
     ],
     status: 'Prototype completed.',
     links: [

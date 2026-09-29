@@ -84,16 +84,16 @@ const caso: Case = {
   },
 
   en: {
-    titulo: '[REVISAR] Titãs da Robótica Web Portal',
-    resumo: '[REVISAR] The official website of the robotics team at Ifes Campus Colatina, bringing more than 10 years of history into one place.',
+    titulo: 'Titãs da Robótica Web Portal',
+    resumo: 'The official website of the robotics team at Ifes Campus Colatina, bringing more than 10 years of history into one place.',
     meta: {
       titulo: 'Titãs da Robótica Portal · Case study by Isadora Massarioli',
       descricao: 'Product case study: research, information architecture and interface for the official portal of the Titãs da Robótica team at Ifes Campus Colatina.',
     },
     ficha: [
-      { rotulo: 'My role', valor: '[REVISAR] Research, content, information architecture and interface' },
+      { rotulo: 'My role', valor: 'Research, content, information architecture and interface' },
       { rotulo: 'Timeline', valor: 'Sep 2025 to Sep 2026' },
-      { rotulo: 'Program', valor: '[REVISAR] CNPq undergraduate research fellowship' },
+      { rotulo: 'Program', valor: 'CNPq undergraduate research fellowship' },
       { rotulo: 'Status', valor: 'In development' },
     ],
     capa: {
@@ -101,28 +101,28 @@ const caso: Case = {
       alt: 'Home page of the Titãs da Robótica portal: team logo with a Spartan helmet, navigation menu and a group photo at the CBR 2025 competition',
     },
     contexto: [
-      '[REVISAR] The portal is the official website of the Titãs da Robótica team at Ifes Campus Colatina, in Brazil. I work on it as an undergraduate research fellow funded by CNPq, from September 2025 to September 2026.',
+      'The portal is the official website of the Titãs da Robótica team at Ifes Campus Colatina, in Brazil. I work on it as an undergraduate research fellow funded by CNPq, from September 2025 to September 2026.',
     ],
     problema: [
-      '[REVISAR] The team has more than 10 years of projects, awards and growth. That history was scattered across social media, documents and photos.',
-      '[REVISAR] There was no official place for the team to introduce itself to schools, sponsors and the academic community.',
+      'The team has more than 10 years of projects, awards and growth. That history was scattered across social media, documents and photos.',
+      'There was no official place for the team to introduce itself to schools, sponsors and the academic community.',
     ],
     papel: [
-      '[REVISAR] Mapped, documented and wrote 10 years of the team\'s milestones and achievements.',
-      '[REVISAR] Structured the site\'s information architecture.',
-      '[REVISAR] Refined the digital visual identity and the navigation experience.',
-      '[REVISAR] Organized the content for two audiences: the academic community and the general public.',
+      'I mapped, documented and wrote 10 years of the team\'s milestones and achievements.',
+      'I structured the site\'s information architecture.',
+      'I refined the digital visual identity and the navigation experience.',
+      'I organized the content for two audiences: the academic community and the general public.',
     ],
     pesquisa: {
       titulo: 'Research foundation',
       paragrafos: [
-        '[REVISAR] The portal\'s content came from the research I did for the team\'s official 10th anniversary book, as a Fapes research fellow.',
-        '[REVISAR] Together with a fellow researcher, I conducted more than 50 interviews with students, advisors and collaborators. I also reviewed more than 10 years of historical documents, technical records and images.',
+        'The portal\'s content came from the research I did for the team\'s official 10th anniversary book, as a Fapes research fellow.',
+        'Together with a fellow researcher, I conducted more than 50 interviews with students, advisors and collaborators. I also reviewed more than 10 years of historical documents, technical records and images.',
       ],
     },
     processo: {
       intro: [
-        '[REVISAR] With the research done, the job was to turn interviews and documents into pages each audience can move through without getting lost. I defined the architecture and navigation flows first, then the content of each section, and then the interface.',
+        'With the research done, the job was to turn interviews and documents into pages each audience can move through without getting lost. I defined the architecture and navigation flows first, then the content of each section, and then the interface.',
       ],
       imagens: [
         { src: img('fluxos.png'), alt: 'Navigation flow map of the portal, connecting the home page to the teams, sign-up, blog, support and contact pages', legenda: 'Flow map: how the home page connects to the inner pages.', formato: 'largo' },
@@ -134,20 +134,20 @@ const caso: Case = {
     },
     decisoes: [
       {
-        titulo: '[REVISAR] One path per audience in the menu',
-        porque: '[REVISAR] Schools, sponsors and the academic community come to the site with different questions. The menu has direct entries such as Sign up, Support, Teams and Blog, so each person finds what they need in one click.',
+        titulo: 'One path per audience in the menu',
+        porque: 'Schools, sponsors and the academic community come to the site with different questions. The menu has direct entries such as Sign up, Support, Teams and Blog, so each person finds what they need in one click.',
       },
       {
-        titulo: '[REVISAR] History told as a timeline',
-        porque: '[REVISAR] There are more than 10 years of milestones. In chronological order, the team\'s growth is easy to grasp at a glance and each achievement reads in context.',
+        titulo: 'History told as a timeline',
+        porque: 'There are more than 10 years of milestones. In chronological order, the team\'s growth is easy to grasp at a glance and each achievement reads in context.',
       },
       {
-        titulo: '[REVISAR] Content grounded in the book research',
-        porque: '[REVISAR] The portal\'s copy comes from the interviews and documents gathered for the 10th anniversary book, so the dates and facts it publishes were checked against sources, not written from memory.',
+        titulo: 'Content grounded in the book research',
+        porque: 'The portal\'s copy comes from the interviews and documents gathered for the 10th anniversary book, so the dates and facts it publishes were checked against sources, not written from memory.',
       },
     ],
     resultado: [
-      '[REVISAR] 10 years of team history brought together in a single digital platform.',
+      '10 years of team history brought together in a single digital platform.',
     ],
     status: 'In development.',
     links: [

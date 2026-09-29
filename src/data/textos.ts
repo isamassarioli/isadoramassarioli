@@ -1,5 +1,4 @@
 // Textos de interface das páginas de produto, em português e inglês.
-// Os textos em inglês marcados com [REVISAR] são rascunho.
 
 export type Idioma = 'pt' | 'en';
 
@@ -69,8 +68,8 @@ export const ui = {
       links: 'See the project',
       proximo: 'Next case study',
       rascunho: 'Draft: this case study is not published. It is hidden from menus, lists and the sitemap, and marked noindex.',
-      faixaTitulo: '[REVISAR] Want to talk about this case study?',
-      faixaTexto: '[REVISAR] Reach me by email or LinkedIn. My full résumé is right here too.',
+      faixaTitulo: 'Want to talk about this case study?',
+      faixaTexto: 'Reach me by email or LinkedIn. My full résumé is right here too.',
       lerCase: 'Read the case study',
     },
     cv: 'Download résumé',

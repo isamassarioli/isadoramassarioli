@@ -60,8 +60,8 @@ export const produto = {
     },
     hero: {
       kicker: 'Product Designer | UX/UI',
-      lede: '[REVISAR] I design digital products grounded in user research. I shape the information architecture, build high-fidelity prototypes in Figma and work with Design Systems to keep screens consistent.',
-      disponivel: '[REVISAR] Open to remote or hybrid roles',
+      lede: 'I design digital products grounded in user research. I shape the information architecture, build high-fidelity prototypes in Figma and work with Design Systems to keep screens consistent.',
+      disponivel: 'Open to remote or hybrid roles',
       verCases: 'See case studies',
     },
     cases: {
@@ -83,9 +83,9 @@ export const produto = {
       ],
       experienciaTitulo: 'Experience',
       experiencia: [
-        { nome: 'President, Harpia Consultoria', detalhe: '[REVISAR] Student-run consulting company at Ifes · current' },
-        { nome: '[REVISAR] CNPq undergraduate research fellow', detalhe: 'Titãs da Robótica portal · Sep 2025 to Sep 2026' },
-        { nome: '[REVISAR] Fapes research fellow', detalhe: 'Titãs da Robótica 10th anniversary book · Sep 2024 to Sep 2025' },
+        { nome: 'President, Harpia Consultoria', detalhe: 'Student-run consulting company at Ifes · current' },
+        { nome: 'CNPq undergraduate research fellow', detalhe: 'Titãs da Robótica portal · Sep 2025 to Sep 2026' },
+        { nome: 'Fapes research fellow', detalhe: 'Titãs da Robótica 10th anniversary book · Sep 2024 to Sep 2025' },
         { nome: 'Founder, branding and social media agency', detalhe: 'Colatina, Brazil · 50+ brands' },
       ],
       ferramentasTitulo: 'Tools',

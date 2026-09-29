@@ -5,7 +5,7 @@ import Footer from './Footer.astro';
 import '../styles/produto.css';
 import { type Case, proximoCase } from '../data/cases';
 import { ui, rotas, type Idioma } from '../data/textos';
-import { contato, curriculoPara, EN_REVISADO } from '../data/site';
+import { contato, curriculo, curriculoPara, EN_REVISADO } from '../data/site';
 
 interface Props { caso: Case; lang: Idioma }
 
@@ -164,7 +164,7 @@ const alternativas = caso.publicado
       <div class="btn-row">
         <a class="btn btn-primary" href={contato.emailHref}>{contato.email}</a>
         <a class="btn btn-ghost" href={contato.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn <span class="sr-only">{t.novaAba}</span></a>
-        <a class="btn btn-ghost" href={curriculoPara(lang)} download>{t.cv} <span class="sr-only">(PDF)</span></a>
+        <a class="btn btn-ghost" href={curriculoPara(lang)} download>{lang === 'en' && !curriculo.en ? t.cvPt : t.cv} <span class="sr-only">(PDF)</span></a>
       </div>
     </div>
   </section>

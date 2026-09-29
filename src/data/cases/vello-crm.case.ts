@@ -1,7 +1,7 @@
 import type { Case } from './tipos';
 
-// RASCUNHO: publicado false. A página existe em /produto/vello-crm com noindex,
-// mas não aparece em menus, listas nem no sitemap. Troque para true quando autorizar.
+// RASCUNHO: publicado false, então este case não vira página no site.
+// Preencha os itens entre colchetes, troque o placeholder pelas imagens reais e mude para true.
 const placeholder = '/images/cases/placeholder.svg';
 
 const caso: Case = {
@@ -60,28 +60,28 @@ const caso: Case = {
 
   en: {
     titulo: 'Vello CRM',
-    resumo: '[REVISAR] Visual identity and sales page for an AI-powered management system for car and motorcycle dealerships.',
+    resumo: 'Visual identity and sales page for an AI-powered management system for car and motorcycle dealerships.',
     meta: {
       titulo: 'Vello CRM · Case study by Isadora Massarioli',
       descricao: 'Brand and product case study: visual identity and sales page for Vello CRM, an AI-powered management system for car and motorcycle dealerships.',
     },
     ficha: [
-      { rotulo: 'My role', valor: '[REVISAR] Brand briefing, visual identity and sales page structure' },
+      { rotulo: 'My role', valor: 'Brand briefing, visual identity and sales page structure' },
       { rotulo: 'Client', valor: 'Vello CRM' },
       { rotulo: 'Timeline', valor: '[Project timeline]' },
       { rotulo: 'Status', valor: 'In progress' },
     ],
     capa: { src: placeholder, alt: '[Describe the Vello CRM cover image]' },
     contexto: [
-      '[REVISAR] Vello CRM is an AI-powered management system for car and motorcycle dealerships. The project covered the brand\'s visual identity and the product\'s sales page.',
+      'Vello CRM is an AI-powered management system for car and motorcycle dealerships. The project covered the brand\'s visual identity and the product\'s sales page.',
     ],
     problema: [
-      '[REVISAR] The challenge was to position a B2B software product as a serious, exclusive brand that earns trust, moving away from the "friendly" look common in management tools.',
+      'The challenge was to position a B2B software product as a serious, exclusive brand that earns trust, moving away from the "friendly" look common in management tools.',
     ],
     papel: [
-      '[REVISAR] Ran the brand briefing with the client to define positioning, audience and tone.',
-      '[REVISAR] Created a new, more sober and commanding visual identity.',
-      '[REVISAR] Structured the sales page: information hierarchy, selling points and calls to action.',
+      'Ran the brand briefing with the client to define positioning, audience and tone.',
+      'Created a new, more sober and commanding visual identity.',
+      'Structured the sales page: information hierarchy, selling points and calls to action.',
     ],
     processo: {
       intro: ['[Describe the process steps and pick images that show how the work evolved.]'],
@@ -93,11 +93,11 @@ const caso: Case = {
     },
     decisoes: [
       {
-        titulo: '[REVISAR] Removing rounded corners',
-        porque: '[REVISAR] Square corners make the interface more sober and move the brand away from the "friendly" look common in management tools, which is exactly what the positioning wanted to avoid.',
+        titulo: 'Removing rounded corners',
+        porque: 'Square corners make the interface more sober and move the brand away from the "friendly" look common in management tools, which is exactly what the positioning wanted to avoid.',
       },
       {
-        titulo: '[REVISAR] A sales page built on information hierarchy',
+        titulo: 'A sales page built on information hierarchy',
         porque: '[Explain the order of the blocks, the selling points and the calls to action.]',
       },
     ],

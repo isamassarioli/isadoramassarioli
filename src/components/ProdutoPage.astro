@@ -42,7 +42,7 @@ const alternativas = [
       <p class="disponivel">{c.hero.disponivel}</p>
       <div class="btn-row">
         <a class="btn btn-primary btn-lg" href="#cases">{c.hero.verCases}</a>
-        <a class="btn btn-ghost btn-lg" href={curriculoPara(lang)} download>{t.cv} <span class="sr-only">(PDF)</span></a>
+        <a class="btn btn-ghost btn-lg" href={curriculoPara(lang)} download>{lang === 'en' && !curriculo.en ? t.cvPt : t.cv} <span class="sr-only">(PDF)</span></a>
       </div>
     </div>
   </section>
