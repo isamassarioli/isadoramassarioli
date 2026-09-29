@@ -61,7 +61,7 @@
 .contato-sec a:hover{ border-bottom-color:var(--pink); }
 
 /* ---------- PÁGINA DE CASE ---------- */
-.case-hero{ padding:clamp(40px,6vw,72px) 0 clamp(40px,5vw,56px); }
+.case-hero{ padding-top:clamp(40px,6vw,72px); padding-bottom:clamp(40px,5vw,56px); }
 .case-back{ display:inline-block; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); font-weight:600; margin-bottom:clamp(32px,5vw,56px); padding:6px 0; }
 .case-back:hover{ color:var(--pink-text); }
 .case-title{ font-family:'Fraunces',serif; font-weight:600; font-size:clamp(38px,6vw,72px); line-height:1.05; margin:0 0 22px; max-width:15ch; }

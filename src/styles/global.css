@@ -115,7 +115,7 @@ button{ font-family:inherit; }
 .hero{ position:relative; padding:64px var(--gutter) 72px; text-align:center; z-index:2; }
 .hero::before{
   content:''; position:absolute; top:-260px; left:50%; transform:translateX(-50%);
-  width:min(820px,140vw); height:560px; border-radius:50%;
+  width:min(820px,100vw); height:560px; border-radius:50%;
   background:radial-gradient(circle, var(--pink-soft), transparent 72%);
   z-index:-1; filter:blur(20px);
 }
