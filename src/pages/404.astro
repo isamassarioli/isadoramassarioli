@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { contato } from '../data/site';
+---
+<Base title="Página não encontrada · Isadora Massarioli" description="Esta página não existe ou mudou de endereço." noindex>
+<Nav
+  links={[{ href: '/produto', rotulo: 'Produto' }]}
+  cta={{ href: contato.whatsappOrcamento, rotulo: 'Fale comigo', externo: true }}
+/>
+<main id="conteudo" tabindex="-1" class="contact">
+  <span class="eyebrow">Erro 404</span>
+  <h1 class="script" style="font-size:clamp(38px,6vw,72px);margin:0 0 20px;font-weight:400">Página não encontrada</h1>
+  <p>Esta página não existe ou mudou de endereço.</p>
+  <div class="contact-cta">
+    <a class="btn btn-primary" href="/">Ir para a página inicial</a>
+    <a class="btn btn-ghost" href="/produto">Ver cases de produto</a>
+  </div>
+</main>
+<Footer />
+</Base>
