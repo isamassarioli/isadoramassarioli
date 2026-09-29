@@ -6,7 +6,7 @@ import '../styles/produto.css';
 import { casesPublicados } from '../data/cases';
 import { produto } from '../data/produto';
 import { ui, rotas, type Idioma } from '../data/textos';
-import { contato, curriculo, EN_REVISADO } from '../data/site';
+import { contato, curriculo, curriculoPara, EN_REVISADO } from '../data/site';
 
 interface Props { lang: Idioma }
 
@@ -42,7 +42,7 @@ const alternativas = [
       <p class="disponivel">{c.hero.disponivel}</p>
       <div class="btn-row">
         <a class="btn btn-primary btn-lg" href="#cases">{c.hero.verCases}</a>
-        <a class="btn btn-ghost btn-lg" href={curriculo[lang]} download>{t.cv} <span class="sr-only">(PDF)</span></a>
+        <a class="btn btn-ghost btn-lg" href={curriculoPara(lang)} download>{t.cv} <span class="sr-only">(PDF)</span></a>
       </div>
     </div>
   </section>
@@ -103,7 +103,7 @@ const alternativas = [
       <h3 class="sr-only">{c.contato.cvTitulo}</h3>
       <div class="btn-row">
         <a class="btn btn-primary btn-lg" href={curriculo.pt} download hreflang="pt-BR">{t.cvPt}</a>
-        <a class="btn btn-ghost btn-lg" href={curriculo.en} download hreflang="en">{t.cvEn}</a>
+        {curriculo.en && <a class="btn btn-ghost btn-lg" href={curriculo.en} download hreflang="en">{t.cvEn}</a>}
       </div>
       <p class="contato-sec">
         {c.contato.whatsapp} <a href={contato.whatsappProduto} target="_blank" rel="noopener noreferrer">WhatsApp {contato.whatsappExibicao}<span class="sr-only"> {t.novaAba}</span></a>.

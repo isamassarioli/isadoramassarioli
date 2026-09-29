@@ -34,7 +34,7 @@ export const produto = {
       experiencia: [
         { nome: 'Presidente, Harpia Consultoria', detalhe: 'Empresa Júnior do Ifes · atual' },
         { nome: 'Bolsista de Iniciação Científica CNPq', detalhe: 'Portal Titãs da Robótica · set. 2025 a set. 2026' },
-        { nome: 'Bolsista de pesquisa Fapes', detalhe: 'Livro dos 10 anos dos Titãs da Robótica · [período]' },
+        { nome: 'Bolsista de pesquisa Fapes', detalhe: 'Livro dos 10 anos dos Titãs da Robótica · set. 2024 a set. 2025' },
         { nome: 'Fundadora, agência de branding e social media', detalhe: 'Colatina-ES · mais de 50 marcas atendidas' },
       ],
       ferramentasTitulo: 'Ferramentas',
@@ -73,7 +73,7 @@ export const produto = {
       paragrafos: [
         'My background combines two fields: Information Systems at Ifes and Advertising at UVV. It helps me think about an interface from the technical side and the communication side at the same time.',
         'I have been a designer since 2020. At my branding and social media agency in Colatina, Brazil, I work on UI/UX, branding and digital communication for more than 50 brands.',
-        'I use AI in my design process. The working prototype in the FAPES case study, for example, was built in Figma Make. [Add other ways you use AI, if you like.]',
+        'I use AI in my design process. The working prototype in the FAPES case study, for example, was built in Figma Make.',
         'I am currently the president of Harpia Consultoria, the student-run consulting company (Empresa Júnior) at Ifes, where I lead the team and the company\'s management.',
       ],
       formacaoTitulo: 'Education',
@@ -85,7 +85,7 @@ export const produto = {
       experiencia: [
         { nome: 'President, Harpia Consultoria', detalhe: '[REVISAR] Student-run consulting company at Ifes · current' },
         { nome: '[REVISAR] CNPq undergraduate research fellow', detalhe: 'Titãs da Robótica portal · Sep 2025 to Sep 2026' },
-        { nome: '[REVISAR] Fapes research fellow', detalhe: 'Titãs da Robótica 10th anniversary book' },
+        { nome: '[REVISAR] Fapes research fellow', detalhe: 'Titãs da Robótica 10th anniversary book · Sep 2024 to Sep 2025' },
         { nome: 'Founder, branding and social media agency', detalhe: 'Colatina, Brazil · 50+ brands' },
       ],
       ferramentasTitulo: 'Tools',

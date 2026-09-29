@@ -1,3 +1,6 @@
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+
 // Dados de contato e configuração usados em todas as páginas.
 
 export const SITE_URL = 'https://isadoramassarioli.com.br';
@@ -27,7 +30,16 @@ export const contato = {
 };
 
 // Os PDFs ficam em public/cv/. Basta salvar os arquivos com estes nomes.
+// Enquanto o PDF em inglês não existir, o botão dele some e as páginas em inglês usam o PDF em português.
+const CV_PT = '/cv/curriculo-isadora-massarioli-pt.pdf';
+const CV_EN = '/cv/resume-isadora-massarioli-en.pdf';
+const temCvEn = existsSync(join(process.cwd(), 'public', CV_EN));
+
 export const curriculo = {
-  pt: '/cv/curriculo-isadora-massarioli-pt.pdf',
-  en: '/cv/resume-isadora-massarioli-en.pdf',
+  pt: CV_PT,
+  en: temCvEn ? CV_EN : null,
 };
+
+export function curriculoPara(lang: 'pt' | 'en') {
+  return curriculo[lang] ?? CV_PT;
+}
