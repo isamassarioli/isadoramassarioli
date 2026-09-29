@@ -1,0 +1,314 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Isadora Massarioli · Identidade visual e social media" description="Identidade visual, branding e social media para negócios que querem ser lembrados e escolhidos. Portfólio de Isadora Massarioli.">
+<nav>
+  <img class="nav-logo" id="nav-logo" src="/images/logo1.png" alt="Isadora Massarioli">
+  <a href="https://wa.me/5527988664685?text=oi%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20um%20or%C3%A7amento" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Fale comigo</a>
+</nav>
+
+<main id="main-view">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="mark"><img src="/images/logo.png" alt=""></div>
+    <span class="eyebrow">Identidade visual · Branding · Social Media</span>
+    <h1 class="script">Isadora<br>Massarioli</h1>
+    <div class="divider"></div>
+    <p class="lede">Marca boa não é só bonita, é a que faz seu cliente te escolher antes mesmo de vocês conversarem. Crio identidade visual, social media e branding pensados pra isso, com mais de 20 marcas construídas nos últimos 6 anos.</p>
+    <div class="pills">
+      <span class="pill on">Identidade Visual</span>
+      <span class="pill">Branding</span>
+      <span class="pill">Redes Sociais</span>
+      <span class="pill">UI/UX</span>
+      <span class="pill">Manual de Marca</span>
+      <span class="pill">Páginas Web</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#projetos" class="btn btn-primary">Ver projetos ↓</a>
+      <a href="#sobre" class="btn btn-ghost">Sobre mim</a>
+    </div>
+  </section>
+
+  <!-- SOBRE / STATS -->
+  <section class="about" id="sobre" data-reveal>
+    <div>
+      <div class="stat"><div class="num">22</div><div class="label">Projetos entregues</div></div>
+      <div class="stat"><div class="num">6+</div><div class="label">Anos criando marcas e conteúdo</div></div>
+      <div class="stat"><div class="num">3</div><div class="label">Frentes: identidade, social e web</div></div>
+    </div>
+    <div>
+      <span class="about-eyebrow">Sobre</span>
+      <h2 class="serif">Bonito é o mínimo.</h2>
+      <p>Sou designer gráfica há mais de 6 anos, especializada em identidade visual, branding e redes sociais para negócios. Já construí marca do zero para academias, clínicas, restaurantes, lojas e prestadores de serviço, sempre com o mesmo foco: fazer a marca vender, não só ficar bonita no feed.</p>
+      <p>Todo projeto começa com perguntas antes de abrir o Illustrator: quem é o cliente do meu cliente, o que ele precisa ouvir pra confiar, e onde essa marca vai aparecer no dia a dia. O resultado é identidade visual, conteúdo e presença digital que conversam entre si.</p>
+      <div class="about-cta">
+        <a href="https://wa.me/5527995153664?text=oi%2C%20vi%20seu%20portf%C3%B3lio%20e%20quero%20um%20or%C3%A7amento" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Fale comigo</a>
+        <a href="#servicos" class="btn btn-ghost">O que eu ofereço</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="services" id="servicos" data-reveal>
+    <div class="section-head">
+      <span class="eyebrow">O que ofereço</span>
+      <h2 class="serif">Serviços</h2>
+    </div>
+    <div class="services-grid">
+      <div class="service"><h3>Identidade Visual</h3><p>Logo, tipografia, paleta e as regras de uso que garantem consistência em qualquer peça.</p></div>
+      <div class="service"><h3>Manual de Marca</h3><p>Guia completo de como aplicar a identidade, pra ninguém inventar um logo torto depois.</p></div>
+      <div class="service"><h3>Social Media</h3><p>Posts, stories e carrosséis pra Instagram, LinkedIn, TV e campanhas de tráfego pago.</p></div>
+      <div class="service"><h3>Branding Completo</h3><p>Construção de marca do zero ou rebranding: da estratégia ao visual aplicado.</p></div>
+      <div class="service"><h3>UI/UX Design</h3><p>Telas de site, sistema ou app pensadas pra quem vai usar, não só pra ficar bonito no protótipo.</p></div>
+      <div class="service"><h3>Mockups &amp; Web</h3><p>Aplicação realista da marca em produto, papelaria, ambiente e páginas web.</p></div>
+    </div>
+  </section>
+
+  <!-- PROJETOS -->
+  <section class="portfolio" id="projetos" data-reveal>
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Portfólio</span>
+        <h2 class="serif">Projetos</h2>
+      </div>
+      <div class="carousel-nav">
+        <button class="arrow-btn" id="prev-btn" aria-label="Projetos anteriores">‹</button>
+        <span class="carousel-count" id="count-label">1-3/22</span>
+        <button class="arrow-btn" id="next-btn" aria-label="Próximos projetos">›</button>
+      </div>
+    </div>
+
+    <div class="filters">
+      <button class="filter-btn active" data-filter="todos">Todos</button>
+      <button class="filter-btn" data-filter="branding">Identidade &amp; Branding</button>
+      <button class="filter-btn" data-filter="social">Social Media</button>
+      <button class="filter-btn" data-filter="web">Páginas Web</button>
+    </div>
+
+    <div class="carousel-viewport">
+      <div class="grid" id="grid"></div>
+    </div>
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="contact" id="contato" data-reveal>
+    <span class="eyebrow">Vamos conversar</span>
+    <h2 class="script">Vamos trabalhar juntos?</h2>
+    <p>Me conta o que sua marca precisa hoje. Devolvo um orçamento certinho em até 24h, sem letra miúda.</p>
+    <div class="contact-cta">
+      <a href="https://wa.me/5527995153664?text=oi%2C%20tenho%20um%20projeto%21" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Entre em contato</a>
+      <a href="https://www.linkedin.com/in/isadoramassarioli/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">LinkedIn</a>
+    </div>
+  </section>
+</main>
+
+<!-- PROJECT DETAIL VIEW -->
+<section class="detail hidden" id="detail-view">
+  <button class="back-link" id="back-btn">← Todos os projetos</button>
+
+  <span class="detail-cat" id="detail-cat"></span>
+  <h1 class="detail-title" id="detail-title"></h1>
+  <div class="detail-meta" id="detail-tags"></div>
+  <p class="detail-desc" id="detail-desc"></p>
+  <a class="btn btn-ghost detail-link hidden" id="detail-link" target="_blank" rel="noopener noreferrer">Visitar site ↗</a>
+
+  <div class="detail-banner">
+    <div class="detail-banner-frame"><img id="detail-banner-img" src="" alt=""></div>
+  </div>
+
+  <div id="gallery-wrap">
+    <p class="gallery-label">Peças do projeto</p>
+    <div class="gallery" id="detail-gallery"></div>
+  </div>
+</section>
+
+<footer>
+  <img class="foot-logo" src="/images/logo1.png" alt="Isadora Massarioli">
+  <div class="social-links" aria-label="Redes sociais e contato">
+    <a href="https://www.linkedin.com/in/isadoramassarioli/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+    <a href="https://www.youtube.com/@isadora.massarioli" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://www.instagram.com/isadoramassarioli/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://wa.me/5527995153664?text=oi%2C%20tenho%20um%20projeto%21" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+  </div>
+  <span>© 2026 Isadora Massarioli</span>
+</footer>
+
+<script is:inline>
+// each project: num = image file prefix in images/cropped/, count = how many crops exist (num-1.jpg ... num-N.jpg)
+function imgs(num, count){
+  const arr = [];
+  for(let i=1;i<=count;i++) arr.push(`/images/cropped/${num}-${i}.png`);
+  return arr;
+}
+
+const projects = [
+  {name:"Madre Pizzas", cat:"branding", num:"04", count:7, tags:["Rebranding","Impressos"], desc:"Rebranding completo da pizzaria, com nova paleta em azul e dourado, variações de logo e aplicação em voucher promocional e caixas de pizza."},
+  {name:"GDN", cat:"branding", num:"05", count:4, tags:["Branding","Mockups"], desc:"Marca construída do zero para loja de tecnologia: logo em variações de cor, aplicada em fachada, uniforme e cartão de visita."},
+  {name:"Nova Energy Solutions", cat:"branding", num:"06", count:6, tags:["Branding"], desc:"Identidade para empresa de energia solar, do símbolo N ao aplicativo em copo térmico, pasta institucional e cartaz de rua."},
+  {name:"Leandro Rampinelli", cat:"branding", num:"07", count:7, tags:["Branding","Mockups"], desc:"Marca pessoal para fisioterapeuta, com símbolo de coluna vertebral em dourado aplicado em uniforme, placa de consultório e tablet."},
+  {name:"Saiph Team", cat:"branding", num:"08", count:4, tags:["Branding"], desc:"Identidade inspirada em constelações, aplicada em capa de vinil conceitual, wallpaper de desktop e mockups de estúdio."},
+  {name:"Andréa Matos", cat:"branding", num:"09", count:3, tags:["Branding","Ícones"], desc:"Marca para clínica de psicologia, com símbolo psi acolhedor em paleta terrosa e lilás, e conjunto de ícones para aplicativo."},
+  {name:"Dra. Sandra Helena Pereira", cat:"branding", num:"10", count:6, tags:["Rebranding"], desc:"Rebranding para ginecologista, com símbolo de lua crescente em rosa e verde e versão circular pronta pra redes sociais."},
+  {name:"Beatriz Soares", cat:"branding", num:"11", count:4, tags:["Branding"], desc:"Marca para doceria saudável, com tipografia manuscrita em rosa vibrante e monograma BS aplicado em 2 paletas de cor."},
+  {name:"Tia Leninha", cat:"branding", num:"12", count:4, tags:["Branding"], desc:"Marca floral para negócio local, do carimbo personalizado ao luminoso de fachada."},
+  {name:"Igreja Adventista de São Silvano", cat:"branding", num:"13", count:2, tags:["Branding"], desc:"Identidade para organização religiosa: monograma com chama e cruz, em versões positiva e negativa."},
+  {name:"DJ Consultoria em Gestão Pública", cat:"branding", num:"14", count:5, tags:["Rebranding"], desc:"Rebranding corporativo com monograma DJ, aplicado em post de Instagram e mockups de celular."},
+  {name:"Jefferson Fernandes", cat:"branding", num:"15", count:5, tags:["Branding","Mockups"], desc:"Marca pessoal para personal trainer, com escudo JF aplicado em camiseta, fachada de academia e fotos de treino."},
+  {name:"Madre Pizzas", cat:"social", num:"17", count:6, tags:["Instagram","TV"], desc:"Postagens sazonais para Instagram e material de apresentação em TV da pizzaria."},
+  {name:"Ízi Stays", cat:"social", num:"18", count:4, tags:["Social Media","Tráfego pago"], desc:"Postagens e campanhas pagas para hospedagem, incluindo guia de restaurantes de Vitória."},
+  {name:"E-Redação", cat:"social", num:"19", count:8, tags:["Social Media","Tráfego pago"], desc:"Conteúdo educativo e de conversão para plataforma de correção de redação do Enem."},
+  {name:"SOS Energia Solar", cat:"social", num:"20", count:7, tags:["Social Media","Tráfego pago"], desc:"Série de postagens educativas sobre economia e benefícios da energia solar."},
+  {name:"Tile Pro Services", cat:"social", num:"21", count:5, tags:["Portfólio","Redes sociais"], desc:"Postagens de portfólio e antes/depois de obras para empresa de acabamento em pisos nos EUA."},
+  {name:"Dra. Marina Malacarne", cat:"social", num:"22", count:7, tags:["Social Media","Tráfego pago"], desc:"Conteúdo educativo sobre infectologia para redes sociais e campanhas pagas."},
+  {name:"Dra. Sandra Helena Pereira", cat:"social", num:"23", count:7, tags:["Social Media","Tráfego pago"], desc:"Postagens institucionais e educativas sobre saúde da mulher."},
+  {name:"Titãs da Robótica", cat:"web", num:"28", count:2, tags:["Portal","Iniciação Científica"], desc:"Portal oficial da equipe de robótica, do wireframe ao deploy em produção.", link:"https://titasdarobotica.vercel.app/"},
+  {name:"Chiuba Store", cat:"web", num:"29", count:7, tags:["E-commerce","Landing page"], desc:"Landing page, loja Shopify e loja integrada para marca de moda contemporânea.", link:"https://chiuba-brand-experience.lovable.app/"},
+  {name:"SIGPRO", cat:"web", num:"30", count:5, tags:["UI/UX","Sistema"], desc:"Telas de sistema de inscrição de editais e projetos técnico-científicos, feito com Nuxt UI."}
+];
+
+const PAGE_SIZE = 3;
+let currentFilter = 'todos';
+let currentPage = 0;
+
+const grid = document.getElementById('grid');
+const countLabel = document.getElementById('count-label');
+const dotsWrap = document.getElementById('dots');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const mainView = document.getElementById('main-view');
+const detailView = document.getElementById('detail-view');
+
+function getList(){
+  return currentFilter === 'todos' ? projects : projects.filter(p => p.cat === currentFilter);
+}
+function totalPages(){ return Math.max(1, Math.ceil(getList().length / PAGE_SIZE)); }
+
+function renderDots(){
+  dotsWrap.innerHTML = '';
+  const pages = totalPages();
+  for(let i=0;i<pages;i++){
+    const d = document.createElement('button');
+    d.className = 'dot' + (i===currentPage ? ' active' : '');
+    d.addEventListener('click', ()=>{ currentPage = i; renderGrid(); });
+    dotsWrap.appendChild(d);
+  }
+}
+
+function catLabel(cat){
+  return cat === 'branding' ? 'Identidade & Branding' : cat === 'social' ? 'Social Media' : 'Páginas Web';
+}
+
+function renderGrid(){
+  const list = getList();
+  const pages = totalPages();
+  if(currentPage >= pages) currentPage = pages - 1;
+  if(currentPage < 0) currentPage = 0;
+
+  const start = currentPage * PAGE_SIZE;
+  const pageItems = list.slice(start, start + PAGE_SIZE);
+
+  grid.innerHTML = '';
+  pageItems.forEach(p=>{
+    const globalIndex = projects.indexOf(p);
+    const cover = imgs(p.num, p.count)[0];
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-img"><img src="${cover}" alt="${p.name}" loading="lazy"></div>
+      <div class="card-body">
+        <div class="card-cat">${catLabel(p.cat)}</div>
+        <h3 class="card-title">${p.name}</h3>
+        <p class="card-desc">${p.desc}</p>
+        <div class="card-tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+        <div class="card-open">Ver projeto →</div>
+      </div>
+    `;
+    card.addEventListener('click', ()=>openDetail(globalIndex));
+    grid.appendChild(card);
+  });
+
+  const end = Math.min(start + PAGE_SIZE, list.length);
+  countLabel.textContent = list.length === 0 ? '0/0' : `${start+1}-${end}/${list.length}`;
+  prevBtn.disabled = currentPage === 0;
+  nextBtn.disabled = currentPage >= pages - 1;
+  renderDots();
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    currentPage = 0;
+    renderGrid();
+  });
+});
+prevBtn.addEventListener('click', ()=>{ if(currentPage>0){ currentPage--; renderGrid(); } });
+nextBtn.addEventListener('click', ()=>{ if(currentPage < totalPages()-1){ currentPage++; renderGrid(); } });
+renderGrid();
+
+/* ---- DETAIL VIEW ---- */
+function openDetail(index){
+  const p = projects[index];
+  const pics = imgs(p.num, p.count);
+
+  document.getElementById('detail-cat').textContent = catLabel(p.cat);
+  document.getElementById('detail-title').textContent = p.name;
+  document.getElementById('detail-desc').textContent = p.desc;
+
+  const tagsWrap = document.getElementById('detail-tags');
+  tagsWrap.innerHTML = p.tags.map(t=>`<span class="tag">${t}</span>`).join('');
+
+  const linkEl = document.getElementById('detail-link');
+  if(p.link){ linkEl.href = p.link; linkEl.classList.remove('hidden'); }
+  else{ linkEl.classList.add('hidden'); }
+
+  const bannerImg = document.getElementById('detail-banner-img');
+  bannerImg.src = pics[0];
+  bannerImg.alt = p.name;
+
+  const galleryWrap = document.getElementById('gallery-wrap');
+  const gallery = document.getElementById('detail-gallery');
+  const rest = pics.slice(1);
+  if(rest.length){
+    gallery.innerHTML = rest.map(src=>`<span class="gallery-item"><img src="${src}" alt="${p.name}" loading="lazy"></span>`).join('');
+    galleryWrap.classList.remove('hidden');
+    // never upscale a source image past its native resolution inside the column
+    gallery.querySelectorAll('img').forEach(img=>{
+      const cap = () => {
+        const colWidth = img.parentElement.clientWidth;
+        if(img.naturalWidth && img.naturalWidth < colWidth){
+          img.style.width = img.naturalWidth + 'px';
+          img.style.maxWidth = '100%';
+        }
+      };
+      img.complete ? cap() : img.addEventListener('load', cap);
+    });
+  } else {
+    galleryWrap.classList.add('hidden');
+  }
+
+  mainView.classList.add('hidden');
+  detailView.classList.remove('hidden');
+  window.scrollTo({top:0, behavior:'instant'});
+}
+
+function closeDetail(){
+  detailView.classList.add('hidden');
+  mainView.classList.remove('hidden');
+  document.getElementById('projetos').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+document.getElementById('back-btn').addEventListener('click', closeDetail);
+document.getElementById('nav-logo').addEventListener('click', ()=>{
+  closeDetail();
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
+},{threshold:.12});
+document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+</script>
+</Base>
