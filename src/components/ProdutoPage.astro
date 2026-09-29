@@ -1,0 +1,117 @@
+---
+import Base from '../layouts/Base.astro';
+import NavProduto from './NavProduto.astro';
+import Footer from './Footer.astro';
+import '../styles/produto.css';
+import { casesPublicados } from '../data/cases';
+import { produto } from '../data/produto';
+import { ui, rotas, type Idioma } from '../data/textos';
+import { contato, curriculo, EN_REVISADO } from '../data/site';
+
+interface Props { lang: Idioma }
+
+const { lang } = Astro.props;
+const c = produto[lang];
+const t = ui[lang];
+const r = rotas[lang];
+const outro: Idioma = lang === 'pt' ? 'en' : 'pt';
+const alternativas = [
+  { hreflang: 'pt-BR', href: rotas.pt.produto },
+  ...(EN_REVISADO ? [{ hreflang: 'en', href: rotas.en.produto }] : []),
+];
+---
+<Base
+  title={c.meta.titulo}
+  description={c.meta.descricao}
+  lang={t.htmlLang}
+  bodyClass="tema-produto"
+  noindex={lang === 'en' && !EN_REVISADO}
+  ogImage="/og/produto.png"
+  ogImageAlt="Isadora Massarioli, Product Designer (UX/UI)"
+  alternativas={alternativas}
+  skipLabel={t.pular}
+>
+<NavProduto lang={lang} outroIdioma={rotas[outro].produto} naPaginaProduto />
+
+<main id="conteudo" tabindex="-1">
+  <section class="p-hero" aria-labelledby="p-titulo">
+    <div class="wrap">
+      <span class="kicker">{c.hero.kicker}</span>
+      <h1 id="p-titulo">Isadora Massarioli</h1>
+      <p class="lede-lg">{c.hero.lede}</p>
+      <p class="disponivel">{c.hero.disponivel}</p>
+      <div class="btn-row">
+        <a class="btn btn-primary btn-lg" href="#cases">{c.hero.verCases}</a>
+        <a class="btn btn-ghost btn-lg" href={curriculo[lang]} download>{t.cv} <span class="sr-only">(PDF)</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-sec" id="cases" aria-labelledby="cases-titulo">
+    <div class="wrap">
+      <div class="p-sec-head">
+        <h2 id="cases-titulo">{c.cases.titulo}</h2>
+        <p>{c.cases.texto}</p>
+      </div>
+      <ol class="case-list">
+        {casesPublicados.map((caso, i) => {
+          const cc = caso[lang];
+          return (
+            <li>
+              <a class="case-card" href={r.caso(caso.slug)}>
+                <span class="case-card-img"><img src={cc.capa.src} alt={cc.capa.alt} loading={i === 0 ? 'eager' : 'lazy'} width="1440" height="1000"></span>
+                <span>
+                  <span class="case-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                  <h3>{cc.titulo}</h3>
+                  <p>{cc.resumo}</p>
+                  <span class="card-tags">{caso.tags.map((tag) => <span class="tag">{tag}</span>)}</span>
+                  <span class="case-go" aria-hidden="true">{t.caso.lerCase} →</span>
+                </span>
+              </a>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  </section>
+
+  <section class="p-sec" id="sobre" aria-labelledby="sobre-titulo">
+    <div class="wrap">
+      <div class="p-sec-head"><h2 id="sobre-titulo">{c.sobre.titulo}</h2></div>
+      <div class="sobre-grid">
+        <div class="sobre-texto">{c.sobre.paragrafos.map((p) => <p>{p}</p>)}</div>
+        <div class="sobre-lado">
+          <h3>{c.sobre.experienciaTitulo}</h3>
+          <ul>{c.sobre.experiencia.map((x) => <li>{x.nome}<span>{x.detalhe}</span></li>)}</ul>
+          <h3>{c.sobre.formacaoTitulo}</h3>
+          <ul>{c.sobre.formacao.map((x) => <li>{x.nome}<span>{x.detalhe}</span></li>)}</ul>
+          <h3>{c.sobre.ferramentasTitulo}</h3>
+          <ul>{c.sobre.ferramentas.map((x) => <li>{x.nome}<span>{x.detalhe}</span></li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="p-sec p-contato" id="contato" aria-labelledby="contato-titulo">
+    <div class="wrap wrap-narrow">
+      <h2 id="contato-titulo">{c.contato.titulo}</h2>
+      <p class="lede-lg">{c.contato.texto}</p>
+      <div class="contato-principal">
+        <a href={contato.emailHref}><small>{c.contato.email}</small><span class="valor">{contato.email}</span></a>
+        <a href={contato.linkedin} target="_blank" rel="noopener noreferrer"><small>{c.contato.linkedin}</small><span class="valor">/in/isadoramassarioli <span aria-hidden="true">↗</span><span class="sr-only">{t.novaAba}</span></span></a>
+      </div>
+      <h3 class="sr-only">{c.contato.cvTitulo}</h3>
+      <div class="btn-row">
+        <a class="btn btn-primary btn-lg" href={curriculo.pt} download hreflang="pt-BR">{t.cvPt}</a>
+        <a class="btn btn-ghost btn-lg" href={curriculo.en} download hreflang="en">{t.cvEn}</a>
+      </div>
+      <p class="contato-sec">
+        {c.contato.whatsapp} <a href={contato.whatsappProduto} target="_blank" rel="noopener noreferrer">WhatsApp {contato.whatsappExibicao}<span class="sr-only"> {t.novaAba}</span></a>.
+        {' '}{c.contato.outros} <a href={contato.behance} target="_blank" rel="noopener noreferrer">Behance<span class="sr-only"> {t.novaAba}</span></a> {lang === 'en' ? 'and' : 'e'} <a href={contato.github} target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> {t.novaAba}</span></a>.
+      </p>
+    </div>
+  </section>
+</main>
+
+<Footer escuro lang={lang} />
+</Base>
