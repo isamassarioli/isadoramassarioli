@@ -1,0 +1,33 @@
+---
+import { contato } from '../data/site';
+
+interface Props { escuro?: boolean; lang?: 'pt' | 'en' }
+const { escuro = false, lang = 'pt' } = Astro.props;
+const logo = escuro ? '/images/logo-escuro.png' : '/images/logo1.png';
+const novaAba = lang === 'en' ? ' (opens in a new tab)' : ' (abre em nova aba)';
+
+const redes = [
+  { href: contato.linkedin, rotulo: 'LinkedIn', icone: 'fa-brands fa-linkedin-in' },
+  { href: contato.behance, rotulo: 'Behance', icone: 'fa-brands fa-behance' },
+  { href: contato.github, rotulo: 'GitHub', icone: 'fa-brands fa-github' },
+  { href: contato.instagram, rotulo: 'Instagram', icone: 'fa-brands fa-instagram' },
+  { href: contato.youtube, rotulo: 'YouTube', icone: 'fa-brands fa-youtube' },
+  { href: contato.whatsappProjeto, rotulo: 'WhatsApp', icone: 'fa-brands fa-whatsapp' },
+];
+---
+<footer class="site-footer">
+  <div class="foot-brand">
+    <img class="foot-logo" src={logo} alt="Logo de Isadora Massarioli" width="72" height="22" loading="lazy">
+    <a class="foot-email" href={contato.emailHref}>{contato.email}</a>
+  </div>
+  <ul class="social-links" aria-label={lang === 'en' ? 'Social networks and contact' : 'Redes sociais e contato'}>
+    {redes.map((r) => (
+      <li>
+        <a href={r.href} target="_blank" rel="noopener noreferrer" title={r.rotulo}>
+          <i class={r.icone} aria-hidden="true"></i><span class="sr-only">{r.rotulo}{novaAba}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+  <span>© {new Date().getFullYear()} Isadora Massarioli</span>
+</footer>
