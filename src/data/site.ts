@@ -8,7 +8,7 @@ export const SITE_URL = 'https://isadoramassarioli.com.br';
 // Com false, as páginas em inglês ficam com noindex e fora do sitemap.
 export const EN_REVISADO = true;
 
-const WHATSAPP_NUMERO = '5527995153664';
+const WHATSAPP_NUMERO = '5527988664685';
 
 export function whatsapp(mensagem: string) {
   return `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensagem)}`;
@@ -17,7 +17,7 @@ export function whatsapp(mensagem: string) {
 export const contato = {
   email: 'isadoramassarioli@gmail.com',
   emailHref: 'mailto:isadoramassarioli@gmail.com',
-  whatsappExibicao: '(27) 99515-3664',
+  whatsappExibicao: '(27) 98866-4685',
   whatsappOrcamento: whatsapp('oi, vi seu portfólio e quero um orçamento'),
   whatsappProjeto: whatsapp('oi, tenho um projeto!'),
   whatsappProduto: whatsapp('oi, Isadora! vi seu portfólio de produto'),
