@@ -1,4 +1,4 @@
-// Conteúdo da página /produto e da versão /en/product.
+// Conteúdo da página /productdesign e da versão /en/product.
 // Itens entre colchetes são placeholders para preencher.
 
 export const produto = {

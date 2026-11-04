@@ -2,316 +2,237 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import '../styles/lp.css';
 import { contato } from '../data/site';
-import { projetos, categorias, rotuloCategoria } from '../data/projetos';
+import { lp } from '../data/lp';
+import { projetos, rotuloCategoria, slugProjeto } from '../data/projetos';
 
-const PAGE_SIZE = 3;
-const detalhes = projetos.map((p) => ({
-  nome: p.nome,
-  cat: rotuloCategoria[p.cats[0]],
-  tags: p.tags,
-  desc: p.desc,
-  link: p.link ?? null,
-  imagens: p.imagens ?? [],
-}));
+const destaques = lp.cases.destaques
+  .map((d) => projetos.find((p) => p.nome === d.nome && p.cats[0] === d.cat))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p));
+const temResultados = lp.prova.resultados.length > 0;
+const temDepoimentos = lp.depoimentos.itens.length > 0;
 ---
-<Base
-  title="Isadora Massarioli · Product Designer e designer de marca"
-  description="Product Designer (UX/UI) e designer de marca desde 2020. Cases de produto digital e portfólio de identidade visual, branding e social media para mais de 50 marcas."
->
+<Base title={lp.meta.titulo} description={lp.meta.descricao}>
 <Nav
   links={[
-    { href: '/produto', rotulo: 'Produto' },
-    { href: '#servicos', rotulo: 'Branding', opcional: true },
-    { href: '#projetos', rotulo: 'Projetos', opcional: true },
-    { href: '#contato', rotulo: 'Contato', opcional: true },
+    { href: '#cases', rotulo: 'Cases' },
+    { href: '#servicos', rotulo: 'Serviços', opcional: true },
+    { href: '#sobre', rotulo: 'Sobre', opcional: true },
+    { href: '/productdesign', rotulo: 'Product design', opcional: true },
   ]}
-  cta={{ href: contato.whatsappOrcamento, rotulo: 'Fale comigo', externo: true }}
+  cta={{ href: contato.whatsappOrcamento, rotulo: 'Pedir orçamento', externo: true }}
 />
 
 <main id="conteudo" tabindex="-1">
-<div id="main-view">
-  <!-- HERO -->
-  <section class="hero" aria-labelledby="hero-titulo">
-    <div class="mark"><img src="/images/logo.png" alt="Símbolo da marca Isadora Massarioli: estrela de quatro pontas entre formas em rosa e amarelo" width="52" height="52"></div>
-    <span class="eyebrow">Product Design · Branding · Social Media</span>
-    <h1 class="script" id="hero-titulo">Isadora<br>Massarioli</h1>
-    <div class="divider" aria-hidden="true"></div>
-    <p class="lede">Desenho produtos digitais pensados para quem usa e crio marcas que fazem o cliente escolher o seu negócio antes mesmo da primeira conversa.</p>
-    <div class="paths">
-      <a class="path path-primary" href="/produto">
-        <span class="path-kicker">Para recrutadores e times de design</span>
-        <span class="path-title">Trabalho em produto</span>
-        <span class="path-desc">Cases de UX/UI com pesquisa, arquitetura de informação e protótipos de alta fidelidade.</span>
-        <span class="path-go" aria-hidden="true">Ver cases →</span>
-      </a>
-      <a class="path" href="#servicos">
-        <span class="path-kicker">Para o seu negócio</span>
-        <span class="path-title">Branding para o seu negócio</span>
-        <span class="path-desc">Identidade visual, social media e páginas web da minha agência, com mais de 50 marcas atendidas.</span>
-        <span class="path-go" aria-hidden="true">Ver serviços →</span>
-      </a>
-    </div>
-  </section>
 
-  <!-- SOBRE / STATS -->
-  <section class="about" id="sobre" aria-labelledby="sobre-titulo" data-reveal>
-    <div>
-      <div class="stat"><div class="num">50+</div><div class="label">Marcas atendidas</div></div>
-      <div class="stat"><div class="num">Desde 2020</div><div class="label">Criando marcas e produtos digitais</div></div>
-      <div class="stat"><div class="num">3</div><div class="label">Frentes: identidade, social e web</div></div>
-    </div>
-    <div>
-      <span class="about-eyebrow">Sobre</span>
-      <h2 class="serif" id="sobre-titulo">Bonito é o mínimo.</h2>
-      <p>Sou Product Designer e designer de marca desde 2020. Na minha agência, em Colatina-ES, cuido de identidade visual, branding e redes sociais para negócios. Já construí marca do zero para academias, clínicas, restaurantes, lojas e prestadores de serviço, sempre com o mesmo foco: fazer a marca vender, não só ficar bonita no feed.</p>
-      <p>Todo projeto começa com perguntas antes de abrir o Illustrator: quem é o cliente do meu cliente, o que ele precisa ouvir pra confiar, e onde essa marca vai aparecer no dia a dia. O resultado é identidade visual, conteúdo e presença digital que conversam entre si.</p>
-      <div class="about-cta">
-        <a href={contato.whatsappOrcamento} target="_blank" rel="noopener noreferrer" class="btn btn-primary">Pedir orçamento</a>
-        <a href="#servicos" class="btn btn-ghost">O que eu ofereço</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVIÇOS -->
-  <section class="services" id="servicos" aria-labelledby="servicos-titulo" data-reveal>
-    <div class="section-head">
-      <span class="eyebrow">O que ofereço</span>
-      <h2 class="serif" id="servicos-titulo">Serviços</h2>
-    </div>
-    <ul class="services-grid">
-      <li class="service"><h3>Identidade Visual</h3><p>Logo, tipografia, paleta e as regras de uso que garantem consistência em qualquer peça.</p></li>
-      <li class="service"><h3>Manual de Marca</h3><p>Guia completo de como aplicar a identidade, pra ninguém inventar um logo torto depois.</p></li>
-      <li class="service"><h3>Social Media</h3><p>Posts, stories e carrosséis pra Instagram, LinkedIn, TV e campanhas de tráfego pago.</p></li>
-      <li class="service"><h3>Branding Completo</h3><p>Construção de marca do zero ou rebranding: da estratégia ao visual aplicado.</p></li>
-      <li class="service">
-        <a class="service-link" href="/produto">
-          <h3>UI/UX Design</h3>
-          <p>Telas de site, sistema ou app pensadas pra quem vai usar, não só pra ficar bonito no protótipo.</p>
-          <span class="go" aria-hidden="true">Ver cases de produto →</span>
-        </a>
-      </li>
-      <li class="service"><h3>Mockups &amp; Web</h3><p>Aplicação realista da marca em produto, papelaria, ambiente e páginas web.</p></li>
-    </ul>
-  </section>
-
-  <!-- PROJETOS -->
-  <section class="portfolio" id="projetos" aria-labelledby="projetos-titulo" data-reveal>
-    <div class="section-head">
+  <!-- 1. ABERTURA -->
+  <section class="lp-sec lp-dark lp-hero" aria-labelledby="hero-titulo">
+    <div class="lp-wrap lp-hero-grid">
       <div>
-        <span class="eyebrow">Portfólio</span>
-        <h2 class="serif" id="projetos-titulo">Projetos</h2>
+        <span class="lp-eyebrow">{lp.hero.eyebrow}</span>
+        <h1 class="lp-h1" id="hero-titulo">{lp.hero.tituloAntes}<em>{lp.hero.tituloDestaque}</em>{lp.hero.tituloDepois}</h1>
+        <p class="lp-lead">{lp.hero.apoio}</p>
+        <p class="lp-obj">{lp.hero.objecao}</p>
+        <div class="lp-cta-row">
+          <a class="btn btn-primary btn-lg" href={contato.whatsappOrcamento} target="_blank" rel="noopener noreferrer">{lp.hero.cta}</a>
+          <a class="btn btn-ghost btn-lg" href="#cases">{lp.hero.cta2}</a>
+        </div>
       </div>
-      <div class="carousel-nav">
-        <button type="button" class="arrow-btn" id="prev-btn" aria-label="Projetos anteriores"><span aria-hidden="true">‹</span></button>
-        <span class="carousel-count" id="count-label" aria-live="polite">{`1-${Math.min(PAGE_SIZE, projetos.length)}/${projetos.length}`}</span>
-        <button type="button" class="arrow-btn" id="next-btn" aria-label="Próximos projetos"><span aria-hidden="true">›</span></button>
+      <div class="lp-photo">
+        <div class="lp-photo-frame">
+          <img src="/images/foto-isadora.jpg" alt={lp.hero.fotoAlt} width="640" height="640" fetchpriority="high">
+        </div>
+        <div class="lp-selo"><strong>{lp.hero.selo.numero}</strong><span>{lp.hero.selo.rotulo}</span></div>
       </div>
     </div>
+  </section>
 
-    <div class="filters" role="group" aria-label="Filtrar projetos por categoria">
-      {categorias.map((c, i) => (
-        <button type="button" class="filter-btn" data-filter={c.id} aria-pressed={i === 0 ? 'true' : 'false'}>{c.rotulo}</button>
-      ))}
+  <!-- 2. DOR -->
+  <section class="lp-sec lp-tex lp-dor" aria-labelledby="dor-titulo" data-reveal>
+    <div class="lp-wrap">
+      <h2 class="lp-h2" id="dor-titulo">{lp.dor.titulo}</h2>
+      <span class="lp-hint" aria-hidden="true">{lp.dor.dica} →</span>
     </div>
+    <ul class="lp-qs" tabindex="0" aria-label="Perguntas que donos de negócio costumam se fazer">
+      {lp.dor.perguntas.map((q) => <li class="lp-q">{q}</li>)}
+    </ul>
+    <div class="lp-wrap"><p class="lp-fecho">{lp.dor.fecho}</p></div>
+  </section>
 
-    <div class="carousel-viewport">
-      <ul class="grid" id="grid">
-        {projetos.map((p, i) => {
+  <!-- 3. VIRADA -->
+  <section class="lp-sec lp-light" aria-labelledby="virada-titulo" data-reveal>
+    <div class="lp-wrap lp-virada-grid">
+      <div>
+        <span class="lp-eyebrow">{lp.virada.eyebrow}</span>
+        <h2 class="lp-h2 lp-wide" id="virada-titulo">{lp.virada.titulo}</h2>
+        <div class="lp-virada-texto" style="margin-top:22px">
+          {lp.virada.textos.map((t) => <p>{t}</p>)}
+        </div>
+      </div>
+      <ul class="lp-pilares">
+        {lp.virada.pilares.map((p) => (
+          <li class="lp-pilar"><h3>{p.titulo}</h3><p>{p.texto}</p></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4. PROVA -->
+  <section class="lp-sec lp-dark" aria-labelledby="prova-titulo" data-reveal>
+    <div class="lp-wrap">
+      <h2 class="lp-h2 lp-head" id="prova-titulo">{lp.prova.titulo}</h2>
+      <ul class="lp-numeros">
+        {lp.prova.numeros.map((n) => <li class="lp-numero"><strong>{n.numero}</strong><span>{n.rotulo}</span></li>)}
+      </ul>
+      {temResultados && (
+        <ul class="lp-resultados">
+          {lp.prova.resultados.map((r) => (
+            <li class="lp-resultado"><strong>{r.numero}</strong><span>{r.rotulo}</span><em>{r.cliente}</em></li>
+          ))}
+        </ul>
+      )}
+      <ul class="lp-marcas" aria-label="Marcas atendidas">
+        {lp.prova.marcas.map((m) => <li class="lp-marca">{m}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- 5. CASES EM DESTAQUE -->
+  <section class="lp-sec lp-light lp-mist" id="cases" aria-labelledby="cases-titulo" data-reveal>
+    <div class="lp-wrap">
+      <div class="lp-head">
+        <span class="lp-eyebrow">{lp.cases.eyebrow}</span>
+        <h2 class="lp-h2" id="cases-titulo">{lp.cases.titulo}</h2>
+        <p class="lp-lead">{lp.cases.texto}</p>
+      </div>
+      <ul class="lp-cases-grid">
+        {destaques.map((p) => {
           const capa = p.capa ?? p.imagens![0];
-          const corpo = (
-            <>
-              <span class="card-img"><img src={capa.src} alt={capa.alt} loading="lazy"></span>
-              <span class="card-body">
-                <span class="card-cat">{rotuloCategoria[p.cats[0]]}</span>
-                <span class="card-title">{p.nome}</span>
-                <span class="card-desc">{p.desc}</span>
-                <span class="card-tags">{p.tags.map((t) => <span class="tag">{t}</span>)}</span>
-                <span class="card-open" aria-hidden="true">{p.href ? 'Ver case →' : 'Ver projeto →'}</span>
-              </span>
-            </>
-          );
           return (
-            <li data-cats={p.cats.join(' ')}>
-              {p.href
-                ? <a class="card" href={p.href}>{corpo}</a>
-                : <button type="button" class="card" data-index={i}>{corpo}</button>}
+            <li>
+              <a class="lp-case" href={`/portfolio#${slugProjeto(p)}`}>
+                <span class="lp-case-img"><img src={capa.src} alt={capa.alt} loading="lazy"></span>
+                <span class="lp-case-body">
+                  <span class="lp-case-cat">{rotuloCategoria[p.cats[0]]}</span>
+                  <span class="lp-case-title">{p.nome}</span>
+                  <span class="lp-case-desc">{p.desc}</span>
+                  <span class="lp-case-go" aria-hidden="true">Ver case →</span>
+                </span>
+              </a>
             </li>
           );
         })}
       </ul>
+      <div class="lp-more"><a class="btn btn-ghost btn-lg" href="/portfolio">{lp.cases.todos}</a></div>
     </div>
-    <div class="dots" id="dots" role="group" aria-label="Páginas de projetos"></div>
   </section>
 
-  <!-- CONTATO -->
-  <section class="contact" id="contato" aria-labelledby="contato-titulo" data-reveal>
-    <span class="eyebrow">Vamos conversar</span>
-    <h2 class="script" id="contato-titulo">Vamos trabalhar juntos?</h2>
-    <p>Me conta o que sua marca precisa hoje. Devolvo um orçamento certinho em até 24h, sem letra miúda.</p>
-    <div class="contact-cta">
-      <a href={contato.whatsappProjeto} target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-lg">Pedir orçamento pelo WhatsApp</a>
-      <a href="/produto#contato" class="btn btn-ghost btn-lg">Contato para vagas de produto</a>
+  <!-- 6. MÉTODO -->
+  <section class="lp-sec lp-dark" id="metodo" aria-labelledby="metodo-titulo" data-reveal>
+    <div class="lp-wrap">
+      <div class="lp-head">
+        <span class="lp-eyebrow">{lp.metodo.eyebrow}</span>
+        <h2 class="lp-h2" id="metodo-titulo">{lp.metodo.titulo}</h2>
+        <p class="lp-lead">{lp.metodo.texto}</p>
+      </div>
+      <ol class="lp-etapas">
+        {lp.metodo.etapas.map((e) => <li class="lp-etapa"><h3>{e.titulo}</h3><p>{e.texto}</p></li>)}
+      </ol>
+      <div class="lp-more" style="justify-content:flex-start">
+        <a class="btn btn-primary btn-lg" href={contato.whatsappOrcamento} target="_blank" rel="noopener noreferrer">{lp.metodo.cta}</a>
+      </div>
     </div>
-    <ul class="contact-list">
-      <li><a href={contato.emailHref}><i class="fa-solid fa-envelope" aria-hidden="true"></i>{contato.email}</a></li>
-      <li><a href={contato.linkedin} target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>LinkedIn</a></li>
-      <li><a href={contato.behance} target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-behance" aria-hidden="true"></i>Behance</a></li>
-      <li><a href={contato.github} target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub</a></li>
-    </ul>
   </section>
-</div>
 
-<!-- DETALHE DO PROJETO (agência) -->
-<section class="detail hidden" id="detail-view" aria-labelledby="detail-title">
-  <button type="button" class="back-link" id="back-btn">← Todos os projetos</button>
+  <!-- 7. SERVIÇOS -->
+  <section class="lp-sec lp-light" id="servicos" aria-labelledby="servicos-titulo" data-reveal>
+    <div class="lp-wrap">
+      <div class="lp-head">
+        <span class="lp-eyebrow">{lp.servicos.eyebrow}</span>
+        <h2 class="lp-h2" id="servicos-titulo">{lp.servicos.titulo}</h2>
+      </div>
+      <ul class="lp-servicos">
+        {lp.servicos.itens.map((s) => (
+          <li>
+            <a class="lp-svc" href={s.href}>
+              <h3>{s.titulo}</h3>
+              <p class="ganho">{s.ganho}</p>
+              <p class="desc">{s.texto}</p>
+              <span class="go" aria-hidden="true">Ver exemplos →</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
 
-  <span class="detail-cat" id="detail-cat"></span>
-  <h2 class="detail-title" id="detail-title" tabindex="-1"></h2>
-  <div class="detail-meta" id="detail-tags"></div>
-  <p class="detail-desc" id="detail-desc"></p>
-  <a class="btn btn-ghost detail-link hidden" id="detail-link" target="_blank" rel="noopener noreferrer">Visitar site ↗</a>
+  <!-- 8. DEPOIMENTOS (só aparece com depoimentos preenchidos em src/data/lp.ts) -->
+  {temDepoimentos && (
+    <section class="lp-sec lp-light lp-mist" aria-labelledby="depo-titulo" data-reveal>
+      <div class="lp-wrap">
+        <h2 class="lp-h2 lp-head" id="depo-titulo">{lp.depoimentos.titulo}</h2>
+        <ul class="lp-depo">
+          {lp.depoimentos.itens.map((d) => (
+            <li>
+              <figure>
+                <blockquote>“{d.texto}”</blockquote>
+                <figcaption><strong>{d.nome}</strong>{d.negocio}</figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
 
-  <div class="detail-banner">
-    <div class="detail-banner-frame"><img id="detail-banner-img" src="/images/logo.png" alt=""></div>
-  </div>
+  <!-- 9. SOBRE -->
+  <section class="lp-sec lp-dark" id="sobre" aria-labelledby="sobre-titulo" data-reveal>
+    <div class="lp-wrap lp-sobre-grid">
+      <div>
+        <div class="lp-sobre-mark"><img src="/images/logo.png" alt="" width="64" height="64" loading="lazy"></div>
+        <span class="lp-eyebrow">{lp.sobre.eyebrow}</span>
+        <h2 class="lp-h2" id="sobre-titulo">{lp.sobre.titulo}</h2>
+      </div>
+      <div>
+        {lp.sobre.textos.map((t) => <p>{t}</p>)}
+        <div class="lp-cta-row">
+          <a class="btn btn-primary btn-lg" href={contato.whatsappOrcamento} target="_blank" rel="noopener noreferrer">{lp.sobre.cta}</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div id="gallery-wrap">
-    <h3 class="gallery-label">Peças do projeto</h3>
-    <ul class="gallery" id="detail-gallery"></ul>
-  </div>
-</section>
+  <!-- 10. DÚVIDAS -->
+  <section class="lp-sec lp-light lp-mist" id="duvidas" aria-labelledby="faq-titulo" data-reveal>
+    <div class="lp-wrap">
+      <div class="lp-head lp-center">
+        <span class="lp-eyebrow">{lp.faq.eyebrow}</span>
+        <h2 class="lp-h2" id="faq-titulo">{lp.faq.titulo}</h2>
+      </div>
+      <div class="lp-faq">
+        {lp.faq.itens.map((f) => (
+          <details>
+            <summary>{f.p}</summary>
+            <div class="resp">
+              <p style="margin:0">{f.r}</p>
+              {f.link && <p style="margin:12px 0 0"><a href={f.link.href}>{f.link.rotulo} →</a></p>}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. FECHAMENTO -->
+  <section class="lp-sec lp-dark lp-final" id="contato" aria-labelledby="contato-titulo" data-reveal>
+    <span class="lp-eyebrow">{lp.final.eyebrow}</span>
+    <h2 class="lp-h2" id="contato-titulo">{lp.final.titulo}</h2>
+    <p>{lp.final.texto}</p>
+    <a class="btn btn-primary btn-lg" href={contato.whatsappOrcamento} target="_blank" rel="noopener noreferrer">{lp.final.cta}</a>
+    <p class="lp-email">Ou escreva para <a href={contato.emailHref}>{contato.email}</a></p>
+  </section>
 </main>
 
-<Footer />
-
-<script type="application/json" id="projetos-data" set:html={JSON.stringify(detalhes)} />
-<script is:inline define:vars={{ PAGE_SIZE }}>
-const detalhes = JSON.parse(document.getElementById('projetos-data').textContent);
-const items = Array.from(document.querySelectorAll('#grid > li'));
-const grid = document.getElementById('grid');
-const countLabel = document.getElementById('count-label');
-const dotsWrap = document.getElementById('dots');
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
-const mainView = document.getElementById('main-view');
-const detailView = document.getElementById('detail-view');
-const filterBtns = document.querySelectorAll('.filter-btn');
-
-let currentFilter = 'todos';
-let currentPage = 0;
-let lastCard = null;
-
-function getList(){
-  return currentFilter === 'todos' ? items : items.filter(li => li.dataset.cats.split(' ').includes(currentFilter));
-}
-function totalPages(){ return Math.max(1, Math.ceil(getList().length / PAGE_SIZE)); }
-
-function renderDots(){
-  dotsWrap.innerHTML = '';
-  const pages = totalPages();
-  if(pages < 2) return;
-  for(let i=0;i<pages;i++){
-    const d = document.createElement('button');
-    d.type = 'button';
-    d.className = 'dot';
-    d.setAttribute('aria-label', `Página ${i+1} de ${pages}`);
-    if(i === currentPage) d.setAttribute('aria-current', 'true');
-    d.addEventListener('click', ()=>{ currentPage = i; renderGrid(); });
-    dotsWrap.appendChild(d);
-  }
-}
-
-function renderGrid(animate){
-  const list = getList();
-  const pages = totalPages();
-  currentPage = Math.min(Math.max(currentPage, 0), pages - 1);
-  const start = currentPage * PAGE_SIZE;
-  const visible = list.slice(start, start + PAGE_SIZE);
-  items.forEach(li => { li.hidden = !visible.includes(li); });
-
-  if(animate){ grid.classList.remove('animar'); void grid.offsetWidth; grid.classList.add('animar'); }
-  const end = Math.min(start + PAGE_SIZE, list.length);
-  countLabel.textContent = list.length === 0 ? '0/0' : `${start+1}-${end}/${list.length}`;
-  prevBtn.disabled = currentPage === 0;
-  nextBtn.disabled = currentPage >= pages - 1;
-  renderDots();
-}
-
-filterBtns.forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    filterBtns.forEach(b=>b.setAttribute('aria-pressed', 'false'));
-    btn.setAttribute('aria-pressed', 'true');
-    currentFilter = btn.dataset.filter;
-    currentPage = 0;
-    renderGrid(true);
-  });
-});
-prevBtn.addEventListener('click', ()=>{ if(currentPage>0){ currentPage--; renderGrid(true); } });
-nextBtn.addEventListener('click', ()=>{ if(currentPage < totalPages()-1){ currentPage++; renderGrid(true); } });
-renderGrid(false);
-
-/* ---- DETALHE ---- */
-function el(tag, attrs, text){
-  const e = document.createElement(tag);
-  Object.entries(attrs || {}).forEach(([k,v])=>e.setAttribute(k,v));
-  if(text) e.textContent = text;
-  return e;
-}
-
-function openDetail(index, card){
-  const p = detalhes[index];
-  lastCard = card;
-  document.getElementById('detail-cat').textContent = p.cat;
-  document.getElementById('detail-title').textContent = p.nome;
-  document.getElementById('detail-desc').textContent = p.desc;
-  document.getElementById('detail-tags').replaceChildren(...p.tags.map(t=>el('span',{class:'tag'},t)));
-
-  const linkEl = document.getElementById('detail-link');
-  if(p.link){ linkEl.href = p.link; linkEl.classList.remove('hidden'); }
-  else{ linkEl.classList.add('hidden'); }
-
-  const [capa, ...rest] = p.imagens;
-  const bannerImg = document.getElementById('detail-banner-img');
-  bannerImg.src = capa.src;
-  bannerImg.alt = capa.alt;
-
-  const galleryWrap = document.getElementById('gallery-wrap');
-  const gallery = document.getElementById('detail-gallery');
-  gallery.replaceChildren(...rest.map(img=>{
-    const li = el('li',{class:'gallery-item'});
-    const im = el('img',{src:img.src, alt:img.alt, loading:'lazy'});
-    // nunca amplia a imagem além da resolução original dentro da coluna
-    const cap = () => {
-      const colWidth = li.clientWidth;
-      if(im.naturalWidth && im.naturalWidth < colWidth){ im.style.width = im.naturalWidth + 'px'; im.style.maxWidth = '100%'; }
-    };
-    im.complete ? cap() : im.addEventListener('load', cap);
-    li.appendChild(im);
-    return li;
-  }));
-  galleryWrap.classList.toggle('hidden', rest.length === 0);
-
-  mainView.classList.add('hidden');
-  detailView.classList.remove('hidden');
-  window.scrollTo({top:0, behavior:'instant'});
-  document.getElementById('detail-title').focus({preventScroll:true});
-}
-
-function closeDetail(){
-  detailView.classList.add('hidden');
-  mainView.classList.remove('hidden');
-  if(lastCard){
-    lastCard.scrollIntoView({block:'center'});
-    lastCard.focus({preventScroll:true});
-  }
-}
-
-grid.addEventListener('click', e=>{
-  const card = e.target.closest('button.card');
-  if(card) openDetail(Number(card.dataset.index), card);
-});
-document.getElementById('back-btn').addEventListener('click', closeDetail);
-document.addEventListener('keydown', e=>{ if(e.key === 'Escape' && !detailView.classList.contains('hidden')) closeDetail(); });
-</script>
+<Footer links={[{ href: '/portfolio', rotulo: 'Portfólio' }, { href: '/productdesign', rotulo: 'Vagas e trabalho em produto' }]} />
 </Base>

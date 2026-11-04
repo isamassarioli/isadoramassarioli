@@ -1,8 +1,8 @@
 ---
 import { contato } from '../data/site';
 
-interface Props { escuro?: boolean; lang?: 'pt' | 'en' }
-const { escuro = false, lang = 'pt' } = Astro.props;
+interface Props { escuro?: boolean; lang?: 'pt' | 'en'; links?: { href: string; rotulo: string }[] }
+const { escuro = false, lang = 'pt', links = [] } = Astro.props;
 const logo = escuro ? '/images/logo-escuro.png' : '/images/logo1.png';
 const novaAba = lang === 'en' ? ' (opens in a new tab)' : ' (abre em nova aba)';
 
@@ -29,5 +29,10 @@ const redes = [
       </li>
     ))}
   </ul>
+  {links.length > 0 && (
+    <ul class="foot-links" aria-label={lang === 'en' ? 'More pages' : 'Outras páginas'}>
+      {links.map((l) => <li><a href={l.href}>{l.rotulo}</a></li>)}
+    </ul>
+  )}
   <span>© {new Date().getFullYear()} Isadora Massarioli</span>
 </footer>

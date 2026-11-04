@@ -25,7 +25,7 @@ npm run preview
 | Contatos, WhatsApp, links dos currículos | `src/data/site.ts` |
 | Projetos da agência (home) | `src/data/projetos.ts` |
 | Cases de produto | `src/data/cases/*.case.ts` |
-| Textos da página /produto e /en/product | `src/data/produto.ts` |
+| Textos da página /productdesign e /en/product | `src/data/produto.ts` |
 | Textos de interface (PT e EN) | `src/data/textos.ts` |
 | Currículos em PDF | `public/cv/` |
 | Imagens dos cases | `public/images/cases/<slug>/` |

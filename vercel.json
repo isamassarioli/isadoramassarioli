@@ -5,6 +5,8 @@
   "outputDirectory": "dist",
   "trailingSlash": false,
   "redirects": [
+    { "source": "/produto", "destination": "/productdesign", "permanent": true },
+    { "source": "/produto/:slug", "destination": "/productdesign/:slug", "permanent": true },
     {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "isadoramassarioli.vercel.app" }],

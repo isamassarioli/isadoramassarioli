@@ -8,6 +8,7 @@ import { rotas } from '../data/textos';
 export const GET: APIRoute = () => {
   const caminhos = [
     '/',
+    '/portfolio',
     rotas.pt.produto,
     ...casesPublicados.map((c) => rotas.pt.caso(c.slug)),
     ...(EN_REVISADO ? [rotas.en.produto, ...casesPublicados.map((c) => rotas.en.caso(c.slug))] : []),

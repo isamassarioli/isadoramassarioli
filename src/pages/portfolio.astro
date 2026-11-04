@@ -1,0 +1,279 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/lp.css';
+import { contato, whatsapp } from '../data/site';
+import { projetos, categorias, rotuloCategoria, slugProjeto } from '../data/projetos';
+
+const PAGE_SIZE = 3;
+const WA_BASE = whatsapp('');
+const detalhes = projetos.map((p) => ({
+  slug: slugProjeto(p),
+  nome: p.nome,
+  cat: rotuloCategoria[p.cats[0]],
+  tags: p.tags,
+  desc: p.desc,
+  link: p.link ?? null,
+  imagens: p.imagens ?? [],
+}));
+---
+<Base
+  title="Portfólio de branding, identidade visual e social media · Isadora Massarioli"
+  description="Cases de identidade visual, branding, social media e páginas web de Isadora Massarioli, designer de marca desde 2020, com mais de 50 marcas atendidas."
+>
+<Nav
+  links={[
+    { href: '/', rotulo: 'Início' },
+    { href: '/#servicos', rotulo: 'Serviços', opcional: true },
+    { href: '/productdesign', rotulo: 'Product design', opcional: true },
+  ]}
+  cta={{ href: contato.whatsappOrcamento, rotulo: 'Pedir orçamento', externo: true }}
+/>
+
+<main id="conteudo" tabindex="-1">
+<div id="main-view">
+  <!-- PROJETOS -->
+  <section class="portfolio pf-intro" id="projetos" aria-labelledby="projetos-titulo" data-reveal>
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Portfólio</span>
+        <h1 class="serif" id="projetos-titulo">Projetos</h1>
+        <p>Identidade visual, branding, social media e páginas web. Clique em um projeto para ver as peças.</p>
+      </div>
+      <div class="carousel-nav">
+        <button type="button" class="arrow-btn" id="prev-btn" aria-label="Projetos anteriores"><span aria-hidden="true">‹</span></button>
+        <span class="carousel-count" id="count-label" aria-live="polite">{`1-${Math.min(PAGE_SIZE, projetos.length)}/${projetos.length}`}</span>
+        <button type="button" class="arrow-btn" id="next-btn" aria-label="Próximos projetos"><span aria-hidden="true">›</span></button>
+      </div>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filtrar projetos por categoria">
+      {categorias.map((c, i) => (
+        <button type="button" class="filter-btn" data-filter={c.id} aria-pressed={i === 0 ? 'true' : 'false'}>{c.rotulo}</button>
+      ))}
+    </div>
+
+    <div class="carousel-viewport">
+      <ul class="grid" id="grid">
+        {projetos.map((p, i) => {
+          const capa = p.capa ?? p.imagens![0];
+          const corpo = (
+            <>
+              <span class="card-img"><img src={capa.src} alt={capa.alt} loading="lazy"></span>
+              <span class="card-body">
+                <span class="card-cat">{rotuloCategoria[p.cats[0]]}</span>
+                <span class="card-title">{p.nome}</span>
+                <span class="card-desc">{p.desc}</span>
+                <span class="card-tags">{p.tags.map((t) => <span class="tag">{t}</span>)}</span>
+                <span class="card-open" aria-hidden="true">{p.href ? 'Ver case →' : 'Ver projeto →'}</span>
+              </span>
+            </>
+          );
+          return (
+            <li data-cats={p.cats.join(' ')} data-slug={slugProjeto(p)}>
+              {p.href
+                ? <a class="card" href={p.href}>{corpo}</a>
+                : <button type="button" class="card" data-index={i}>{corpo}</button>}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+    <div class="dots" id="dots" role="group" aria-label="Páginas de projetos"></div>
+  </section>
+
+
+  <section class="lp-sec lp-dark" style="padding-top:0" aria-labelledby="pf-cta-titulo">
+    <div class="pf-cta">
+      <h2 id="pf-cta-titulo">Quer um resultado assim para o seu negócio?</h2>
+      <p>Me conta o que sua marca precisa hoje. Devolvo um orçamento certinho em até 24h, sem letra miúda.</p>
+      <a class="btn btn-primary btn-lg" href={contato.whatsappOrcamento} target="_blank" rel="noopener noreferrer">Pedir orçamento pelo WhatsApp</a>
+    </div>
+  </section>
+</div>
+
+<!-- DETALHE DO PROJETO (agência) -->
+<section class="detail hidden" id="detail-view" aria-labelledby="detail-title">
+  <button type="button" class="back-link" id="back-btn">← Todos os projetos</button>
+
+  <span class="detail-cat" id="detail-cat"></span>
+  <h2 class="detail-title" id="detail-title" tabindex="-1"></h2>
+  <div class="detail-meta" id="detail-tags"></div>
+  <p class="detail-desc" id="detail-desc"></p>
+  <a class="btn btn-ghost detail-link hidden" id="detail-link" target="_blank" rel="noopener noreferrer">Visitar site ↗</a>
+
+  <div class="detail-banner">
+    <div class="detail-banner-frame"><img id="detail-banner-img" src="/images/logo.png" alt=""></div>
+  </div>
+
+  <div id="gallery-wrap">
+    <h3 class="gallery-label">Peças do projeto</h3>
+    <ul class="gallery" id="detail-gallery"></ul>
+  </div>
+
+  <div class="detail-cta">
+    <h3>Quer um resultado assim para o seu negócio?</h3>
+    <a class="btn btn-primary btn-lg" id="detail-wa" href={contato.whatsappOrcamento} target="_blank" rel="noopener noreferrer">Pedir orçamento pelo WhatsApp</a>
+  </div>
+</section>
+</main>
+
+<Footer links={[{ href: '/', rotulo: 'Início' }, { href: '/productdesign', rotulo: 'Vagas e trabalho em produto' }]} />
+
+<script type="application/json" id="projetos-data" set:html={JSON.stringify(detalhes)} />
+<script is:inline define:vars={{ PAGE_SIZE, WA_BASE }}>
+const detalhes = JSON.parse(document.getElementById('projetos-data').textContent);
+const items = Array.from(document.querySelectorAll('#grid > li'));
+const grid = document.getElementById('grid');
+const countLabel = document.getElementById('count-label');
+const dotsWrap = document.getElementById('dots');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const mainView = document.getElementById('main-view');
+const detailView = document.getElementById('detail-view');
+const filterBtns = document.querySelectorAll('.filter-btn');
+
+let currentFilter = 'todos';
+let currentPage = 0;
+let lastCard = null;
+
+function getList(){
+  return currentFilter === 'todos' ? items : items.filter(li => li.dataset.cats.split(' ').includes(currentFilter));
+}
+function totalPages(){ return Math.max(1, Math.ceil(getList().length / PAGE_SIZE)); }
+
+function renderDots(){
+  dotsWrap.innerHTML = '';
+  const pages = totalPages();
+  if(pages < 2) return;
+  for(let i=0;i<pages;i++){
+    const d = document.createElement('button');
+    d.type = 'button';
+    d.className = 'dot';
+    d.setAttribute('aria-label', `Página ${i+1} de ${pages}`);
+    if(i === currentPage) d.setAttribute('aria-current', 'true');
+    d.addEventListener('click', ()=>{ currentPage = i; renderGrid(); });
+    dotsWrap.appendChild(d);
+  }
+}
+
+function renderGrid(animate){
+  const list = getList();
+  const pages = totalPages();
+  currentPage = Math.min(Math.max(currentPage, 0), pages - 1);
+  const start = currentPage * PAGE_SIZE;
+  const visible = list.slice(start, start + PAGE_SIZE);
+  items.forEach(li => { li.hidden = !visible.includes(li); });
+
+  if(animate){ grid.classList.remove('animar'); void grid.offsetWidth; grid.classList.add('animar'); }
+  const end = Math.min(start + PAGE_SIZE, list.length);
+  countLabel.textContent = list.length === 0 ? '0/0' : `${start+1}-${end}/${list.length}`;
+  prevBtn.disabled = currentPage === 0;
+  nextBtn.disabled = currentPage >= pages - 1;
+  renderDots();
+}
+
+filterBtns.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    filterBtns.forEach(b=>b.setAttribute('aria-pressed', 'false'));
+    btn.setAttribute('aria-pressed', 'true');
+    currentFilter = btn.dataset.filter;
+    currentPage = 0;
+    renderGrid(true);
+  });
+});
+prevBtn.addEventListener('click', ()=>{ if(currentPage>0){ currentPage--; renderGrid(true); } });
+nextBtn.addEventListener('click', ()=>{ if(currentPage < totalPages()-1){ currentPage++; renderGrid(true); } });
+renderGrid(false);
+
+/* ---- DETALHE ---- */
+function el(tag, attrs, text){
+  const e = document.createElement(tag);
+  Object.entries(attrs || {}).forEach(([k,v])=>e.setAttribute(k,v));
+  if(text) e.textContent = text;
+  return e;
+}
+
+function openDetail(index, card){
+  const p = detalhes[index];
+  lastCard = card;
+  document.getElementById('detail-cat').textContent = p.cat;
+  document.getElementById('detail-wa').href = WA_BASE + encodeURIComponent('Oi, Isadora! Vi o projeto ' + p.nome + ' no seu portfólio e quero conversar sobre um projeto.');
+  history.replaceState(null, '', '#' + p.slug);
+  document.getElementById('detail-title').textContent = p.nome;
+  document.getElementById('detail-desc').textContent = p.desc;
+  document.getElementById('detail-tags').replaceChildren(...p.tags.map(t=>el('span',{class:'tag'},t)));
+
+  const linkEl = document.getElementById('detail-link');
+  if(p.link){ linkEl.href = p.link; linkEl.classList.remove('hidden'); }
+  else{ linkEl.classList.add('hidden'); }
+
+  const [capa, ...rest] = p.imagens;
+  const bannerImg = document.getElementById('detail-banner-img');
+  bannerImg.src = capa.src;
+  bannerImg.alt = capa.alt;
+
+  const galleryWrap = document.getElementById('gallery-wrap');
+  const gallery = document.getElementById('detail-gallery');
+  gallery.replaceChildren(...rest.map(img=>{
+    const li = el('li',{class:'gallery-item'});
+    const im = el('img',{src:img.src, alt:img.alt, loading:'lazy'});
+    // nunca amplia a imagem além da resolução original dentro da coluna
+    const cap = () => {
+      const colWidth = li.clientWidth;
+      if(im.naturalWidth && im.naturalWidth < colWidth){ im.style.width = im.naturalWidth + 'px'; im.style.maxWidth = '100%'; }
+    };
+    im.complete ? cap() : im.addEventListener('load', cap);
+    li.appendChild(im);
+    return li;
+  }));
+  galleryWrap.classList.toggle('hidden', rest.length === 0);
+
+  mainView.classList.add('hidden');
+  detailView.classList.remove('hidden');
+  window.scrollTo({top:0, behavior:'instant'});
+  document.getElementById('detail-title').focus({preventScroll:true});
+}
+
+function revealCard(card){
+  const li = card.closest('li');
+  if(!li || !li.hidden) return;
+  let pos = getList().indexOf(li);
+  if(pos < 0){ document.querySelector('.filter-btn[data-filter="todos"]').click(); pos = getList().indexOf(li); }
+  currentPage = Math.max(0, Math.floor(pos / PAGE_SIZE));
+  renderGrid(false);
+}
+
+function closeDetail(){
+  detailView.classList.add('hidden');
+  mainView.classList.remove('hidden');
+  history.replaceState(null, '', location.pathname + location.search);
+  if(lastCard){
+    revealCard(lastCard);
+    lastCard.scrollIntoView({block:'center'});
+    lastCard.focus({preventScroll:true});
+  }
+}
+
+grid.addEventListener('click', e=>{
+  const card = e.target.closest('button.card');
+  if(card) openDetail(Number(card.dataset.index), card);
+});
+document.getElementById('back-btn').addEventListener('click', closeDetail);
+
+/* ---- LINKS DIRETOS: /portfolio?cat=social e /portfolio#slug-do-projeto ---- */
+const catParam = new URLSearchParams(location.search).get('cat');
+if(catParam){
+  const btn = Array.from(filterBtns).find(b => b.dataset.filter === catParam);
+  if(btn) btn.click();
+}
+const hashSlug = decodeURIComponent(location.hash.slice(1));
+if(hashSlug){
+  const idx = detalhes.findIndex(d => d.slug === hashSlug);
+  const card = idx > -1 ? document.querySelector('#grid button.card[data-index="' + idx + '"]') : null;
+  if(card) openDetail(idx, card);
+}
+document.addEventListener('keydown', e=>{ if(e.key === 'Escape' && !detailView.classList.contains('hidden')) closeDetail(); });
+</script>
+</Base>

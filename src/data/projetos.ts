@@ -39,7 +39,7 @@ export const projetos: Projeto[] = [
     tags: ['Arquitetura de informação', 'Pesquisa', 'Portal'],
     desc: 'Portal oficial da equipe de robótica do Ifes Campus Colatina, com 10 anos de história organizados num só lugar.',
     capa: { src: '/images/cases/titas-da-robotica/home.webp', alt: 'Página inicial do portal Titãs da Robótica com o logo da equipe e foto do grupo na competição CBR 2025' },
-    href: '/produto/titas-da-robotica',
+    href: '/productdesign/titas-da-robotica',
   },
   {
     nome: 'Submissão de projetos FAPES',
@@ -47,7 +47,7 @@ export const projetos: Projeto[] = [
     tags: ['UX/UI', 'Wizard', 'Figma Make'],
     desc: 'Tela de submissão em 4 etapas para editais da FAPES, feita para pesquisadores com prazo apertado.',
     capa: { src: '/images/cases/fapes-submissao/etapa-1.webp', alt: 'Primeira etapa do wizard de submissão de projetos da FAPES, com indicador de progresso e dados do coordenador pré-preenchidos' },
-    href: '/produto/fapes-submissao',
+    href: '/productdesign/fapes-submissao',
   },
   {
     nome: "Madre Pizzas",
@@ -319,3 +319,12 @@ export const projetos: Projeto[] = [
     link: "https://chiuba-brand-experience.lovable.app/"
   },
 ];
+
+// Endereço curto de cada projeto, usado em /portfolio#slug (abre o detalhe direto).
+// Inclui a categoria porque alguns clientes aparecem em mais de uma (ex.: Madre Pizzas).
+export function slugProjeto(p: Projeto): string {
+  const base = p.nome
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  return `${base}-${p.cats[0]}`;
+}

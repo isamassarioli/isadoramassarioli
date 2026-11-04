@@ -3,7 +3,7 @@
 export type Idioma = 'pt' | 'en';
 
 export const rotas = {
-  pt: { produto: '/produto', caso: (slug: string) => `/produto/${slug}` },
+  pt: { produto: '/productdesign', caso: (slug: string) => `/productdesign/${slug}` },
   en: { produto: '/en/product', caso: (slug: string) => `/en/product/${slug}` },
 };
 

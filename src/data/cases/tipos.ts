@@ -1,6 +1,6 @@
 // Estrutura de um case de produto.
 // Para cadastrar um case novo: copie um dos arquivos desta pasta, troque o conteúdo
-// e salve com o slug no nome. Ele entra automaticamente em /produto, /en/product e no sitemap
+// e salve com o slug no nome. Ele entra automaticamente em /productdesign, /en/product e no sitemap
 // (este último só quando publicado for true).
 
 export interface ImagemCase {
