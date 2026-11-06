@@ -6,6 +6,17 @@ export type Categoria = 'produto' | 'branding' | 'social' | 'web';
 
 export interface Imagem { src: string; alt: string; }
 
+// Case em 3 atos, no formato das postagens: o que o cliente pediu, o que eu fiz e o resultado.
+// "curto" aparece no card da página inicial; o restante, no detalhe em /portfolio.
+// Números só entram quando são reais e informados pelo cliente.
+export interface Caso {
+  curto: { pediu: string; fiz: string; resultado: string };
+  pediu: string[];
+  fiz: string[];
+  resultado: string[];
+  numeros?: { numero: string; rotulo: string }[];
+}
+
 export interface Projeto {
   nome: string;
   cats: Categoria[];
@@ -15,6 +26,7 @@ export interface Projeto {
   imagens?: Imagem[];
   link?: string;
   href?: string;
+  caso?: Caso;
 }
 
 export const categorias: { id: Categoria | 'todos'; rotulo: string }[] = [
@@ -50,10 +62,78 @@ export const projetos: Projeto[] = [
     href: '/productdesign/fapes-submissao',
   },
   {
+    nome: "Yamoh Moda Praia",
+    cats: ["social"],
+    tags: ["Estratégia", "Social Media", "Catálogo online"],
+    desc: "Comunicação para uma marca de moda praia de corpos reais vender para fora de Colatina, quebrando o medo de comprar biquíni pela internet.",
+    caso: {
+      curto: {
+        pediu: "Vender para fora de Colatina e quebrar o medo de comprar biquíni pela internet.",
+        fiz: "Padronizei a comunicação, criei postagens que respondem às dúvidas de quem compra online e um catálogo online.",
+        resultado: "+200 seguidores no primeiro mês e os primeiros envios para fora de Colatina.",
+      },
+      pediu: [
+        "Levar a marca para clientes de fora de Colatina, quebrando a insegurança de comprar moda praia pela internet.",
+        "Mostrar o diferencial da Yamoh: modelagem que se adapta a corpos reais e estampas exclusivas, que nunca se repetem.",
+      ],
+      fiz: [
+        "Padronizei a comunicação no tom de amiga para amiga: direto, simples e sem termo técnico.",
+        "Criei postagens estratégicas que respondem ao medo de quem compra online, como o carrossel dos 3 mitos sobre biquíni comprado pela internet.",
+        "Organizei a política de trocas nos destaques do Instagram, para a dúvida ser respondida antes de virar desistência.",
+        "Criei o catálogo online, a porta de entrada para clientes de fora da cidade.",
+        "Fiz a campanha Cardume para o desfile Colatina Tá na Moda.",
+      ],
+      resultado: [
+        "Mais 200 seguidores no primeiro mês de projeto.",
+        "Comunicação padronizada em todos os canais.",
+        "Os primeiros envios para fora de Colatina.",
+      ],
+      numeros: [
+        { numero: "+200", rotulo: "seguidores no primeiro mês" },
+      ],
+    },
+    imagens: [
+      { src: "/images/cases-marca/yamoh/mitos-01.webp", alt: "Capa do carrossel da Yamoh com a pergunta Será que vai servir em mim e a chamada 3 mitos que travam sua compra de biquíni online" },
+      { src: "/images/cases-marca/yamoh/mitos-02.webp", alt: "Slide com a pergunta E se não servir e o texto sobre mensagens de clientes que quase desistiram de comprar biquíni pela internet" },
+      { src: "/images/cases-marca/yamoh/mitos-03.webp", alt: "Slide do mito 1, biquíni comprado online nunca serve direito, sobre a imagem de uma boia salva-vidas" },
+      { src: "/images/cases-marca/yamoh/mitos-04.webp", alt: "Slide com a verdade, a peça se adapta a você, e o print de uma mensagem de cliente elogiando o atendimento" },
+      { src: "/images/cases-marca/yamoh/mitos-05.webp", alt: "Slide do mito 2, a peça nunca é igual à da foto, com um biquíni estampado sobre água azul" },
+      { src: "/images/cases-marca/yamoh/mitos-06.webp", alt: "Grade de fotos de clientes usando os biquínis da Yamoh, com a frase o que você vê é exatamente o que a peça é" },
+      { src: "/images/cases-marca/yamoh/mitos-07.webp", alt: "Slide do mito 3, moda praia online só serve pra corpo padrão, com dois manequins vestindo biquínis" },
+      { src: "/images/cases-marca/yamoh/mitos-08.webp", alt: "Slide com a verdade, aqui corpo real não é exceção, é a regra, e a foto de uma cliente sorrindo" },
+      { src: "/images/cases-marca/yamoh/mitos-09.webp", alt: "Slide final convidando a mandar mensagem no direct para escolher o modelo certo para o corpo" },
+      { src: "/images/cases-marca/yamoh/politica-trocas.webp", alt: "Dez stories da política de trocas e devoluções da Yamoh, com prazos, como funciona a troca e direito de arrependimento" },
+      { src: "/images/cases-marca/yamoh/cardume.webp", alt: "Peça da campanha Cardume com o convite Vem fazer parte do nosso cardume para o desfile Colatina Tá na Moda" },
+    ],
+  },
+  {
     nome: "Madre Pizzas",
     cats: ["branding"],
-    tags: ["Rebranding", "Impressos"],
-    desc: "Rebranding completo da pizzaria, com nova paleta em azul e dourado, variações de logo e aplicação em voucher promocional e caixas de pizza.",
+    tags: ["Rebranding", "Estratégia", "Campanhas"],
+    desc: "Rebranding de uma pizzaria artesanal que precisava parecer o que entrega: longe da cara de fast-food, perto de um presente.",
+    caso: {
+      curto: {
+        pediu: "Afastar a marca da estética de lanchonete e mostrar a qualidade de uma pizza artesanal.",
+        fiz: "Mantive a mãe pássaro do símbolo, modernizei o traço e troquei o vermelho do fast-food por azul e verde.",
+        resultado: "Campanhas de sucesso, mais seguidores e uma marca vista como premium na cidade.",
+      },
+      pediu: [
+        "Afastar a marca da estética de lanchonete popular e de fast-food.",
+        "Refletir a qualidade do produto artesanal: pizza de longa fermentação, com ingredientes selecionados e massa aberta na frente do cliente.",
+        "Manter a essência do símbolo da mãe pássaro alimentando o filhote, com um traço mais dinâmico.",
+      ],
+      fiz: [
+        "Mantive o símbolo, que carrega o significado do nome: madre é mãe em italiano. Modernizei o traço e tirei o nome de dentro do ninho para a marca respirar.",
+        "Troquei o vermelho, o laranja e o excesso de preto pelo azul, que traz calma e sofisticação, com o verde como complemento, ligado ao frescor dos ingredientes.",
+        "Desenhei a marca para brilhar no Instagram e na embalagem de delivery, que precisava chegar como um presente.",
+        "Planejei as campanhas de lançamento no Instagram.",
+      ],
+      resultado: [
+        "Campanhas que deram certo, como a do Dia dos Namorados de 2024 e a da pizza em pedaço, uma edição única.",
+        "Aumento da base de seguidores.",
+        "A Madre passou a ser vista como uma marca premium na cidade inteira.",
+      ],
+    },
     imagens: [
       { src: "/images/cropped/04-1.png", alt: "Voucher promocional da Madre Pizzas com 15% de desconto, foto de pizzas e QR code no verso" },
       { src: "/images/cropped/04-2.png", alt: "Logo horizontal da Madre Pizzas em branco e dourado sobre fundo azul-marinho" },
@@ -247,8 +327,34 @@ export const projetos: Projeto[] = [
   {
     nome: "SOS Energia Solar",
     cats: ["social"],
-    tags: ["Social Media", "Tráfego pago"],
-    desc: "Série de postagens educativas sobre economia e benefícios da energia solar.",
+    tags: ["Estratégia", "Social Media", "Tráfego pago"],
+    desc: "Estratégia de conteúdo para uma empresa de energia solar falar com três públicos e se diferenciar num mercado disputado.",
+    capa: { src: "/images/cropped/20-3.png", alt: "Post da SOS Energia Solar apresentando os benefícios da energia solar para casa e escritório" },
+    caso: {
+      curto: {
+        pediu: "Se diferenciar num mercado disputado e falar com casas, comércios e o agronegócio.",
+        fiz: "Organizei a marca em três pilares e o conteúdo em quatro linhas editoriais, e harmonizei o Instagram.",
+        resultado: "+50% em leads e +200 seguidores no período do trabalho.",
+      },
+      pediu: [
+        "Uma empresa no mercado desde 2014, com atendimento forte do projeto à manutenção, precisava se diferenciar de concorrentes com marketing agressivo.",
+        "Falar com três públicos diferentes: residencial, comercial e agronegócio.",
+      ],
+      fiz: [
+        "Organizei a marca em três pilares: Sustentabilidade, Continuidade e Vibração, com a paleta de pôr do sol da marca.",
+        "Dividi o conteúdo em quatro linhas editoriais: economia e sustentabilidade, qualidade e atendimento, expertise e inovação, e acessibilidade, com linguagem clara e formas de financiamento.",
+        "Harmonizei o feed do Instagram.",
+      ],
+      resultado: [
+        "Leads aumentaram mais de 50%.",
+        "Mais 200 seguidores no período do trabalho.",
+        "Um Instagram com cara de empresa que sabe o que faz.",
+      ],
+      numeros: [
+        { numero: "+50%", rotulo: "em leads" },
+        { numero: "+200", rotulo: "seguidores no período do trabalho" },
+      ],
+    },
     imagens: [
       { src: "/images/cropped/20-1.png", alt: "Logo da SOS Energia Solar em preto com símbolo de círculos concêntricos" },
       { src: "/images/cropped/20-2.png", alt: "Post da SOS Energia Solar sobre sustentabilidade e meio ambiente com foto de painéis solares" },

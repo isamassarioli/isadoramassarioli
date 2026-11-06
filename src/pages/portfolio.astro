@@ -16,13 +16,16 @@ const detalhes = projetos.map((p) => ({
   desc: p.desc,
   link: p.link ?? null,
   imagens: p.imagens ?? [],
+  caso: p.caso ?? null,
 }));
 ---
 <Base
   title="Portfólio de branding, identidade visual e social media · Isadora Massarioli"
-  description="Cases de identidade visual, branding, social media e páginas web de Isadora Massarioli, designer de marca desde 2020, com mais de 50 marcas atendidas."
+  description="Cases de estratégia, branding, identidade visual e social media de Isadora Massarioli, com o que o cliente pediu, o que foi feito e o resultado."
+  bodyClass="tema-marca"
 >
 <Nav
+  marca
   links={[
     { href: '/', rotulo: 'Início' },
     { href: '/#servicos', rotulo: 'Serviços', opcional: true },
@@ -39,7 +42,7 @@ const detalhes = projetos.map((p) => ({
       <div>
         <span class="eyebrow">Portfólio</span>
         <h1 class="serif" id="projetos-titulo">Projetos</h1>
-        <p>Identidade visual, branding, social media e páginas web. Clique em um projeto para ver as peças.</p>
+        <p>Estratégia, branding, identidade visual, social media e páginas web. Clique em um projeto para ver o que o cliente pediu, o que eu fiz e as peças.</p>
       </div>
       <div class="carousel-nav">
         <button type="button" class="arrow-btn" id="prev-btn" aria-label="Projetos anteriores"><span aria-hidden="true">‹</span></button>
@@ -84,7 +87,7 @@ const detalhes = projetos.map((p) => ({
   </section>
 
 
-  <section class="lp-sec lp-dark" style="padding-top:0" aria-labelledby="pf-cta-titulo">
+  <section class="lp-sec" style="padding-top:0" aria-labelledby="pf-cta-titulo">
     <div class="pf-cta">
       <h2 id="pf-cta-titulo">Quer um resultado assim para o seu negócio?</h2>
       <p>Me conta o que sua marca precisa hoje. Devolvo um orçamento certinho em até 24h, sem letra miúda.</p>
@@ -103,6 +106,12 @@ const detalhes = projetos.map((p) => ({
   <p class="detail-desc" id="detail-desc"></p>
   <a class="btn btn-ghost detail-link hidden" id="detail-link" target="_blank" rel="noopener noreferrer">Visitar site ↗</a>
 
+  <div class="pf-caso hidden" id="detail-caso">
+    <section class="pf-ato" aria-labelledby="ato-pediu"><h3 id="ato-pediu">O que o cliente pediu</h3><ul id="caso-pediu"></ul></section>
+    <section class="pf-ato" aria-labelledby="ato-fiz"><h3 id="ato-fiz">O que eu fiz</h3><ul id="caso-fiz"></ul></section>
+    <section class="pf-ato resultado" aria-labelledby="ato-resultado"><h3 id="ato-resultado">O resultado</h3><ul class="pf-numeros" id="caso-numeros"></ul><ul id="caso-resultado"></ul></section>
+  </div>
+
   <div class="detail-banner">
     <div class="detail-banner-frame"><img id="detail-banner-img" src="/images/logo.png" alt=""></div>
   </div>
@@ -119,7 +128,7 @@ const detalhes = projetos.map((p) => ({
 </section>
 </main>
 
-<Footer links={[{ href: '/', rotulo: 'Início' }, { href: '/productdesign', rotulo: 'Vagas e trabalho em produto' }]} />
+<Footer marca links={[{ href: '/', rotulo: 'Início' }, { href: '/bio', rotulo: 'Links' }, { href: '/productdesign', rotulo: 'Vagas e trabalho em produto' }]} />
 
 <script type="application/json" id="projetos-data" set:html={JSON.stringify(detalhes)} />
 <script is:inline define:vars={{ PAGE_SIZE, WA_BASE }}>
@@ -204,6 +213,20 @@ function openDetail(index, card){
   document.getElementById('detail-title').textContent = p.nome;
   document.getElementById('detail-desc').textContent = p.desc;
   document.getElementById('detail-tags').replaceChildren(...p.tags.map(t=>el('span',{class:'tag'},t)));
+
+  const casoEl = document.getElementById('detail-caso');
+  if(p.caso){
+    const lista = (id, itens) => document.getElementById(id).replaceChildren(...itens.map(t=>el('li',{},t)));
+    lista('caso-pediu', p.caso.pediu);
+    lista('caso-fiz', p.caso.fiz);
+    lista('caso-resultado', p.caso.resultado);
+    document.getElementById('caso-numeros').replaceChildren(...(p.caso.numeros || []).map(n=>{
+      const li = el('li'); li.append(el('strong',{},n.numero), el('span',{},n.rotulo)); return li;
+    }));
+    casoEl.classList.remove('hidden');
+  } else {
+    casoEl.classList.add('hidden');
+  }
 
   const linkEl = document.getElementById('detail-link');
   if(p.link){ linkEl.href = p.link; linkEl.classList.remove('hidden'); }
