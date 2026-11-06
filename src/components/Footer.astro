@@ -1,9 +1,9 @@
 ---
 import { contato } from '../data/site';
 
-interface Props { escuro?: boolean; lang?: 'pt' | 'en'; links?: { href: string; rotulo: string }[] }
-const { escuro = false, lang = 'pt', links = [] } = Astro.props;
-const logo = escuro ? '/images/logo-escuro.png' : '/images/logo1.png';
+interface Props { escuro?: boolean; marca?: boolean; lang?: 'pt' | 'en'; links?: { href: string; rotulo: string }[] }
+const { escuro = false, marca = false, lang = 'pt', links = [] } = Astro.props;
+const logo = marca ? '/images/marca/logo-horizontal.png' : escuro ? '/images/logo-escuro.png' : '/images/logo1.png';
 const novaAba = lang === 'en' ? ' (opens in a new tab)' : ' (abre em nova aba)';
 
 const redes = [

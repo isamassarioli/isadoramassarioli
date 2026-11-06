@@ -1,0 +1,12 @@
+---
+// Faixa com as cores da paleta, como o bloco de cores da identidade no Figma (sem o creme, que é o fundo).
+// Usada como divisória entre seções. É decorativa.
+interface Props { fina?: boolean }
+const { fina = false } = Astro.props;
+---
+<div class:list={['faixa-cor', { fina }]} aria-hidden="true">
+  <span style="background:#ef2d56"></span>
+  <span style="background:#330c2f"></span>
+  <span style="background:#12b0dd"></span>
+  <span style="background:#fffd66"></span>
+</div>

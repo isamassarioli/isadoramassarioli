@@ -1,0 +1,8 @@
+---
+// Estrela de quatro pontas da identidade (mesmo traçado do Figma). Decorativa.
+interface Props { class?: string; style?: string }
+const { class: classe, style } = Astro.props;
+---
+<svg class:list={['estrela', classe]} style={style} viewBox="248 114 515 728" aria-hidden="true" focusable="false">
+  <path d="M500 114L530.886 447.114L763 478L530.886 508.886L500 842L469.114 508.886L248 478L469.114 447.114L500 114Z" fill="currentColor" />
+</svg>

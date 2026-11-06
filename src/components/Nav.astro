@@ -8,17 +8,19 @@ interface Props {
   homeHref?: string;
   rotuloMenu?: string;
   rotuloHome?: string;
+  // Logo horizontal da identidade (texto ameixa), para fundos claros.
+  marca?: boolean;
 }
 
 const {
   links, cta, escuro = false, homeHref = '/',
-  rotuloMenu = 'Menu principal', rotuloHome = 'Isadora Massarioli, página inicial',
+  rotuloMenu = 'Menu principal', rotuloHome = 'Isadora Massarioli, página inicial', marca = false,
 } = Astro.props;
-const logo = escuro ? '/images/logo-escuro.png' : '/images/logo1.png';
+const logo = marca ? '/images/marca/logo-horizontal.png' : escuro ? '/images/logo-escuro.png' : '/images/logo1.png';
 ---
 <header class="site-nav">
   <a class="nav-home" href={homeHref} aria-label={rotuloHome}>
-    <img class="nav-logo" src={logo} alt="Logo de Isadora Massarioli: estrela de quatro pontas sobre formas em rosa e roxo, ao lado do nome em letra serifada itálica" width="98" height="30">
+    <img class="nav-logo" src={logo} alt="Logo de Isadora Massarioli: estrela de quatro pontas sobre formas em rosa e roxo, ao lado do nome em letra serifada itálica" width={marca ? 199 : 98} height="30">
   </a>
   <div class="nav-right">
     <nav aria-label={rotuloMenu}>
