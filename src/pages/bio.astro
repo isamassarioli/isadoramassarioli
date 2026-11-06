@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import Estrela from '../components/Estrela.astro';
+import Faixa from '../components/Faixa.astro';
+import '../styles/lp.css';
+import '../styles/bio.css';
+import { bio } from '../data/bio';
+
+const temGuia = bio.guia.href.trim() !== '';
+const novaAba = ' (abre em nova aba)';
+---
+<Base title={bio.meta.titulo} description={bio.meta.descricao} bodyClass="tema-marca bio-pagina">
+<Faixa fina />
+<main id="conteudo" tabindex="-1" class="bio">
+  <div class="lp-blob lp-blob-rosa" aria-hidden="true"></div>
+  <div class="lp-blob lp-blob-ameixa" aria-hidden="true"></div>
+
+  <header class="bio-topo">
+    <div class="bio-figurinha">
+      <img class="bio-rabiscos" src="/images/marca/rabiscos.svg" alt="" width="1718" height="1718" aria-hidden="true">
+      <img class="bio-recorte" src="/images/marca/foto-recorte.webp" alt="Isadora Massarioli sorrindo" width="768" height="1024">
+      <Estrela class="bio-brilho" />
+    </div>
+    <h1><img src="/images/marca/logo-horizontal.png" alt="Isadora Massarioli" width="320" height="48"></h1>
+    <p class="bio-apresenta">{bio.apresentacao}</p>
+    <p class="bio-frase">{bio.frase.antes}<em>{bio.frase.destaque}</em></p>
+  </header>
+
+  <nav class="bio-links" aria-label="Links principais">
+    <a class="bio-link principal" href={bio.principal.href} target="_blank" rel="noopener noreferrer">
+      <span>
+        <span class="bio-link-titulo">{bio.principal.titulo}</span>
+        <span class="bio-link-sub">{bio.principal.sub}</span>
+      </span>
+      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span class="sr-only">{novaAba}</span>
+    </a>
+
+    {temGuia && (
+      <a class="bio-link guia" href={bio.guia.href} target="_blank" rel="noopener noreferrer">
+        <span class="bio-selo">{bio.guia.selo}</span>
+        <span class="bio-link-titulo">{bio.guia.titulo}</span>
+        <span class="bio-link-sub">{bio.guia.sub}</span>
+        <span class="bio-cta">{bio.guia.cta} →<span class="sr-only">{novaAba}</span></span>
+      </a>
+    )}
+
+    <h2 class="bio-secao"><Estrela />{bio.conhecer.titulo}</h2>
+    <ul class="bio-lista">
+      {bio.conhecer.links.map((l) => (
+        <li>
+          <a class="bio-link" href={l.href}>
+            <span>
+              <span class="bio-link-titulo">{l.titulo}</span>
+              <span class="bio-link-sub">{l.sub}</span>
+            </span>
+            <span class="bio-seta" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <a class="bio-produto" href={bio.produto.href}>{bio.produto.titulo} →</a>
+  </nav>
+
+  <ul class="bio-redes" aria-label="Redes sociais">
+    {bio.redes.map((r) => (
+      <li><a href={r.href} target="_blank" rel="noopener noreferrer">{r.rotulo}<span class="sr-only">{novaAba}</span></a></li>
+    ))}
+  </ul>
+
+  <footer class="bio-rodape">
+    <img src="/images/marca/simbolo.svg" alt="" width="22" height="39" aria-hidden="true">
+    <p>© {new Date().getFullYear()} Isadora Massarioli</p>
+  </footer>
+</main>
+</Base>

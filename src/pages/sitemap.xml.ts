@@ -9,6 +9,7 @@ export const GET: APIRoute = () => {
   const caminhos = [
     '/',
     '/portfolio',
+    '/bio',
     rotas.pt.produto,
     ...casesPublicados.map((c) => rotas.pt.caso(c.slug)),
     ...(EN_REVISADO ? [rotas.en.produto, ...casesPublicados.map((c) => rotas.en.caso(c.slug))] : []),
