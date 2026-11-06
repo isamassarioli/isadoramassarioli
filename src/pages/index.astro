@@ -2,6 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import Faixa from '../components/Faixa.astro';
+import Estrela from '../components/Estrela.astro';
 import '../styles/lp.css';
 import { contato } from '../data/site';
 import { lp } from '../data/lp';
@@ -9,16 +11,16 @@ import { projetos, rotuloCategoria, slugProjeto } from '../data/projetos';
 
 const destaques = lp.cases.destaques
   .map((d) => projetos.find((p) => p.nome === d.nome && p.cats[0] === d.cat))
-  .filter((p): p is NonNullable<typeof p> => Boolean(p));
-const temResultados = lp.prova.resultados.length > 0;
+  .filter((p): p is NonNullable<typeof p> => Boolean(p?.caso));
 const temDepoimentos = lp.depoimentos.itens.length > 0;
 ---
-<Base title={lp.meta.titulo} description={lp.meta.descricao}>
+<Base title={lp.meta.titulo} description={lp.meta.descricao} bodyClass="tema-marca">
 <Nav
+  marca
   links={[
     { href: '#cases', rotulo: 'Cases' },
+    { href: '#estrategia', rotulo: 'Estratégia', opcional: true },
     { href: '#servicos', rotulo: 'Serviços', opcional: true },
-    { href: '#sobre', rotulo: 'Sobre', opcional: true },
     { href: '/productdesign', rotulo: 'Product design', opcional: true },
   ]}
   cta={{ href: contato.whatsappOrcamento, rotulo: 'Pedir orçamento', externo: true }}
@@ -27,11 +29,15 @@ const temDepoimentos = lp.depoimentos.itens.length > 0;
 <main id="conteudo" tabindex="-1">
 
   <!-- 1. ABERTURA -->
-  <section class="lp-sec lp-dark lp-hero" aria-labelledby="hero-titulo">
+  <section class="lp-sec lp-hero" aria-labelledby="hero-titulo">
+    <div class="lp-blob lp-blob-rosa" aria-hidden="true"></div>
+    <div class="lp-blob lp-blob-ameixa" aria-hidden="true"></div>
     <div class="lp-wrap lp-hero-grid">
       <div>
         <span class="lp-eyebrow">{lp.hero.eyebrow}</span>
-        <h1 class="lp-h1" id="hero-titulo">{lp.hero.tituloAntes}<em>{lp.hero.tituloDestaque}</em>{lp.hero.tituloDepois}</h1>
+        <h1 class="lp-h1" id="hero-titulo">
+          {lp.hero.tituloAntes}<em class="sublinhado">{lp.hero.tituloDestaque}<svg class="sublinhado-traco" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M3 14 C 60 4, 120 4, 170 10 S 260 16, 297 6" pathLength="1" /></svg></em>{lp.hero.tituloDepois}
+        </h1>
         <p class="lp-lead">{lp.hero.apoio}</p>
         <p class="lp-obj">{lp.hero.objecao}</p>
         <div class="lp-cta-row">
@@ -39,114 +45,160 @@ const temDepoimentos = lp.depoimentos.itens.length > 0;
           <a class="btn btn-ghost btn-lg" href="#cases">{lp.hero.cta2}</a>
         </div>
       </div>
-      <div class="lp-photo">
-        <div class="lp-photo-frame">
-          <img src="/images/foto-isadora.jpg" alt={lp.hero.fotoAlt} width="640" height="640" fetchpriority="high">
-        </div>
+      <div class="lp-figurinha">
+        <img class="lp-rabiscos" src="/images/marca/rabiscos.svg" alt="" width="1718" height="1718" aria-hidden="true">
+        <img class="lp-recorte" src="/images/marca/foto-recorte.webp" alt={lp.hero.fotoAlt} width="768" height="1024" fetchpriority="high">
+        <Estrela class="lp-brilho b1" />
+        <Estrela class="lp-brilho b2" />
         <div class="lp-selo"><strong>{lp.hero.selo.numero}</strong><span>{lp.hero.selo.rotulo}</span></div>
       </div>
     </div>
   </section>
 
-  <!-- 2. DOR -->
-  <section class="lp-sec lp-tex lp-dor" aria-labelledby="dor-titulo" data-reveal>
+  <Faixa />
+
+  <!-- 2. DOR: perguntas em letreiro contínuo -->
+  <section class="lp-sec lp-dor" aria-labelledby="dor-titulo" data-reveal>
     <div class="lp-wrap">
       <h2 class="lp-h2" id="dor-titulo">{lp.dor.titulo}</h2>
-      <span class="lp-hint" aria-hidden="true">{lp.dor.dica} →</span>
     </div>
-    <ul class="lp-qs" tabindex="0" aria-label="Perguntas que donos de negócio costumam se fazer">
-      {lp.dor.perguntas.map((q) => <li class="lp-q">{q}</li>)}
-    </ul>
+    <div class="letreiro" id="letreiro">
+      <button type="button" class="letreiro-pausa" aria-pressed="false" data-rotulo-pausar="Pausar o letreiro" data-rotulo-tocar="Retomar o letreiro">Pausar o letreiro</button>
+      {[0, 1].map((linha) => {
+        const qs = lp.dor.perguntas.filter((_, i) => i % 2 === linha);
+        return (
+          <div class:list={['letreiro-linha', { reverso: linha === 1 }]}>
+            <ul class="letreiro-trilho" aria-label={linha === 0 ? 'Perguntas que donos de negócio costumam se fazer' : 'Mais perguntas'}>
+              {qs.map((q) => <li class="lp-q"><Estrela />{q}</li>)}
+            </ul>
+            <ul class="letreiro-trilho" aria-hidden="true">
+              {qs.map((q) => <li class="lp-q"><Estrela />{q}</li>)}
+            </ul>
+          </div>
+        );
+      })}
+    </div>
     <div class="lp-wrap"><p class="lp-fecho">{lp.dor.fecho}</p></div>
   </section>
 
-  <!-- 3. VIRADA -->
-  <section class="lp-sec lp-light" aria-labelledby="virada-titulo" data-reveal>
-    <div class="lp-wrap lp-virada-grid">
+  <!-- 3. ANTES DO VISUAL, A ESTRATÉGIA -->
+  <section class="lp-sec lp-dark" id="estrategia" aria-labelledby="estrategia-titulo" data-reveal>
+    <div class="lp-wrap lp-estrategia-grid">
       <div>
-        <span class="lp-eyebrow">{lp.virada.eyebrow}</span>
-        <h2 class="lp-h2 lp-wide" id="virada-titulo">{lp.virada.titulo}</h2>
-        <div class="lp-virada-texto" style="margin-top:22px">
-          {lp.virada.textos.map((t) => <p>{t}</p>)}
+        <span class="lp-eyebrow">{lp.estrategia.eyebrow}</span>
+        <h2 class="lp-h2" id="estrategia-titulo">{lp.estrategia.titulo}</h2>
+        <div class="lp-estrategia-texto">
+          {lp.estrategia.texto.map((t, i) => <p class:list={{ 'lp-frase': i === lp.estrategia.texto.length - 1 }}>{t}</p>)}
         </div>
       </div>
-      <ul class="lp-pilares">
-        {lp.virada.pilares.map((p) => (
-          <li class="lp-pilar"><h3>{p.titulo}</h3><p>{p.texto}</p></li>
-        ))}
-      </ul>
+      <figure class="laudo">
+        <div class="laudo-papel">
+          <span class="laudo-fita" aria-hidden="true"></span>
+          <header class="laudo-topo">
+            <img src="/images/marca/simbolo.svg" alt="" width="22" height="39" aria-hidden="true">
+            <div>
+              <strong>Diagnóstico de marca</strong>
+              <span>Cliente: <span class="laudo-tarja" role="img" aria-label="nome do cliente oculto"></span></span>
+            </div>
+          </header>
+          <ol class="laudo-blocos">
+            {lp.estrategia.blocos.map((b) => (
+              <li>
+                <h3>{b.titulo}</h3>
+                <p>{b.texto}</p>
+                <span class="laudo-linhas" aria-hidden="true"><i></i><i></i><i></i></span>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <figcaption>{lp.estrategia.nota}</figcaption>
+      </figure>
     </div>
   </section>
 
   <!-- 4. PROVA -->
-  <section class="lp-sec lp-dark" aria-labelledby="prova-titulo" data-reveal>
+  <section class="lp-sec" id="resultados" aria-labelledby="prova-titulo" data-reveal>
     <div class="lp-wrap">
       <h2 class="lp-h2 lp-head" id="prova-titulo">{lp.prova.titulo}</h2>
+      <ul class="lp-resultados">
+        {lp.prova.resultados.map((r) => (
+          <li class="lp-resultado"><strong><mark>{r.numero}</mark></strong><span>{r.rotulo}</span><em>{r.cliente}</em></li>
+        ))}
+      </ul>
       <ul class="lp-numeros">
         {lp.prova.numeros.map((n) => <li class="lp-numero"><strong>{n.numero}</strong><span>{n.rotulo}</span></li>)}
       </ul>
-      {temResultados && (
-        <ul class="lp-resultados">
-          {lp.prova.resultados.map((r) => (
-            <li class="lp-resultado"><strong>{r.numero}</strong><span>{r.rotulo}</span><em>{r.cliente}</em></li>
-          ))}
-        </ul>
-      )}
       <ul class="lp-marcas" aria-label="Marcas atendidas">
         {lp.prova.marcas.map((m) => <li class="lp-marca">{m}</li>)}
       </ul>
     </div>
   </section>
 
-  <!-- 5. CASES EM DESTAQUE -->
-  <section class="lp-sec lp-light lp-mist" id="cases" aria-labelledby="cases-titulo" data-reveal>
+  <Faixa fina />
+
+  <!-- 5. CASES EM 3 ATOS -->
+  <section class="lp-sec lp-mist" id="cases" aria-labelledby="cases-titulo" data-reveal>
     <div class="lp-wrap">
       <div class="lp-head">
         <span class="lp-eyebrow">{lp.cases.eyebrow}</span>
-        <h2 class="lp-h2" id="cases-titulo">{lp.cases.titulo}</h2>
-        <p class="lp-lead">{lp.cases.texto}</p>
+        <h2 class="lp-h2 lp-wide" id="cases-titulo">{lp.cases.titulo}</h2>
       </div>
-      <ul class="lp-cases-grid">
+      <ol class="lp-cases">
         {destaques.map((p) => {
           const capa = p.capa ?? p.imagens![0];
+          const c = p.caso!;
           return (
-            <li>
-              <a class="lp-case" href={`/portfolio#${slugProjeto(p)}`}>
-                <span class="lp-case-img"><img src={capa.src} alt={capa.alt} loading="lazy"></span>
-                <span class="lp-case-body">
-                  <span class="lp-case-cat">{rotuloCategoria[p.cats[0]]}</span>
-                  <span class="lp-case-title">{p.nome}</span>
-                  <span class="lp-case-desc">{p.desc}</span>
-                  <span class="lp-case-go" aria-hidden="true">Ver case →</span>
-                </span>
+            <li class="lp-case">
+              <a class="lp-case-img" href={`/portfolio#${slugProjeto(p)}`} tabindex="-1" aria-hidden="true">
+                <img src={capa.src} alt={capa.alt} loading="lazy">
               </a>
+              <div class="lp-case-body">
+                <span class="lp-case-cat">{rotuloCategoria[p.cats[0]]}</span>
+                <h3 class="lp-case-title">{p.nome}</h3>
+                <dl class="lp-atos">
+                  <div><dt>{lp.cases.atos.pediu}</dt><dd>{c.curto.pediu}</dd></div>
+                  <div><dt>{lp.cases.atos.fiz}</dt><dd>{c.curto.fiz}</dd></div>
+                  <div class="ato-resultado"><dt>{lp.cases.atos.resultado}</dt><dd>{c.curto.resultado}</dd></div>
+                </dl>
+                <a class="lp-case-go" href={`/portfolio#${slugProjeto(p)}`}>{lp.cases.ver}<span class="sr-only">: {p.nome}</span> →</a>
+              </div>
             </li>
           );
         })}
-      </ul>
+      </ol>
       <div class="lp-more"><a class="btn btn-ghost btn-lg" href="/portfolio">{lp.cases.todos}</a></div>
     </div>
   </section>
 
-  <!-- 6. MÉTODO -->
-  <section class="lp-sec lp-dark" id="metodo" aria-labelledby="metodo-titulo" data-reveal>
-    <div class="lp-wrap">
-      <div class="lp-head">
+  <!-- 6. MÉTODO: linha do tempo que avança com o scroll -->
+  <section class="lp-sec lp-dark lp-metodo" id="metodo" aria-labelledby="metodo-titulo">
+    <div class="metodo-palco">
+      <div class="lp-wrap metodo-cabeca">
         <span class="lp-eyebrow">{lp.metodo.eyebrow}</span>
         <h2 class="lp-h2" id="metodo-titulo">{lp.metodo.titulo}</h2>
         <p class="lp-lead">{lp.metodo.texto}</p>
       </div>
-      <ol class="lp-etapas">
-        {lp.metodo.etapas.map((e) => <li class="lp-etapa"><h3>{e.titulo}</h3><p>{e.texto}</p></li>)}
-      </ol>
-      <div class="lp-more" style="justify-content:flex-start">
+      <div class="metodo-trilho-wrap">
+        <div class="metodo-linha" aria-hidden="true"><span class="metodo-progresso"></span></div>
+        <ol class="lp-etapas">
+          {lp.metodo.etapas.map((e, i) => (
+            <li class:list={['lp-etapa', { atual: i === 0 }]}>
+              <span class="etapa-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{e.titulo}</h3>
+              <p>{e.texto}</p>
+              <p class="etapa-entrega"><span>{lp.metodo.rotuloEntrega}</span>{e.entrega}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div class="lp-wrap metodo-cta">
         <a class="btn btn-primary btn-lg" href={contato.whatsappOrcamento} target="_blank" rel="noopener noreferrer">{lp.metodo.cta}</a>
       </div>
     </div>
   </section>
 
   <!-- 7. SERVIÇOS -->
-  <section class="lp-sec lp-light" id="servicos" aria-labelledby="servicos-titulo" data-reveal>
+  <section class="lp-sec" id="servicos" aria-labelledby="servicos-titulo" data-reveal>
     <div class="lp-wrap">
       <div class="lp-head">
         <span class="lp-eyebrow">{lp.servicos.eyebrow}</span>
@@ -154,12 +206,13 @@ const temDepoimentos = lp.depoimentos.itens.length > 0;
       </div>
       <ul class="lp-servicos">
         {lp.servicos.itens.map((s) => (
-          <li>
+          <li class:list={{ 'svc-destaque': s.destaque }}>
             <a class="lp-svc" href={s.href}>
+              {s.destaque && <Estrela class="svc-estrela" />}
               <h3>{s.titulo}</h3>
               <p class="ganho">{s.ganho}</p>
               <p class="desc">{s.texto}</p>
-              <span class="go" aria-hidden="true">Ver exemplos →</span>
+              <span class="go" aria-hidden="true">{s.href.startsWith('#') ? 'Ver como funciona →' : 'Ver exemplos →'}</span>
             </a>
           </li>
         ))}
@@ -169,7 +222,7 @@ const temDepoimentos = lp.depoimentos.itens.length > 0;
 
   <!-- 8. DEPOIMENTOS (só aparece com depoimentos preenchidos em src/data/lp.ts) -->
   {temDepoimentos && (
-    <section class="lp-sec lp-light lp-mist" aria-labelledby="depo-titulo" data-reveal>
+    <section class="lp-sec lp-mist" aria-labelledby="depo-titulo" data-reveal>
       <div class="lp-wrap">
         <h2 class="lp-h2 lp-head" id="depo-titulo">{lp.depoimentos.titulo}</h2>
         <ul class="lp-depo">
@@ -189,13 +242,14 @@ const temDepoimentos = lp.depoimentos.itens.length > 0;
   <!-- 9. SOBRE -->
   <section class="lp-sec lp-dark" id="sobre" aria-labelledby="sobre-titulo" data-reveal>
     <div class="lp-wrap lp-sobre-grid">
-      <div>
-        <div class="lp-sobre-mark"><img src="/images/logo.png" alt="" width="64" height="64" loading="lazy"></div>
-        <span class="lp-eyebrow">{lp.sobre.eyebrow}</span>
-        <h2 class="lp-h2" id="sobre-titulo">{lp.sobre.titulo}</h2>
+      <div class="lp-sobre-foto">
+        <img src="/images/foto-isadora.jpg" alt={lp.sobre.fotoAlt} width="640" height="640" loading="lazy">
+        <Estrela class="lp-brilho b3" />
       </div>
       <div>
-        {lp.sobre.textos.map((t) => <p>{t}</p>)}
+        <span class="lp-eyebrow">{lp.sobre.eyebrow}</span>
+        <h2 class="lp-h2" id="sobre-titulo">{lp.sobre.titulo}</h2>
+        {lp.sobre.textos.map((t, i) => <p class:list={{ 'lp-frase': i === lp.sobre.textos.length - 1 }}>{t}</p>)}
         <div class="lp-cta-row">
           <a class="btn btn-primary btn-lg" href={contato.whatsappOrcamento} target="_blank" rel="noopener noreferrer">{lp.sobre.cta}</a>
         </div>
@@ -204,7 +258,7 @@ const temDepoimentos = lp.depoimentos.itens.length > 0;
   </section>
 
   <!-- 10. DÚVIDAS -->
-  <section class="lp-sec lp-light lp-mist" id="duvidas" aria-labelledby="faq-titulo" data-reveal>
+  <section class="lp-sec lp-mist" id="duvidas" aria-labelledby="faq-titulo" data-reveal>
     <div class="lp-wrap">
       <div class="lp-head lp-center">
         <span class="lp-eyebrow">{lp.faq.eyebrow}</span>
@@ -225,7 +279,9 @@ const temDepoimentos = lp.depoimentos.itens.length > 0;
   </section>
 
   <!-- 11. FECHAMENTO -->
-  <section class="lp-sec lp-dark lp-final" id="contato" aria-labelledby="contato-titulo" data-reveal>
+  <section class="lp-sec lp-final" id="contato" aria-labelledby="contato-titulo" data-reveal>
+    <div class="lp-blob lp-blob-rosa" aria-hidden="true"></div>
+    <div class="lp-blob lp-blob-ameixa" aria-hidden="true"></div>
     <span class="lp-eyebrow">{lp.final.eyebrow}</span>
     <h2 class="lp-h2" id="contato-titulo">{lp.final.titulo}</h2>
     <p>{lp.final.texto}</p>
@@ -234,5 +290,11 @@ const temDepoimentos = lp.depoimentos.itens.length > 0;
   </section>
 </main>
 
-<Footer links={[{ href: '/portfolio', rotulo: 'Portfólio' }, { href: '/productdesign', rotulo: 'Vagas e trabalho em produto' }]} />
+<Faixa fina />
+<Footer marca links={[{ href: '/portfolio', rotulo: 'Portfólio' }, { href: '/bio', rotulo: 'Links' }, { href: '/productdesign', rotulo: 'Vagas e trabalho em produto' }]} />
+
+<script>
+  import { iniciarMovimento } from '../scripts/movimento';
+  iniciarMovimento();
+</script>
 </Base>

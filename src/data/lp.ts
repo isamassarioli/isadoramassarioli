@@ -1,51 +1,58 @@
 // Textos da página inicial (landing page). Para mudar qualquer frase, edite aqui.
-// Seções com lista vazia (depoimentos, resultados) não aparecem na página.
+// Seções com lista vazia (depoimentos) não aparecem na página.
 import { projetos } from './projetos';
 
 export const lp = {
   meta: {
-    titulo: 'Isadora Massarioli · Identidade visual e branding para negócios',
+    titulo: 'Isadora Massarioli · Estratégia, branding e direção criativa',
     descricao:
-      'Identidade visual, branding e social media para negócios que querem ser lembrados e escolhidos. Mais de 50 marcas atendidas desde 2020. Peça seu orçamento.',
+      'Estratégia, branding e direção criativa para negócios que já são bons, mas que ninguém entende só olhando. Mais de 50 marcas atendidas desde 2020.',
   },
 
   hero: {
-    eyebrow: 'Identidade visual · Branding · Social media',
-    tituloAntes: 'Identidade visual que faz o cliente ',
-    tituloDestaque: 'escolher você',
-    tituloDepois: ' antes da primeira conversa.',
-    apoio: 'Branding, identidade visual e social media para negócios que querem ser lembrados e escolhidos.',
+    eyebrow: 'Estratégia · Branding · Direção criativa',
+    // A parte destacada ganha o sublinhado rosa que se desenha sozinho.
+    tituloAntes: 'Além do bonito, te entrego o que ',
+    tituloDestaque: 'realmente vende',
+    tituloDepois: '.',
+    apoio: 'Sua marca já é boa. O problema é que ninguém entende isso só olhando. Eu cuido da estratégia, do branding e da direção criativa para o cliente certo entender, confiar e escolher você.',
     objecao: 'Mesmo que você ainda não tenha logo, manual ou direção visual.',
     cta: 'Pedir orçamento pelo WhatsApp',
     cta2: 'Ver cases',
     selo: { numero: '50+', rotulo: 'marcas atendidas desde 2020' },
-    fotoAlt: 'Isadora Massarioli, designer de marca e Product Designer',
+    fotoAlt: 'Isadora Massarioli sorrindo, recortada como figurinha sobre os rabiscos rosa e ameixa da marca',
   },
 
   dor: {
     titulo: 'Seu negócio é bom, mas a marca ainda não mostra isso.',
-    dica: 'Arraste para o lado',
     perguntas: [
       'Será que meu logo passa confiança?',
+      'O feed ficou lindo. E o cliente certo?',
       'Por que o concorrente parece mais profissional do que eu?',
+      'Meu perfil recebe visitas. Mas isso vira conversa?',
       'Será que o meu Instagram parece o de quem cobra o preço que eu cobro?',
+      'Meu perfil explica o que eu faço, mas explica por que me pagar caro?',
       'Preciso refazer tudo para conseguir postar com consistência?',
       'Vale investir em marca antes de vender mais?',
     ],
     fecho: 'Se você já se perguntou alguma dessas coisas, a sua marca provavelmente ainda não está trabalhando por você.',
   },
 
-  virada: {
-    eyebrow: 'O que muda',
-    titulo: 'Marca é um sistema: identidade, aplicação e conteúdo trabalhando juntos.',
-    textos: [
-      'O que o cliente vê no Instagram, na fachada, no cartão e na proposta precisa parecer da mesma empresa. Eu trabalho assim desde 2020, com identidade visual, manual e conteúdo pensados juntos.',
-      'Sou Product Designer e designer de marca. Por isso desenho pensando em quem vai usar e em onde a marca vai aparecer no dia a dia.',
+  estrategia: {
+    eyebrow: 'Antes do visual, a estratégia',
+    titulo: 'Estratégia não é o post bonito. É o que tá por trás dele.',
+    texto: [
+      'Antes de abrir o Illustrator, eu monto um diagnóstico da sua marca. É esse documento que decide o que a identidade, o perfil e o conteúdo vão dizer, e para quem.',
+      'Conteúdo bonito sem estratégia é só decoração.',
     ],
-    pilares: [
-      { titulo: 'Identidade', texto: 'Logo, tipografia, paleta e as regras de uso.' },
-      { titulo: 'Aplicação', texto: 'Papelaria, fachada, uniforme, embalagem e site.' },
-      { titulo: 'Conteúdo', texto: 'Posts, stories e carrosséis com a mesma cara da marca.' },
+    nota: 'Modelo do documento. Os dados de cada cliente ficam só com ele.',
+    blocos: [
+      { titulo: 'Diagnóstico', texto: 'Onde a marca está hoje: o perfil, a concorrência e o que o cliente vê primeiro.' },
+      { titulo: 'Público', texto: 'Quem compra, o que essa pessoa procura e o que ela precisa ouvir para confiar.' },
+      { titulo: 'Posicionamento', texto: 'O lugar que a marca ocupa e por que alguém escolheria você, e não o outro.' },
+      { titulo: 'Tom de voz', texto: 'Como a marca fala: as palavras que usa e as que evita.' },
+      { titulo: 'Pilares de conteúdo', texto: 'Os assuntos que sustentam o perfil, para cada post ter um motivo.' },
+      { titulo: 'Calendário', texto: 'O que postar, quando e com qual objetivo.' },
     ],
   },
 
@@ -58,32 +65,39 @@ export const lp = {
     ],
     // Nomes tirados dos projetos do portfólio, sem repetir.
     marcas: Array.from(new Set(projetos.filter((p) => !p.cats.includes('produto')).map((p) => p.nome))),
-    // Preencha com resultados reais de clientes, por exemplo { numero: '+40%', rotulo: 'pedidos em 3 meses', cliente: 'Nome' }.
-    resultados: [] as { numero: string; rotulo: string; cliente: string }[],
+    // Só resultados reais, informados pelos clientes.
+    resultados: [
+      { numero: '+50%', rotulo: 'em leads', cliente: 'SOS Energia Solar' },
+      { numero: '+200', rotulo: 'seguidores no primeiro mês', cliente: 'Yamoh Moda Praia' },
+      { numero: '+200', rotulo: 'seguidores no período do trabalho', cliente: 'SOS Energia Solar' },
+    ] as { numero: string; rotulo: string; cliente: string }[],
   },
 
   cases: {
-    eyebrow: 'Portfólio',
-    titulo: 'Cases em destaque',
-    texto: 'Clique em um projeto para ver as peças de perto.',
-    // Troque os nomes para mudar os três destaques. A categoria escolhe entre projetos com o mesmo nome.
+    eyebrow: 'Cases',
+    titulo: 'O que o cliente pediu, o que eu fiz e o resultado',
+    // Troque os nomes para mudar os destaques. A categoria escolhe entre projetos com o mesmo nome.
+    // Só entram projetos com o campo "caso" preenchido em src/data/projetos.ts.
     destaques: [
       { nome: 'Madre Pizzas', cat: 'branding' },
-      { nome: 'Nova Energy Solutions', cat: 'branding' },
-      { nome: 'Dra. Marina Malacarne', cat: 'social' },
+      { nome: 'Yamoh Moda Praia', cat: 'social' },
+      { nome: 'SOS Energia Solar', cat: 'social' },
     ] as { nome: string; cat: 'produto' | 'branding' | 'social' | 'web' }[],
+    atos: { pediu: 'O que o cliente pediu', fiz: 'O que eu fiz', resultado: 'O resultado' },
+    ver: 'Ver o case completo',
     todos: 'Ver todos os projetos',
   },
 
   metodo: {
     eyebrow: 'Como funciona',
     titulo: 'Como o projeto acontece',
-    texto: 'Todo projeto começa com perguntas, antes de eu abrir o Illustrator.',
+    texto: 'Todo projeto começa com perguntas, antes de eu abrir o Illustrator. Em cada etapa você sabe o que vai receber.',
+    rotuloEntrega: 'Você recebe',
     etapas: [
-      { titulo: 'Escuta', texto: 'Quem é o cliente do seu cliente e o que ele precisa ouvir para confiar em você.' },
-      { titulo: 'Posicionamento', texto: 'O que a marca diz, para quem e com que tom de voz.' },
-      { titulo: 'Identidade', texto: 'Logo, tipografia, paleta e as regras de uso, reunidas no manual de marca.' },
-      { titulo: 'Aplicação', texto: 'A marca nos lugares onde ela aparece: redes sociais, papelaria, fachada e site.' },
+      { titulo: 'Escuta', texto: 'Uma conversa sobre o negócio, o cliente do seu cliente e o que incomoda na marca hoje.', entrega: 'Briefing e diagnóstico do perfil' },
+      { titulo: 'Posicionamento', texto: 'O que a marca diz, para quem e com que tom de voz.', entrega: 'Público, posicionamento e tom de voz' },
+      { titulo: 'Identidade', texto: 'Logo, tipografia, paleta e as regras de uso, reunidas no manual de marca.', entrega: 'Identidade visual e manual de marca' },
+      { titulo: 'Conteúdo e aplicação', texto: 'A marca nos lugares onde ela aparece: Instagram, embalagem, papelaria e site.', entrega: 'Pilares de conteúdo, calendário e peças' },
     ],
     cta: 'Quero começar pelo WhatsApp',
   },
@@ -92,13 +106,15 @@ export const lp = {
     eyebrow: 'O que ofereço',
     titulo: 'Serviços',
     itens: [
+      { titulo: 'Estratégia e direção criativa', ganho: 'Saber o que dizer antes de decidir como mostrar.', texto: 'Diagnóstico, público, posicionamento, tom de voz, pilares de conteúdo e calendário. É o que orienta todo o resto.', href: '#estrategia', destaque: true },
+      { titulo: 'Diagnóstico de perfil', ganho: 'Um perfil que explica por que te escolher.', texto: 'Análise e reestruturação da foto, da bio, dos destaques e do link do seu Instagram.', href: '#estrategia' },
       { titulo: 'Identidade Visual', ganho: 'Uma marca que parece a mesma em qualquer lugar.', texto: 'Logo, tipografia, paleta e as regras de uso que garantem consistência em qualquer peça.', href: '/portfolio?cat=branding' },
       { titulo: 'Manual de Marca', ganho: 'Ninguém inventa um logo torto depois.', texto: 'Guia completo de como aplicar a identidade em cada situação.', href: '/portfolio?cat=branding' },
       { titulo: 'Social Media', ganho: 'Um perfil com cara de negócio sério.', texto: 'Posts, stories e carrosséis para Instagram, LinkedIn, TV e campanhas de tráfego pago.', href: '/portfolio?cat=social' },
       { titulo: 'Branding Completo', ganho: 'Marca nova ou renovada, do zero ao dia a dia.', texto: 'Construção de marca do zero ou rebranding, da estratégia ao visual aplicado.', href: '/portfolio?cat=branding' },
       { titulo: 'Mockups e Web', ganho: 'Ver a marca pronta antes de ela ir para o mundo.', texto: 'Aplicação realista da marca em produto, papelaria, ambiente e páginas web.', href: '/portfolio?cat=web' },
       { titulo: 'UI/UX Design', ganho: 'Telas pensadas para quem vai usar.', texto: 'Sites, sistemas e aplicativos com pesquisa, arquitetura de informação e protótipo.', href: '/productdesign' },
-    ],
+    ] as { titulo: string; ganho: string; texto: string; href: string; destaque?: boolean }[],
   },
 
   // Preencha com depoimentos reais. Com a lista vazia, a seção some.
@@ -111,9 +127,11 @@ export const lp = {
     eyebrow: 'Sobre',
     titulo: 'Bonito é o mínimo.',
     textos: [
-      'Sou Product Designer e designer de marca desde 2020. Na minha agência, em Colatina-ES, cuido de identidade visual, branding e redes sociais para negócios. Já construí marca do zero para academias, clínicas, restaurantes, lojas e prestadores de serviço, sempre com o mesmo foco: fazer a marca vender, não só ficar bonita no feed.',
-      'Todo projeto começa com perguntas antes de abrir o Illustrator: quem é o cliente do meu cliente, o que ele precisa ouvir pra confiar, e onde essa marca vai aparecer no dia a dia. O resultado é identidade visual, conteúdo e presença digital que conversam entre si.',
+      'Sou designer de marca e Product Designer desde 2020. Na minha agência, em Colatina-ES, trabalho com estratégia, branding e direção criativa para negócios: academias, clínicas, restaurantes, lojas e prestadores de serviço.',
+      'Todo projeto começa com perguntas antes de abrir o Illustrator: quem é o cliente do meu cliente, o que ele precisa ouvir pra confiar e onde essa marca vai aparecer no dia a dia.',
+      'Bonito vende uma vez. Entregar o que promete vende sempre.',
     ],
+    fotoAlt: 'Isadora Massarioli',
     cta: 'Pedir orçamento',
   },
 
@@ -123,7 +141,7 @@ export const lp = {
     itens: [
       {
         p: 'Quanto custa um projeto?',
-        r: 'Depende do que a sua marca precisa hoje: uma identidade nova, um manual, posts, um site ou tudo junto. Você me conta o cenário e eu devolvo um orçamento certinho em até 24h, sem letra miúda.',
+        r: 'Depende do que a sua marca precisa hoje: estratégia, uma identidade nova, um manual, posts, um site ou tudo junto. Você me conta o cenário e eu devolvo um orçamento certinho em até 24h, sem letra miúda.',
       },
       {
         p: 'Por onde eu começo?',
@@ -131,14 +149,18 @@ export const lp = {
       },
       {
         p: 'Você faz só o logo ou o pacote completo?',
-        r: 'As duas coisas. Dá para contratar só a identidade visual, o manual de marca, as redes sociais ou o branding completo, do posicionamento até a aplicação.',
+        r: 'As duas coisas. Dá para contratar só a estratégia, a identidade visual, o manual de marca, as redes sociais ou o branding completo, do posicionamento até a aplicação.',
+      },
+      {
+        p: 'Já tenho logo. Preciso refazer?',
+        r: 'Nem sempre. Às vezes a marca é boa e o que falta é estratégia: saber o que dizer, para quem e onde. O diagnóstico mostra se o problema está no visual ou na mensagem.',
       },
       {
         p: 'Você também faz sites e produtos digitais?',
         r: 'Faço. Além de páginas web, trabalho como Product Designer em interfaces de sistemas e aplicativos. Esses trabalhos ficam em uma página própria.',
         link: { href: '/productdesign', rotulo: 'Ver trabalhos de produto' },
       },
-    ],
+    ] as { p: string; r: string; link?: { href: string; rotulo: string } }[],
   },
 
   final: {
