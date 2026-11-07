@@ -11,9 +11,9 @@ export const bio = {
   frase: { antes: 'além do bonito, te entrego o que ', destaque: 'realmente vende' },
 
   servicos: [
+    { titulo: 'Estratégia para redes sociais', sub: 'Quero um plano de conteúdo para minha marca', destaque: true },
     { titulo: 'Produto', sub: 'Design de interfaces e experiências digitais' },
     { titulo: 'Identidade visual', sub: 'Logo, cores e tipografia para sua marca' },
-    { titulo: 'Social media', sub: 'Estratégia e conteúdo para suas redes' },
   ],
 
   // Guia gratuito: preencha "href" com o link do guia. Com o link vazio, o card não aparece.
