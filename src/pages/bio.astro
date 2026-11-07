@@ -27,13 +27,15 @@ const novaAba = ' (abre em nova aba)';
   </header>
 
   <nav class="bio-links" aria-label="Links principais">
-    <a class="bio-link principal" href={bio.principal.href} target="_blank" rel="noopener noreferrer">
-      <span>
-        <span class="bio-link-titulo">{bio.principal.titulo}</span>
-        <span class="bio-link-sub">{bio.principal.sub}</span>
-      </span>
-      <i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span class="sr-only">{novaAba}</span>
-    </a>
+    <h2 class="bio-secao"><Estrela />Seja meu cliente em…</h2>
+    <ul class="bio-lista">
+      {bio.servicos.map(servico => (
+        <li><a class="bio-link" href="/#briefing">
+          <span><span class="bio-link-titulo">{servico.titulo}</span><span class="bio-link-sub">{servico.sub}</span></span>
+          <span class="bio-seta" aria-hidden="true">→</span>
+        </a></li>
+      ))}
+    </ul>
 
     {temGuia && (
       <a class="bio-link guia" href={bio.guia.href} target="_blank" rel="noopener noreferrer">
@@ -44,22 +46,6 @@ const novaAba = ' (abre em nova aba)';
       </a>
     )}
 
-    <h2 class="bio-secao"><Estrela />{bio.conhecer.titulo}</h2>
-    <ul class="bio-lista">
-      {bio.conhecer.links.map((l) => (
-        <li>
-          <a class="bio-link" href={l.href}>
-            <span>
-              <span class="bio-link-titulo">{l.titulo}</span>
-              <span class="bio-link-sub">{l.sub}</span>
-            </span>
-            <span class="bio-seta" aria-hidden="true">→</span>
-          </a>
-        </li>
-      ))}
-    </ul>
-
-    <a class="bio-produto" href={bio.produto.href}>{bio.produto.titulo} →</a>
   </nav>
 
   <ul class="bio-redes" aria-label="Redes sociais">

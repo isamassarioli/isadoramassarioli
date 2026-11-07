@@ -61,7 +61,7 @@ export const lp = {
     numeros: [
       { numero: '50+', rotulo: 'marcas atendidas' },
       { numero: '2020', rotulo: 'criando marcas desde' },
-      { numero: '24h', rotulo: 'para devolver o orçamento' },
+      { numero: '4', rotulo: 'etapas no método da agência' },
     ],
     // Nomes tirados dos projetos do portfólio, sem repetir.
     marcas: Array.from(new Set(projetos.filter((p) => !p.cats.includes('produto')).map((p) => p.nome))),
@@ -69,7 +69,7 @@ export const lp = {
     resultados: [
       { numero: '+50%', rotulo: 'em leads', cliente: 'SOS Energia Solar' },
       { numero: '+200', rotulo: 'seguidores no primeiro mês', cliente: 'Yamoh Moda Praia' },
-      { numero: '+200', rotulo: 'seguidores no período do trabalho', cliente: 'SOS Energia Solar' },
+      { numero: '+10', rotulo: 'lançamentos planejados', cliente: 'Massarioli Studio' },
     ] as { numero: string; rotulo: string; cliente: string }[],
   },
 
@@ -141,7 +141,7 @@ export const lp = {
     itens: [
       {
         p: 'Quanto custa um projeto?',
-        r: 'Depende do que a sua marca precisa hoje: estratégia, uma identidade nova, um manual, posts, um site ou tudo junto. Você me conta o cenário e eu devolvo um orçamento certinho em até 24h, sem letra miúda.',
+        r: 'Depende do que a sua marca precisa hoje: estratégia, uma identidade nova, um manual, posts, um site ou tudo junto. Com as respostas do briefing, preparo uma proposta com escopo, entregas e investimento.',
       },
       {
         p: 'Por onde eu começo?',
@@ -166,7 +166,7 @@ export const lp = {
   final: {
     eyebrow: 'Vamos conversar',
     titulo: 'Vamos trabalhar juntos?',
-    texto: 'Me conta o que sua marca precisa hoje. Devolvo um orçamento certinho em até 24h, sem letra miúda.',
+    texto: 'Me conta o que sua marca precisa hoje. Preencha o briefing para eu entender seu projeto e preparar uma proposta.',
     cta: 'Pedir orçamento',
   },
 };
