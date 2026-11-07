@@ -128,9 +128,18 @@ const temDepoimentos = lp.depoimentos.itens.length > 0;
       <ul class="lp-numeros">
         {lp.prova.numeros.map((n) => <li class="lp-numero"><strong>{n.numero}</strong><span>{n.rotulo}</span></li>)}
       </ul>
-      <ul class="lp-marcas" aria-label="Marcas atendidas">
-        {lp.prova.marcas.map((m) => <li class="lp-marca">{m}</li>)}
-      </ul>
+      <div class="lp-carrossel">
+        <div class="lp-marcas-janela">
+          <div class="lp-marcas-trilho">
+            {[false, true].map(copia => (
+              <ul class="lp-marcas" aria-label={copia ? undefined : 'Marcas atendidas'} aria-hidden={copia ? 'true' : undefined}>
+                {lp.prova.marcas.map(m => <li class="lp-marca">{m}</li>)}
+              </ul>
+            ))}
+          </div>
+        </div>
+        <label class="lp-marcas-pausa"><input type="checkbox" /> Pausar movimento</label>
+      </div>
     </div>
   </section>
 

@@ -144,7 +144,19 @@
 .lp-numeros{ list-style:none; margin:0 0 clamp(28px,4vw,40px); padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
 .lp-numero strong{ display:block; font-family:'Inria Serif',serif; font-style:italic; font-size:clamp(40px,5vw,60px); line-height:1; color:var(--pink-text); font-weight:400; }
 .lp-numero span{ display:block; margin-top:8px; font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
-.lp-marcas{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:10px; }
+.lp-carrossel { min-width: 0; }
+.lp-marcas-janela { overflow: hidden; }
+.lp-marcas-trilho { display: flex; width: max-content; animation: lp-deslizar-marcas 55s linear infinite; }
+.lp-marcas { list-style: none; margin: 0; padding: 0 10px 0 0; display: flex; gap: 10px; flex: none; }
+.lp-marca { white-space: nowrap; }
+.lp-marcas-pausa { display: inline-flex; align-items: center; gap: .4em; margin-top: 12px; font-size: .8rem; cursor: pointer; }
+.lp-carrossel:has(input:checked) .lp-marcas-trilho { animation-play-state: paused; }
+@keyframes lp-deslizar-marcas { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .lp-marcas-trilho { width: auto; animation: none; }
+  .lp-marcas { flex-wrap: wrap; flex: 1; }
+  .lp-marcas[aria-hidden], .lp-marcas-pausa { display: none; }
+}
 .lp-marca{ padding:9px 18px; border-radius:100px; border:1px solid var(--line-strong); font-size:14px; color:var(--text); background:var(--bg-card); }
 
 /* ---------- 5. CASES EM 3 ATOS ---------- */

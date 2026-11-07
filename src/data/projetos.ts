@@ -247,16 +247,6 @@ export const projetos: Projeto[] = [
     ]
   },
   {
-    nome: "Igreja Adventista de São Silvano",
-    cats: ["branding"],
-    tags: ["Branding"],
-    desc: "Identidade para organização religiosa: monograma com chama e cruz, em versões positiva e negativa.",
-    imagens: [
-      { src: "/images/cropped/13-1.png", alt: "Monograma IASS com chama dourada e cruz, em preto sobre fundo branco" },
-      { src: "/images/cropped/13-2.png", alt: "Monograma IASS com chama dourada e cruz, em branco sobre fundo preto" }
-    ]
-  },
-  {
     nome: "DJ Consultoria em Gestão Pública",
     cats: ["branding"],
     tags: ["Rebranding"],
