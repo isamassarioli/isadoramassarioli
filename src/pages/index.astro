@@ -237,6 +237,14 @@ const temDepoimentos = lp.depoimentos.itens.length > 0;
     <p style="text-align:center;padding:1rem"><a href="https://massarioli-agencia.vercel.app/briefing">Abrir formulário em página inteira</a></p>
   </section>
 </main>
+<script>
+  const frame = document.querySelector<HTMLIFrameElement>('#brief-frame');
+  window.addEventListener('message', event => {
+    if (frame && event.origin === 'https://massarioli-agencia.vercel.app' && event.source === frame.contentWindow && event.data?.type === 'brief-height' && Number.isFinite(event.data.height)) {
+      frame.style.height = Math.min(9000, Math.max(280, event.data.height)) + 'px';
+    }
+  });
+</script>
 
 <Footer links={[{ href: '/portfolio', rotulo: 'Portfólio' }, { href: '/productdesign', rotulo: 'Vagas e trabalho em produto' }]} />
 </Base>
