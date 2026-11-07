@@ -16,7 +16,7 @@ export const lp = {
     tituloDepois: ' antes da primeira conversa.',
     apoio: 'Branding, identidade visual e social media para negócios que querem ser lembrados e escolhidos.',
     objecao: 'Mesmo que você ainda não tenha logo, manual ou direção visual.',
-    cta: 'Pedir orçamento pelo WhatsApp',
+    cta: 'Pedir orçamento',
     cta2: 'Ver cases',
     selo: { numero: '50+', rotulo: 'marcas atendidas desde 2020' },
     fotoAlt: 'Isadora Massarioli, designer de marca e Product Designer',
@@ -85,7 +85,7 @@ export const lp = {
       { titulo: 'Identidade', texto: 'Logo, tipografia, paleta e as regras de uso, reunidas no manual de marca.' },
       { titulo: 'Aplicação', texto: 'A marca nos lugares onde ela aparece: redes sociais, papelaria, fachada e site.' },
     ],
-    cta: 'Quero começar pelo WhatsApp',
+    cta: 'Preencher briefing',
   },
 
   servicos: {
@@ -127,7 +127,7 @@ export const lp = {
       },
       {
         p: 'Por onde eu começo?',
-        r: 'Pelo WhatsApp. Conte o que o seu negócio faz, para quem vende e o que incomoda na marca hoje. Se você já tem logo, materiais ou referências, mande junto.',
+        r: 'Preencha o briefing no fim da página e deixe seu contato. Vou ler suas respostas e conversar com você sobre os próximos passos.',
       },
       {
         p: 'Você faz só o logo ou o pacote completo?',
@@ -145,6 +145,6 @@ export const lp = {
     eyebrow: 'Vamos conversar',
     titulo: 'Vamos trabalhar juntos?',
     texto: 'Me conta o que sua marca precisa hoje. Devolvo um orçamento certinho em até 24h, sem letra miúda.',
-    cta: 'Pedir orçamento pelo WhatsApp',
+    cta: 'Pedir orçamento',
   },
 };

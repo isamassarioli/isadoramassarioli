@@ -21,7 +21,7 @@ const temDepoimentos = lp.depoimentos.itens.length > 0;
     { href: '#sobre', rotulo: 'Sobre', opcional: true },
     { href: '/productdesign', rotulo: 'Product design', opcional: true },
   ]}
-  cta={{ href: contato.whatsappOrcamento, rotulo: 'Pedir orçamento', externo: true }}
+  cta={{ href: '#briefing', rotulo: 'Pedir orçamento', externo: false }}
 />
 
 <main id="conteudo" tabindex="-1">
@@ -35,7 +35,7 @@ const temDepoimentos = lp.depoimentos.itens.length > 0;
         <p class="lp-lead">{lp.hero.apoio}</p>
         <p class="lp-obj">{lp.hero.objecao}</p>
         <div class="lp-cta-row">
-          <a class="btn btn-primary btn-lg" href={contato.whatsappOrcamento} target="_blank" rel="noopener noreferrer">{lp.hero.cta}</a>
+          <a class="btn btn-primary btn-lg" href="#briefing">{lp.hero.cta}</a>
           <a class="btn btn-ghost btn-lg" href="#cases">{lp.hero.cta2}</a>
         </div>
       </div>
@@ -140,7 +140,7 @@ const temDepoimentos = lp.depoimentos.itens.length > 0;
         {lp.metodo.etapas.map((e) => <li class="lp-etapa"><h3>{e.titulo}</h3><p>{e.texto}</p></li>)}
       </ol>
       <div class="lp-more" style="justify-content:flex-start">
-        <a class="btn btn-primary btn-lg" href={contato.whatsappOrcamento} target="_blank" rel="noopener noreferrer">{lp.metodo.cta}</a>
+        <a class="btn btn-primary btn-lg" href="#briefing">{lp.metodo.cta}</a>
       </div>
     </div>
   </section>
@@ -197,7 +197,7 @@ const temDepoimentos = lp.depoimentos.itens.length > 0;
       <div>
         {lp.sobre.textos.map((t) => <p>{t}</p>)}
         <div class="lp-cta-row">
-          <a class="btn btn-primary btn-lg" href={contato.whatsappOrcamento} target="_blank" rel="noopener noreferrer">{lp.sobre.cta}</a>
+          <a class="btn btn-primary btn-lg" href="#briefing">{lp.sobre.cta}</a>
         </div>
       </div>
     </div>
@@ -229,8 +229,12 @@ const temDepoimentos = lp.depoimentos.itens.length > 0;
     <span class="lp-eyebrow">{lp.final.eyebrow}</span>
     <h2 class="lp-h2" id="contato-titulo">{lp.final.titulo}</h2>
     <p>{lp.final.texto}</p>
-    <a class="btn btn-primary btn-lg" href={contato.whatsappOrcamento} target="_blank" rel="noopener noreferrer">{lp.final.cta}</a>
+    <a class="btn btn-primary btn-lg" href="#briefing">{lp.final.cta}</a>
     <p class="lp-email">Ou escreva para <a href={contato.emailHref}>{contato.email}</a></p>
+  </section>
+  <section id="briefing" aria-label="Briefing inicial" style="scroll-margin-top:5rem;background:#fffefa">
+    <iframe id="brief-frame" title="Briefing inicial da agência" src="https://massarioli-agencia.vercel.app/briefing" loading="lazy" style="width:100%;height:1250px;border:0;display:block"></iframe>
+    <p style="text-align:center;padding:1rem"><a href="https://massarioli-agencia.vercel.app/briefing">Abrir formulário em página inteira</a></p>
   </section>
 </main>
 
