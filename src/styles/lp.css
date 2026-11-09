@@ -256,8 +256,15 @@ a.lp-svc:hover{ transform:translateY(-4px); border-color:var(--ameixa); box-shad
 .lp-sobre-grid{ display:grid; grid-template-columns:.8fr 1.2fr; gap:clamp(32px,6vw,80px); align-items:center; }
 .lp-sobre-grid p{ font-size:17px; line-height:1.8; color:var(--muted); margin:16px 0 0; max-width:60ch; }
 .lp-sobre-grid .lp-h2{ margin-bottom:8px; }
-.lp-sobre-foto{ position:relative; max-width:380px; }
-.lp-sobre-foto img{ width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; display:block; border-radius:24px; border:8px solid var(--creme); transform:rotate(-2.5deg); box-shadow:0 30px 60px -30px #000; }
+/* Foto sem moldura: as bordas se desfazem no ameixa da seção */
+.lp-sobre-foto{ position:relative; max-width:460px; margin-left:calc(var(--gutter) * -0.5); }
+.lp-sobre-foto img{
+  width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; display:block;
+  -webkit-mask-image:linear-gradient(90deg, transparent 0%, #000 14%, #000 58%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 16%, #000 76%, transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg, transparent 0%, #000 14%, #000 58%, transparent 100%), linear-gradient(180deg, transparent 0%, #000 16%, #000 76%, transparent 100%);
+  mask-composite:intersect;
+}
 
 /* ---------- 10. DÚVIDAS ---------- */
 .lp-faq{ max-width:820px; margin:0 auto; }
@@ -321,6 +328,8 @@ a.lp-svc:hover{ transform:translateY(-4px); border-color:var(--ameixa); box-shad
 /* ---------- RESPONSIVO ---------- */
 @media (max-width:960px){
   .lp-hero-grid, .lp-estrategia-grid, .lp-sobre-grid{ grid-template-columns:1fr; }
+  .lp-sobre-foto{ max-width:none; margin:-40px calc(var(--gutter) * -1) -60px; }
+  .lp-sobre-foto img{ -webkit-mask-image:linear-gradient(180deg, transparent 0%, #000 12%, #000 62%, transparent 100%); mask-image:linear-gradient(180deg, transparent 0%, #000 12%, #000 62%, transparent 100%); }
 
   .lp-case, .lp-case:nth-child(even){ grid-template-columns:1fr; }
   .lp-case:nth-child(even) .lp-case-img{ order:0; }
