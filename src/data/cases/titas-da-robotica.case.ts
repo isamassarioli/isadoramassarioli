@@ -53,6 +53,7 @@ const caso: Case = {
       ],
       imagens: [
         { src: img('fluxos.png'), alt: 'Mapa de fluxos de navegação do portal, com a home conectada às páginas de equipes, inscrição, blog, apoio e contato', legenda: 'Mapa de fluxos: como a home se conecta às páginas internas.', formato: 'largo' },
+        { src: img('prototipo.webp'), alt: 'Primeiro protótipo da home no Figma, em fundo preto, com o logo da equipe centralizado, o menu com oito entradas e um carrossel de fotos da Olimpíada Brasileira de Robótica 2025', legenda: 'Primeiro protótipo no Figma: a estrutura das oito páginas testada antes do conteúdo final.', formato: 'largo' },
         { src: img('historia.webp'), alt: 'Seção Nossa História do portal, com texto sobre a origem da equipe em 2014 e foto dos integrantes numa competição', legenda: 'Nossa História: a origem da equipe contada a partir das entrevistas e documentos.', formato: 'largo' },
         { src: img('trajetoria.webp'), alt: 'Linha do tempo da equipe com marcos de 2014 a 2025, como fundação, rebranding, ações na pandemia e participação em mundiais', legenda: 'Linha do tempo com os marcos da equipe, de 2014 até hoje.', formato: 'largo' },
         { src: img('equipes.webp'), alt: 'Página Equipes do portal com cards de fotos das equipes de competição', legenda: 'Página de equipes, com uma entrada para cada categoria de competição.', formato: 'largo' },
@@ -126,6 +127,7 @@ const caso: Case = {
       ],
       imagens: [
         { src: img('fluxos.png'), alt: 'Navigation flow map of the portal, connecting the home page to the teams, sign-up, blog, support and contact pages', legenda: 'Flow map: how the home page connects to the inner pages.', formato: 'largo' },
+        { src: img('prototipo.webp'), alt: 'First Figma prototype of the home page on a black background, with the team logo centered, an eight-item menu and a photo carousel from the 2025 Brazilian Robotics Olympiad', legenda: 'First Figma prototype: the structure of all eight pages tested before the final content.', formato: 'largo' },
         { src: img('historia.webp'), alt: 'Our History section of the portal, with text about the team\'s origin in 2014 and a photo of members at a competition', legenda: 'Our History: the team\'s origin, written from the interviews and documents.', formato: 'largo' },
         { src: img('trajetoria.webp'), alt: 'Team timeline with milestones from 2014 to 2025, such as its founding, rebranding, pandemic work and world championships', legenda: 'Timeline of the team\'s milestones, from 2014 to today.', formato: 'largo' },
         { src: img('equipes.webp'), alt: 'Teams page of the portal with photo cards for each competition team', legenda: 'Teams page, with one entry per competition category.', formato: 'largo' },

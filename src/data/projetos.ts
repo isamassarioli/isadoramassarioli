@@ -62,6 +62,14 @@ export const projetos: Projeto[] = [
     href: '/productdesign/fapes-submissao',
   },
   {
+    nome: 'Vello CRM',
+    cats: ['produto', 'branding'],
+    tags: ['Branding B2B', 'Página de vendas', 'UI'],
+    desc: 'Identidade visual e página de vendas para um sistema de gestão com IA voltado a revendas de carros e motos.',
+    capa: { src: '/images/cases/vello-crm/capa.webp', alt: 'Topo da página de vendas do Vello CRM em azul-marinho, com o título sobre revendas de 200 veículos e os botões de demonstração' },
+    href: '/productdesign/vello-crm',
+  },
+  {
     nome: "Yamoh Moda Praia",
     cats: ["social"],
     tags: ["Estratégia", "Social Media", "Catálogo online"],
