@@ -4,10 +4,13 @@
 .bio > *:not(.lp-blob){ position:relative; z-index:1; width:100%; max-width:460px; }
 
 .bio-topo{ display:flex; flex-direction:column; align-items:center; text-align:center; }
-.bio-figurinha{ position:relative; width:148px; height:148px; margin-bottom:20px; }
-.bio-rabiscos{ position:absolute; inset:0; width:100%; height:100%; border-radius:50%; background:var(--creme); border:4px solid var(--creme); box-shadow:0 16px 36px -18px var(--ameixa); }
-.bio-recorte{ position:absolute; left:50%; bottom:2px; transform:translateX(-50%); height:100%; width:auto; clip-path:circle(50% at 50% 46%); }
-.bio-brilho{ position:absolute; top:-6px; right:-2px; width:26px; height:37px; color:var(--rosa); animation:piscar 3.2s ease-in-out infinite; }
+/* Foto no topo, se desfazendo no creme até os links */
+.bio{ padding-top:0; }
+.bio > .bio-capa{ position:relative; width:calc(100% + 40px); max-width:560px; margin:0 -20px; aspect-ratio:4/5; overflow:hidden; }
+.bio-capa img{ width:100%; height:100%; object-fit:cover; object-position:50% 40%; display:block; transform:scale(1.35); transform-origin:58% 40%; }
+.bio-capa::after{ content:''; position:absolute; inset:0; background:linear-gradient(180deg, #fffff000 0%, #fffff000 50%, #fffff0b3 78%, #fffff0 100%); }
+.bio-brilho{ position:absolute; z-index:1; top:20px; right:22px; width:28px; height:40px; color:var(--rosa); animation:piscar 3.2s ease-in-out infinite; }
+.bio > .bio-topo{ margin-top:-84px; }
 .bio-topo h1{ margin:0; line-height:0; }
 .bio-topo h1 img{ width:min(300px,78vw); height:auto; }
 .bio-apresenta{ margin:10px 0 0; font-weight:200; font-size:17px; letter-spacing:.04em; }
@@ -74,4 +77,9 @@
   }
   .bio-link.principal .bio-seta { animation: bio-seta-convite .8s ease-in-out .6s 2; }
   .bio-link.principal:is(:hover, :focus-visible) .bio-seta { transform: rotate(-18deg); transition: transform .2s ease; }
+}
+
+/* No computador a coluna é estreita: as laterais da foto também se desfazem no creme */
+@media (min-width:600px){
+  .bio > .bio-capa{ -webkit-mask-image:linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent); mask-image:linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent); }
 }

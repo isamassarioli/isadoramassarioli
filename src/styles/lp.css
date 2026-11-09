@@ -63,9 +63,23 @@
 .faixa-cor span{ flex:1; }
 
 /* ---------- 1. ABERTURA ---------- */
-.lp-hero{ padding-top:clamp(32px,5vw,64px); }
-.lp-hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(32px,6vw,72px); align-items:center; }
-.lp-hero .lp-lead{ font-size:clamp(17px,1.6vw,19px); color:var(--text); }
+/* Abertura com foto: no desktop a foto ocupa a direita e se funde no ameixa por trás do texto;
+   no celular ela fica em cima e o texto entra logo abaixo. Texto creme sobre ameixa = 16,9:1. */
+.lp-hero{
+  --text:#fffff0; --muted:#f1e4ec; --pink-text:#ff8aa3; --line-strong:#fffff080; --focus:#fffd66;
+  position:relative; min-height:calc(100svh - 64px); display:flex; align-items:center;
+  padding:clamp(40px,6vw,80px) var(--gutter); overflow:hidden; color:var(--text); background:var(--ameixa);
+}
+.lp-hero-moldura{ position:absolute; inset:0; overflow:hidden; }
+.lp-hero-img{ position:absolute; top:0; right:0; height:100%; width:64%; max-width:none; object-fit:cover; object-position:52% 34%; }
+.lp-hero-veu{ position:absolute; inset:0; background:linear-gradient(90deg, #330c2f 0%, #330c2f 36%, #330c2fcc 46%, #330c2f33 60%, #330c2f00 72%); }
+.lp-hero-texto{ position:relative; z-index:1; width:100%; max-width:1120px; margin:0 auto; }
+.lp-hero-texto > div > *{ max-width:560px; }
+.lp-hero .lp-eyebrow{ color:var(--amarelo); }
+.lp-hero .lp-h1, .lp-hero .sublinhado{ color:var(--text); }
+.lp-hero .lp-lead{ font-size:clamp(17px,1.6vw,19px); color:var(--text); opacity:.92; }
+.lp-hero .lp-obj{ color:var(--muted); }
+.lp-hero .btn-ghost{ color:var(--text); border-color:#fffff0b3; }
 .lp-obj{ font-size:15px; color:var(--muted); margin:14px 0 0; }
 .lp-cta-row{ display:flex; flex-wrap:wrap; gap:14px; margin-top:32px; }
 
@@ -79,15 +93,12 @@
 @keyframes desenhar{ to{ stroke-dashoffset:0; } }
 
 /* Foto como figurinha sobre os rabiscos */
-.lp-figurinha{ position:relative; aspect-ratio:1/1; max-width:520px; justify-self:center; width:100%; }
-.lp-rabiscos{ position:absolute; inset:0; width:100%; height:100%; border-radius:28px; background:var(--creme); box-shadow:0 30px 70px -36px var(--ameixa); }
-.lp-recorte{ position:absolute; left:50%; bottom:0; transform:translateX(-50%); height:96%; width:auto; filter:drop-shadow(0 18px 24px #330c2f33); }
 .lp-selo{
-  position:absolute; left:-14px; bottom:24px; z-index:3; background:var(--ameixa); color:var(--creme);
-  border-radius:16px; padding:14px 20px; transform:rotate(-3deg); box-shadow:0 18px 40px -18px #000;
+  position:absolute; z-index:2; right:clamp(16px,6vw,96px); bottom:28px; background:var(--creme); color:var(--ameixa);
+  border-radius:16px; padding:12px 18px; transform:rotate(-3deg); box-shadow:0 18px 40px -18px #000;
 }
-.lp-selo strong{ display:block; font-family:'Inter',sans-serif; font-weight:800; font-size:34px; line-height:1; color:var(--amarelo); }
-.lp-selo span{ font-size:12.5px; color:#fffff0e6; }
+.lp-selo strong{ display:block; font-family:'Inter',sans-serif; font-weight:800; font-size:30px; line-height:1; color:#c8143f; }
+.lp-selo span{ font-size:12.5px; color:var(--ameixa); }
 
 /* ---------- 2. DOR: letreiro ---------- */
 .lp-dor .lp-h2{ max-width:22ch; }
@@ -246,7 +257,7 @@ a.lp-svc:hover{ transform:translateY(-4px); border-color:var(--ameixa); box-shad
 .lp-sobre-grid p{ font-size:17px; line-height:1.8; color:var(--muted); margin:16px 0 0; max-width:60ch; }
 .lp-sobre-grid .lp-h2{ margin-bottom:8px; }
 .lp-sobre-foto{ position:relative; max-width:380px; }
-.lp-sobre-foto img{ width:100%; height:auto; display:block; border-radius:24px; border:8px solid var(--creme); transform:rotate(-2.5deg); box-shadow:0 30px 60px -30px #000; }
+.lp-sobre-foto img{ width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; display:block; border-radius:24px; border:8px solid var(--creme); transform:rotate(-2.5deg); box-shadow:0 30px 60px -30px #000; }
 
 /* ---------- 10. DÚVIDAS ---------- */
 .lp-faq{ max-width:820px; margin:0 auto; }
@@ -310,13 +321,21 @@ a.lp-svc:hover{ transform:translateY(-4px); border-color:var(--ameixa); box-shad
 /* ---------- RESPONSIVO ---------- */
 @media (max-width:960px){
   .lp-hero-grid, .lp-estrategia-grid, .lp-sobre-grid{ grid-template-columns:1fr; }
-  .lp-figurinha{ max-width:420px; }
+
   .lp-case, .lp-case:nth-child(even){ grid-template-columns:1fr; }
   .lp-case:nth-child(even) .lp-case-img{ order:0; }
   .lp-servicos{ grid-template-columns:repeat(2,1fr); }
   .lp-etapas{ grid-template-columns:repeat(2,1fr); gap:36px 20px; }
   .lp-etapas::before{ display:none; }
   .pf-caso{ grid-template-columns:1fr; }
+}
+@media (max-width:760px){
+  .lp-hero{ display:block; min-height:0; padding:0 var(--gutter) 44px; }
+  .lp-hero-moldura{ position:relative; inset:auto; margin:0 calc(var(--gutter) * -1); aspect-ratio:4/5; }
+  .lp-hero-img{ width:100%; height:100%; object-position:50% 40%; transform:scale(1.5); transform-origin:58% 40%; }
+  .lp-hero-veu{ background:linear-gradient(180deg, #330c2f00 0%, #330c2f00 58%, #330c2fb3 82%, #330c2f 100%); }
+  .lp-hero-texto{ margin-top:-72px; }
+  .lp-selo{ top:16px; bottom:auto; left:16px; right:auto; }
 }
 @media (max-width:620px){
   .lp-servicos, .lp-etapas{ grid-template-columns:1fr; }

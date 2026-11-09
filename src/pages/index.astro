@@ -29,10 +29,12 @@ const temDepoimentos = lp.depoimentos.itens.length > 0;
 <main id="conteudo" tabindex="-1">
 
   <!-- 1. ABERTURA -->
-  <section class="lp-sec lp-hero" aria-labelledby="hero-titulo">
-    <div class="lp-blob lp-blob-rosa" aria-hidden="true"></div>
-    <div class="lp-blob lp-blob-ameixa" aria-hidden="true"></div>
-    <div class="lp-wrap lp-hero-grid">
+  <section class="lp-hero" aria-labelledby="hero-titulo">
+    <div class="lp-hero-moldura">
+      <img class="lp-hero-img" src="/images/fotos/ensaio-1.webp" alt={lp.hero.fotoAlt} width="1333" height="2000" fetchpriority="high">
+      <div class="lp-hero-veu" aria-hidden="true"></div>
+    </div>
+    <div class="lp-hero-texto">
       <div>
         <span class="lp-eyebrow">{lp.hero.eyebrow}</span>
         <h1 class="lp-h1" id="hero-titulo">
@@ -45,14 +47,8 @@ const temDepoimentos = lp.depoimentos.itens.length > 0;
           <a class="btn btn-ghost btn-lg" href="#cases">{lp.hero.cta2}</a>
         </div>
       </div>
-      <div class="lp-figurinha">
-        <img class="lp-rabiscos" src="/images/marca/rabiscos.svg" alt="" width="1718" height="1718" aria-hidden="true">
-        <img class="lp-recorte" src="/images/marca/foto-recorte.webp" alt={lp.hero.fotoAlt} width="768" height="1024" fetchpriority="high">
-        <Estrela class="lp-brilho b1" />
-        <Estrela class="lp-brilho b2" />
-        <div class="lp-selo"><strong>{lp.hero.selo.numero}</strong><span>{lp.hero.selo.rotulo}</span></div>
-      </div>
     </div>
+    <div class="lp-selo"><strong>{lp.hero.selo.numero}</strong><span>{lp.hero.selo.rotulo}</span></div>
   </section>
 
   <Faixa />
@@ -252,7 +248,7 @@ const temDepoimentos = lp.depoimentos.itens.length > 0;
   <section class="lp-sec lp-dark" id="sobre" aria-labelledby="sobre-titulo" data-reveal>
     <div class="lp-wrap lp-sobre-grid">
       <div class="lp-sobre-foto">
-        <img src="/images/foto-isadora.jpg" alt={lp.sobre.fotoAlt} width="640" height="640" loading="lazy">
+        <img src="/images/fotos/ensaio-2-sobre.webp" alt={lp.sobre.fotoAlt} width="720" height="900" loading="lazy">
         <Estrela class="lp-brilho b3" />
       </div>
       <div>

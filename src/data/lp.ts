@@ -20,7 +20,7 @@ export const lp = {
     cta: 'Pedir orçamento',
     cta2: 'Ver cases',
     selo: { numero: '50+', rotulo: 'marcas atendidas desde 2020' },
-    fotoAlt: 'Isadora Massarioli sorrindo, recortada como figurinha sobre os rabiscos rosa e ameixa da marca',
+    fotoAlt: 'Isadora Massarioli com lenço estampado na cabeça e uma orquídea no cabelo, olhando por cima do ombro no meio da mata, com folhas desfocadas em primeiro plano',
   },
 
   dor: {
@@ -131,7 +131,7 @@ export const lp = {
       'Todo projeto começa com perguntas antes de abrir o Illustrator: quem é o cliente do meu cliente, o que ele precisa ouvir pra confiar e onde essa marca vai aparecer no dia a dia.',
       'Bonito vende uma vez. Entregar o que promete vende sempre.',
     ],
-    fotoAlt: 'Isadora Massarioli',
+    fotoAlt: 'Isadora Massarioli com lenço estampado e orquídea no cabelo, mãos no rosto, vista entre folhas verdes desfocadas na mata',
     cta: 'Pedir orçamento',
   },
 
