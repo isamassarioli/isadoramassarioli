@@ -30,7 +30,7 @@ const novaAba = ' (abre em nova aba)';
     <h2 class="bio-secao"><Estrela />Seja meu cliente em…</h2>
     <ul class="bio-lista">
       {bio.servicos.map(servico => (
-        <li><a class:list={['bio-link', { principal: servico.destaque }]} href="/#briefing">
+        <li><a class:list={['bio-link', { principal: servico.destaque }]} href={servico.href}>
           <span><span class="bio-link-titulo">{servico.titulo}</span><span class="bio-link-sub">{servico.sub}</span></span>
           <span class="bio-seta" aria-hidden="true">→</span>
         </a></li>
